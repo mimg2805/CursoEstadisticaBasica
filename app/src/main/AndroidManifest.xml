@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.marcosmiranda.cursoestadisticabasica">
+
+    <application
+            android:icon="@mipmap/ic_launcher"
+            android:installLocation="preferExternal"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            >
+        <activity
+                android:name=".MainMenu"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".Unidad"
+                android:parentActivityName=".MainMenu"
+                tools:targetApi="jelly_bean">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu"/>
+        </activity>
+        <activity
+                android:name=".Tema"
+                android:parentActivityName=".MainMenu"
+                tools:targetApi="jelly_bean">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu"/>
+        </activity>
+        <activity android:name=".Formula" />
+        <activity android:name=".CalcTamanioMuestraProporcion" />
+        <activity android:name=".CalcTamanioMuestraMedia" />
+        <activity android:name=".CalcIntervaloConfianzaMediaPoblacionConocida" />
+        <activity android:name=".CalcIntervaloConfianzaMediaPoblacionDesconocida" />
+        <activity android:name=".CalcIntervaloConfianzaProporcionPoblacionConocida" />
+        <activity android:name=".CalcIntervaloConfianzaProporcionPoblacionDesconocida" />
+        <activity android:name=".CalcDistBinomial" />
+        <activity android:name=".CalcReglaAdicion" />
+        <activity android:name=".CalcReglaMultiplicacion" />
+        <activity android:name=".CalcProbTeorica" />
+        <activity android:name=".CalcProbEmpirica" />
+        <activity android:name=".CalcReglaComplemento" />
+        <activity android:name=".CalcDistPoisson" />
+        <activity android:name=".CalcDistHipergeometrica" />
+        <activity android:name=".CalcDistNormalProbabilidades" />
+        <activity android:name=".CalcDistNormalEstandarizacion" />
+        <activity android:name=".CalcDistMuestra" />
+        <activity android:name=".CalcMedidasResumenVariableCuantitativa" />
+        <activity android:name=".CalcDescriptivaVariableCualitativa" />
+        <activity android:name=".CalcChiCuadrado" />
+        <activity android:name=".CalcFFisher" />
+        <activity android:name=".CalcTStudent" />
+        <activity android:name=".RNG" />
+    </application>
+
+</manifest>

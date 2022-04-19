@@ -1,0 +1,124 @@
+<resources>
+    <string name="app_name">Curso Estadística Básica</string>
+
+    <string name="calcular">Calcular</string>
+    <string name="generar">Generar</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="e_val">2.71828</string>
+    <string name="Z_val">1.96</string>
+
+    <string name="d1">d1</string>
+    <string name="d2">d2</string>
+    <string name="E">E</string>
+    <string name="e">e</string>
+    <string name="Fn">Fn</string>
+    <string name="M">M</string>
+    <string name="N">N</string>
+    <string name="n">n</string>
+    <string name="Nn">Nn</string>
+    <string name="P">P</string>
+    <string name="p">p</string>
+    <string name="S">S</string>
+    <string name="s">s</string>
+    <string name="v">v</string>
+    <string name="x">x</string>
+    <string name="xbar">x̄</string>
+    <string name="Z">Z</string>
+    <string name="IC">IC</string>
+    <string name="media">Media</string>
+
+    <string name="pi">π</string>
+    <string name="lambda">λ</string>
+    <string name="mi">μ</string>
+    <string name="sigma">σ</string>
+
+    <string name="P_A">P(A)</string>
+    <string name="P_B">P(B)</string>
+
+    <string name="RFA">#RFA</string>
+    <string name="TRE">#TRE</string>
+    <string name="TRO">#TRO</string>
+
+    <string name="P_Ac">P(Ac)</string>
+
+    <string name="P_AyB">P(A y B)</string>
+    <string name="P_AoB">P(A ó B)</string>
+    <string name="P_BoverA">P(B / A)</string>
+    <string name="P_Xequalsx">P(X = x)</string>
+
+    <string name="d1_equals">d1 =</string>
+    <string name="d2_equals">d2 =</string>
+    <string name="E_equals">E =</string>
+    <string name="e_equals">e =</string>
+    <string name="Fn_equals">Fn =</string>
+    <string name="M_equals">M =</string>
+    <string name="N_equals">N =</string>
+    <string name="n_equals">n =</string>
+    <string name="Nn_equals">Nn =</string>
+    <string name="P_equals">P =</string>
+    <string name="p_equals">p =</string>
+    <string name="S_equals">S =</string>
+    <string name="s_equals">s =</string>
+    <string name="v_equals">v =</string>
+    <string name="x_equals">x =</string>
+    <string name="xbar_equals">x̄ =</string>
+    <string name="Z_equals">Z =</string>
+    <string name="IC_equals">IC =</string>
+    <string name="media_equals">Media =</string>
+
+    <string name="pi_equals">π =</string>
+    <string name="lambda_equals">λ =</string>
+    <string name="mi_equals">μ =</string>
+    <string name="sigma_equals">σ =</string>
+
+    <string name="P_A_equals">P(A) =</string>
+    <string name="P_B_equals">P(B) =</string>
+
+    <string name="RFA_equals">#RFA =</string>
+    <string name="TRE_equals">#TRE =</string>
+    <string name="TRO_equals">#TRO =</string>
+
+    <string name="P_Ac_equals">P(Ac) =</string>
+
+    <string name="P_AyB_equals">P(A y B) =</string>
+    <string name="P_AoB_equals">P(A ó B) =</string>
+    <string name="P_BoverA_equals">P(B / A) =</string>
+    <string name="P_Xequalsx_equals">P(X = x) =</string>
+
+    <string name="numbers">¿Cuántos números desea generar?</string>
+    <string name="minNum">Número mínimo</string>
+    <string name="maxNum">Número máximo</string>
+
+    <string-array name="probs_2">
+        <item>P(X > x) =</item>
+        <item>P(X &lt; x) =</item>
+    </string-array>
+
+    <string-array name="probs_2_inv">
+        <item>P(X &lt; x) =</item>
+        <item>P(X > x) =</item>
+    </string-array>
+
+    <string-array name="probs_3">
+        <item>P(X = x) =</item>
+        <item>P(X > x) =</item>
+        <item>P(X &lt; x) =</item>
+    </string-array>
+
+    <string-array name="regla_adicion">
+        <item>Eventos Mutuamente Excluyentes</item>
+        <item>Eventos No Mutuamente Excluyentes</item>
+    </string-array>
+
+    <string-array name="regla_multiplicacion">
+        <item>Eventos Independientes</item>
+        <item>Eventos No Independientes</item>
+    </string-array>
+
+    <string-array name="rng_range">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>
