@@ -1,10 +1,10 @@
 # Curso Estadística Básica
 
-Una guía para el aprendizaje de la estadística.\
+Una guía para el aprendizaje de la estadística.
 
 Cálculo de tamaño de muestra, generación de números aleatorios, fracción de muestreo para la selección y distribución de una muestra de tamaño n.\
 Cálculo de Probabilidades básico y de distribuciones de probabilidad más utilizadas en Estadística.\
-Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, para población conocida o desconocida.\
+Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, para población conocida o desconocida.
 
 ---
 
