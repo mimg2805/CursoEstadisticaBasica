@@ -107,7 +107,7 @@ class Formula : AppCompatActivity() {
                     21 -> button.isEnabled = false
                     22 -> intent = Intent(this, CalcIntervaloConfianzaProporcionPoblacionDesconocida::class.java)
                     23 -> intent = Intent(this, CalcIntervaloConfianzaMediaPoblacionDesconocida::class.java)
-                    24 -> button.isEnabled = false
+                    24 -> intent = Intent(this, CalcPruebaHipotesisProporcionPoblacional::class.java)
                     25 -> button.isEnabled = false
                     26 -> button.isEnabled = false
                 }

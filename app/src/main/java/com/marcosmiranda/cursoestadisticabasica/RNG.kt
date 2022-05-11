@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +23,7 @@ class RNG : AppCompatActivity() {
     private lateinit var mMaxNumTxt: EditText
     private lateinit var mNumsView: TextView
 
+    private lateinit var btnGenerar: Button
     private lateinit var btnLimpiar: Button
     private var toast: Toast? = null
 
@@ -35,6 +35,7 @@ class RNG : AppCompatActivity() {
         mMinNumTxt = findViewById(R.id.minNumTxt)
         mMaxNumTxt = findViewById(R.id.maxNumTxt)
         mNumsView = findViewById(R.id.numsView)
+        btnGenerar = findViewById(R.id.btnGenerar)
         btnLimpiar = findViewById(R.id.btnLimpiar)
 
         mNumbersTxt.addTextChangedListener(object : TextWatcher {
@@ -67,59 +68,68 @@ class RNG : AppCompatActivity() {
             }
         })
 
+        mNumsView.setOnClickListener { view -> copy(view) }
+        btnGenerar.setOnClickListener { view -> generate(view) }
         btnLimpiar.setOnClickListener { view -> clear(view) }
     }
 
     fun generate(view : View) {
-        if (view.isClickable) {
-            if (nums >= max) {
-                toast?.cancel()
-                toast = Toast.makeText(
-                    this,
-                    "ERROR: El número de elementos generados debe ser menor que el número máximo.",
-                    Toast.LENGTH_LONG
-                )
-                toast?.show()
-            } else {
-                if (nums > 0 && max != 0 && min != max && max > min) {
-                    val numsSet: MutableSet<Int> = mutableSetOf()
-                    while (numsSet.size < nums) numsSet.add((min..max).random())
+        if (!view.isClickable) return
 
-                    val finalNumsList = numsSet.shuffled()
-                    var numsStr = finalNumsList.toString().replace(",", "")
-                    val len = numsStr.length
-                    if (len > 2) numsStr = numsStr.slice(1 until numsStr.length - 1)
-                    mNumsView.text = numsStr
-                }
-            }
+        if (nums > max) {
+            toast?.cancel()
+            toast = Toast.makeText(
+                this,
+                "ERROR: El número de elementos generados debe ser menor que el número máximo.",
+                Toast.LENGTH_LONG
+            )
+            toast?.show()
+            return
+        }
+
+        if (nums > 0 && max != 0 && min != max && max > min) {
+            val numsSet: MutableSet<Int> = mutableSetOf()
+            while (numsSet.size < nums) numsSet.add((min..max).random())
+
+            val finalNumsList = numsSet.shuffled()
+            var numsStr = finalNumsList.toString().replace(",", "")
+            val len = numsStr.length
+            if (len > 2) numsStr = numsStr.slice(1 until numsStr.length - 1)
+            mNumsView.text = numsStr
         }
     }
 
     fun clear(view: View) {
-        if (view.isClickable) {
-            nums = 0
-            min = 0
-            max = 0
+        if (!view.isClickable) return
 
-            mNumbersTxt.setText("")
-            mMinNumTxt.setText("")
-            mMaxNumTxt.setText("")
-            mNumsView.text = ""
+        nums = 0
+        min = 0
+        max = 0
 
-            mNumbersTxt.clearFocus()
-            mMinNumTxt.clearFocus()
-            mMaxNumTxt.clearFocus()
-        }
+        mNumbersTxt.setText("")
+        mMinNumTxt.setText("")
+        mMaxNumTxt.setText("")
+        mNumsView.text = ""
+
+        mNumbersTxt.clearFocus()
+        mMinNumTxt.clearFocus()
+        mMaxNumTxt.clearFocus()
     }
 
     fun copy(view: View) {
-        if (view.isClickable) {
-            val nums = mNumsView.text.toString()
-            // Log.e("nums", nums)
-            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("nums", nums)
-            clipboard.setPrimaryClip(clip)
-            Toast.makeText(this, "¡Copiado!", Toast.LENGTH_SHORT).show()
-        }
+        if (!view.isClickable) return
+
+        val nums = mNumsView.text.toString()
+        // Log.e("nums", nums)
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("nums", nums)
+        clipboard.setPrimaryClip(clip)
+        toast?.cancel()
+        toast = Toast.makeText(
+            this,
+            "¡Copiado!",
+            Toast.LENGTH_SHORT
+        )
+        toast?.show()
     }
 }

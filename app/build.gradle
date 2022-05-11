@@ -8,8 +8,8 @@ android {
         applicationId 'com.marcosmiranda.cursoestadisticabasica'
         minSdkVersion 14
         targetSdkVersion 32
-        versionCode 125
-        versionName '1.2'
+        versionCode 126
+        versionName '1.2.1'
         // versionName '1.2-' + getDate()
     }
     buildTypes {

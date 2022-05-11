@@ -43,6 +43,7 @@
         <activity android:name=".CalcIntervaloConfianzaMediaPoblacionDesconocida" />
         <activity android:name=".CalcIntervaloConfianzaProporcionPoblacionConocida" />
         <activity android:name=".CalcIntervaloConfianzaProporcionPoblacionDesconocida" />
+        <activity android:name=".CalcPruebaHipotesisProporcionPoblacional" />
         <activity android:name=".CalcDistBinomial" />
         <activity android:name=".CalcReglaAdicion" />
         <activity android:name=".CalcReglaMultiplicacion" />

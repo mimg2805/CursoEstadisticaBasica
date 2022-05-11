@@ -4,7 +4,6 @@ import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +29,7 @@ class Unidad : AppCompatActivity() {
 
         val layout: LinearLayout = findViewById(R.id.linLayout)
         var index: Int
-        val temasOmitidos = arrayOf(24, 25, 26, 27, 28, 29)
+        val temasOmitidos = arrayOf(25, 26, 27, 28, 29)
         if (temas.count > 0) {
             do {
                 val button = Button(this)

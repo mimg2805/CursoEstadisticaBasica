@@ -12,43 +12,43 @@ body {
 }
 
 .fs1 {
-    font-size: 1vw;
+    font-size: 1vw !important;
 }
 
 .fs2 {
-    font-size: 2vw;
+    font-size: 2vw !important;
 }
 
 .fs3 {
-    font-size: 3vw;
+    font-size: 3vw !important;
 }
 
 .fs4 {
-    font-size: 4vw;
+    font-size: 4vw !important;
 }
 
 .fs5 {
-    font-size: 5vw;
+    font-size: 5vw !important;
 }
 
 .fs6 {
-    font-size: 6vw;
+    font-size: 6vw !important;
 }
 
 .fs7 {
-    font-size: 7vw;
+    font-size: 7vw !important;
 }
 
 .fs8 {
-    font-size: 8vw;
+    font-size: 8vw !important;
 }
 
 .fs9 {
-    font-size: 9vw;
+    font-size: 9vw !important;
 }
 
 .fs10 {
-    font-size: 10vw;
+    font-size: 10vw !important;
 }
 
 .mean {
