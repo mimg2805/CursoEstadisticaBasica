@@ -20,6 +20,7 @@
     <string name="p">p</string>
     <string name="S">S</string>
     <string name="s">s</string>
+    <string name="u">u</string>
     <string name="v">v</string>
     <string name="x">x</string>
     <string name="xbar">x̄</string>
@@ -59,6 +60,7 @@
     <string name="p_equals">p =</string>
     <string name="S_equals">S =</string>
     <string name="s_equals">s =</string>
+    <string name="u_equals">u =</string>
     <string name="v_equals">v =</string>
     <string name="x_equals">x =</string>
     <string name="xbar_equals">x̄ =</string>

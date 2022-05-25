@@ -39,6 +39,7 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
          - Intervalo de Confianza para una Media Poblacional (Población Desconocida)
          - Intervalo de Confianza para una Media Poblacional (Población Conocida)
     - Tema 3: Prueba de Hipótesis para una Proporción Poblacional
+    - Tema 4: Prueba de Hipótesis para una Media Poblacional
 
 **Google Play:**
 https://play.google.com/store/apps/details?id=com.marcosmiranda.cursoestadisticabasica

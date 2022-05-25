@@ -3,6 +3,7 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -14,18 +15,20 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInt
 import org.apache.commons.math3.distribution.BinomialDistribution
 import org.apache.commons.math3.distribution.NormalDistribution
 
-class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
+class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
 
     private var n: BigInteger = BigInteger.ZERO
-    private var p: BigDecimal = BigDecimal.ZERO
-    private var pi: BigDecimal = BigDecimal.ZERO
+    private var x: BigDecimal = BigDecimal.ZERO
+    private var u: BigDecimal = BigDecimal.ZERO
+    private var s: BigDecimal = BigDecimal.ZERO
     private var Z: BigDecimal = BigDecimal.ZERO
     private var prob: BigDecimal = BigDecimal.ZERO
     private var calc: String = ""
 
     private lateinit var mnTxt: EditText
-    private lateinit var mpTxt: EditText
-    private lateinit var mpiTxt: EditText
+    private lateinit var mxTxt: EditText
+    private lateinit var muTxt: EditText
+    private lateinit var msTxt: EditText
     private lateinit var mZTxt: EditText
     private lateinit var mprobTxt: EditText
 
@@ -37,11 +40,12 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calc_prueba_hipotesis_proporcion_poblacional)
+        setContentView(R.layout.activity_calc_prueba_hipotesis_media_poblacional)
 
         mnTxt = findViewById(R.id.nTxt)
-        mpTxt = findViewById(R.id.pTxt)
-        mpiTxt = findViewById(R.id.piTxt)
+        mxTxt = findViewById(R.id.xTxt)
+        muTxt = findViewById(R.id.uTxt)
+        msTxt = findViewById(R.id.sTxt)
         mZTxt = findViewById(R.id.ZTxt)
         mprobTxt = findViewById(R.id.probTxt)
         btnLimpiar = findViewById(R.id.btnLimpiar)
@@ -66,7 +70,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             }
         })
 
-        mpTxt.addTextChangedListener(object : TextWatcher {
+        mxTxt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
                 if (!text.isNullOrBlank()) calc()
             }
@@ -74,11 +78,11 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) p = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) x = strToBigDecimal(text.toString())
             }
         })
 
-        mpiTxt.addTextChangedListener(object : TextWatcher {
+        muTxt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
                 if (!text.isNullOrBlank()) calc()
             }
@@ -86,7 +90,19 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pi = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) u = strToBigDecimal(text.toString())
+            }
+        })
+
+        msTxt.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(text: Editable?) {
+                if (!text.isNullOrBlank()) calc()
+            }
+
+            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!text.isNullOrBlank()) s = strToBigDecimal(text.toString())
             }
         })
 
@@ -110,8 +126,8 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
         val mc6 = MathContext(6, RoundingMode.HALF_UP)
 
         try {
-            if (n != BigInteger.ZERO && pi != BigDecimal.ZERO) {
-                Z = p.minus(pi).divide(sqrt(pi.times(BigDecimal.ONE.subtract(pi)).divide(n.toBigDecimal()), mc5), mc5)
+            if (n != BigInteger.ZERO && s != BigDecimal.ZERO) {
+                Z = x.minus(u).divide(s.divide(sqrt(n.toBigDecimal(), mc6), mc6), mc5)
                 mZTxt.setText(Z.toPlainString())
 
                 val mi = 0.0
@@ -140,17 +156,20 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
         if (!view.isClickable) return
 
         n = BigInteger.ZERO
-        p = BigDecimal.ZERO
-        pi = BigDecimal.ZERO
+        x = BigDecimal.ZERO
+        u = BigDecimal.ZERO
+        s = BigDecimal.ZERO
         Z = BigDecimal.ZERO
 
         mnTxt.setText("")
-        mpTxt.setText("")
-        mpiTxt.setText("")
+        mxTxt.setText("")
+        muTxt.setText("")
+        msTxt.setText("")
         mZTxt.setText("")
 
         mnTxt.clearFocus()
-        mpTxt.clearFocus()
-        mpiTxt.clearFocus()
+        mxTxt.clearFocus()
+        muTxt.clearFocus()
+        msTxt.clearFocus()
     }
 }

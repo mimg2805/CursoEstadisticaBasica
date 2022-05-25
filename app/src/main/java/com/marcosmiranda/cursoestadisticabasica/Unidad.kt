@@ -29,7 +29,7 @@ class Unidad : AppCompatActivity() {
 
         val layout: LinearLayout = findViewById(R.id.linLayout)
         var index: Int
-        val temasOmitidos = arrayOf(25, 26, 27, 28, 29)
+        val temasOmitidos = arrayOf(26, 27, 28, 29)
         if (temas.count > 0) {
             do {
                 val button = Button(this)

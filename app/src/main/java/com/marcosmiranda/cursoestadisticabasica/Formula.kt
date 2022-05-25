@@ -67,53 +67,60 @@ class Formula : AppCompatActivity() {
             webView.loadUrl(htmlFilePath)
 
             if (sub) {
-                when (idSubTema) {
-                    1 -> intent = Intent(this, CalcTamanioMuestraProporcion::class.java)
-                    2 -> intent = Intent(this, CalcTamanioMuestraMedia::class.java)
-                    3 -> intent = Intent(this, CalcProbTeorica::class.java)
-                    4 -> intent = Intent(this, CalcProbEmpirica::class.java)
-                    5 -> intent = Intent(this, CalcReglaComplemento::class.java)
-                    6 -> intent = Intent(this, CalcReglaAdicion::class.java)
-                    7 -> intent = Intent(this, CalcReglaMultiplicacion::class.java)
-                    8 -> intent = Intent(this, CalcDistNormalEstandarizacion::class.java)
-                    9 -> intent = Intent(this, CalcDistNormalProbabilidades::class.java)
-                    10 -> intent = Intent(this, CalcIntervaloConfianzaProporcionPoblacionDesconocida::class.java)
-                    11 -> intent = Intent(this, CalcIntervaloConfianzaProporcionPoblacionConocida::class.java)
-                    12 -> intent = Intent(this, CalcIntervaloConfianzaMediaPoblacionDesconocida::class.java)
-                    13 -> intent = Intent(this, CalcIntervaloConfianzaMediaPoblacionConocida::class.java)
+                intent = when (idSubTema) {
+                    1 -> Intent(this, CalcTamanioMuestraProporcion::class.java)
+                    2 -> Intent(this, CalcTamanioMuestraMedia::class.java)
+                    3 -> Intent(this, CalcProbTeorica::class.java)
+                    4 -> Intent(this, CalcProbEmpirica::class.java)
+                    5 -> Intent(this, CalcReglaComplemento::class.java)
+                    6 -> Intent(this, CalcReglaAdicion::class.java)
+                    7 -> Intent(this, CalcReglaMultiplicacion::class.java)
+                    8 -> Intent(this, CalcDistNormalEstandarizacion::class.java)
+                    9 -> Intent(this, CalcDistNormalProbabilidades::class.java)
+                    10 -> Intent(this, CalcIntervaloConfianzaProporcionPoblacionDesconocida::class.java)
+                    11 -> Intent(this, CalcIntervaloConfianzaProporcionPoblacionConocida::class.java)
+                    12 -> Intent(this, CalcIntervaloConfianzaMediaPoblacionDesconocida::class.java)
+                    13 -> Intent(this, CalcIntervaloConfianzaMediaPoblacionConocida::class.java)
+                    else -> null
                 }
             } else {
-                when (idTema) {
-                    1 -> button.isEnabled = false
-                    2 -> button.isEnabled = false
-                    3 -> button.isEnabled = false
-                    4 -> button.isEnabled = false
-                    5 -> button.isEnabled = false
-                    6 -> button.isEnabled = false
-                    7 -> intent = Intent(this, RNG::class.java)
-                    8 -> intent = Intent(this, CalcDistMuestra::class.java)
-                    9 -> button.isEnabled = false
-                    10 -> button.isEnabled = false
-                    11 -> button.isEnabled = false
-                    12 -> button.isEnabled = false
-                    13 -> button.isEnabled = false
-                    14 -> button.isEnabled = false
-                    15 -> intent = Intent(this, CalcDistBinomial::class.java)
-                    16 -> intent = Intent(this, CalcDistPoisson::class.java)
-                    17 -> intent = Intent(this, CalcDistHipergeometrica::class.java)
-                    18 -> button.isEnabled = false
-                    19 -> button.isEnabled = false // intent = Intent(this, CalcIntervaloConfianzaProporcion::class.java)
-                    20 -> button.isEnabled = false // intent = Intent(this, CalcIntervaloConfianzaMedia::class.java)
-                    21 -> button.isEnabled = false
-                    22 -> intent = Intent(this, CalcIntervaloConfianzaProporcionPoblacionDesconocida::class.java)
-                    23 -> intent = Intent(this, CalcIntervaloConfianzaMediaPoblacionDesconocida::class.java)
-                    24 -> intent = Intent(this, CalcPruebaHipotesisProporcionPoblacional::class.java)
-                    25 -> button.isEnabled = false
-                    26 -> button.isEnabled = false
+                intent = when (idTema) {
+                    1 -> null
+                    2 -> null
+                    3 -> null
+                    4 -> null
+                    5 -> null
+                    6 -> null
+                    7 -> Intent(this, RNG::class.java)
+                    8 -> Intent(this, CalcDistMuestra::class.java)
+                    9 -> null
+                    10 -> null
+                    11 -> null
+                    12 -> null
+                    13 -> null
+                    14 -> null
+                    15 -> Intent(this, CalcDistBinomial::class.java)
+                    16 -> Intent(this, CalcDistPoisson::class.java)
+                    17 -> Intent(this, CalcDistHipergeometrica::class.java)
+                    18 -> null
+                    19 -> null // intent = Intent(this, CalcIntervaloConfianzaProporcion::class.java)
+                    20 -> null // intent = Intent(this, CalcIntervaloConfianzaMedia::class.java)
+                    21 -> null
+                    22 -> Intent(this, CalcIntervaloConfianzaProporcionPoblacionDesconocida::class.java)
+                    23 -> Intent(this, CalcIntervaloConfianzaMediaPoblacionDesconocida::class.java)
+                    24 -> Intent(this, CalcPruebaHipotesisProporcionPoblacional::class.java)
+                    25 -> Intent(this, CalcPruebaHipotesisMediaPoblacional::class.java)
+                    26 -> null
+                    else -> null
                 }
             }
-            button.setOnClickListener {
-                this.startActivity(intent)
+
+            if (intent == null) {
+                button.isEnabled = false
+            } else {
+                button.setOnClickListener {
+                    this.startActivity(intent)
+                }
             }
         }
 
