@@ -5,10 +5,11 @@
 
     <application
             android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
             android:installLocation="preferExternal"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            tools:replace="android:icon"
             >
         <activity
                 android:name=".MainMenu"
@@ -45,6 +46,8 @@
         <activity android:name=".CalcIntervaloConfianzaProporcionPoblacionDesconocida" />
         <activity android:name=".CalcPruebaHipotesisProporcionPoblacional" />
         <activity android:name=".CalcPruebaHipotesisMediaPoblacional" />
+        <activity android:name=".CalcPruebaHipotesis2ProporcionesPoblacionales" />
+        <activity android:name=".CalcPruebaHipotesis2MediasPoblacionales" />
         <activity android:name=".CalcDistBinomial" />
         <activity android:name=".CalcReglaAdicion" />
         <activity android:name=".CalcReglaMultiplicacion" />

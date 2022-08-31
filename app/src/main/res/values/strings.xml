@@ -3,27 +3,37 @@
 
     <string name="calcular">Calcular</string>
     <string name="generar">Generar</string>
+    <string name="repetir">Repetir</string>
     <string name="limpiar">Limpiar</string>
     <string name="e_val">2.71828</string>
     <string name="Z_val">1.96</string>
 
-    <string name="d1">d1</string>
-    <string name="d2">d2</string>
+    <string name="d1">d<sub>1</sub></string>
+    <string name="d2">d<sub>2</sub></string>
     <string name="E">E</string>
     <string name="e">e</string>
-    <string name="Fn">Fn</string>
+    <string name="Fn">F<sub>n</sub></string>
     <string name="M">M</string>
     <string name="N">N</string>
     <string name="n">n</string>
-    <string name="Nn">Nn</string>
+    <string name="n1">n<sub>1</sub></string>
+    <string name="n2">n<sub>2</sub></string>
+    <string name="Nn">N<sub>n</sub></string>
     <string name="P">P</string>
     <string name="p">p</string>
+    <string name="pc">pc</string>
+    <string name="p1">p<sub>1</sub></string>
+    <string name="p2">p<sub>2</sub></string>
     <string name="S">S</string>
     <string name="s">s</string>
+    <string name="s1">s<sub>1</sub></string>
+    <string name="s2">s<sub>2</sub></string>
     <string name="u">u</string>
     <string name="v">v</string>
     <string name="x">x</string>
     <string name="xbar">x̄</string>
+    <string name="xbar1">x<sub>̄1</sub></string>
+    <string name="xbar2">x̄<sub>2</sub></string>
     <string name="Z">Z</string>
     <string name="IC">IC</string>
     <string name="media">Media</string>
@@ -47,23 +57,32 @@
     <string name="P_BoverA">P(B / A)</string>
     <string name="P_Xequalsx">P(X = x)</string>
 
-    <string name="d1_equals">d1 =</string>
-    <string name="d2_equals">d2 =</string>
+    <string name="d1_equals">d<sub>1</sub> =</string>
+    <string name="d2_equals">d<sub>2</sub> =</string>
     <string name="E_equals">E =</string>
     <string name="e_equals">e =</string>
-    <string name="Fn_equals">Fn =</string>
+    <string name="Fn_equals">F<sub>n</sub> =</string>
     <string name="M_equals">M =</string>
     <string name="N_equals">N =</string>
     <string name="n_equals">n =</string>
-    <string name="Nn_equals">Nn =</string>
+    <string name="n1_equals">n<sub>1</sub> =</string>
+    <string name="n2_equals">n<sub>2</sub> =</string>
+    <string name="Nn_equals">N<sub>n</sub> =</string>
     <string name="P_equals">P =</string>
     <string name="p_equals">p =</string>
+    <string name="pc_equals">pc =</string>
+    <string name="p1_equals">p<sub>1</sub> =</string>
+    <string name="p2_equals">p<sub>2</sub> =</string>
     <string name="S_equals">S =</string>
     <string name="s_equals">s =</string>
+    <string name="s1_equals">s<sub>1</sub> =</string>
+    <string name="s2_equals">s<sub>2</sub> =</string>
     <string name="u_equals">u =</string>
     <string name="v_equals">v =</string>
     <string name="x_equals">x =</string>
     <string name="xbar_equals">x̄ =</string>
+    <string name="xbar1_equals">x̄<sub>1</sub> =</string>
+    <string name="xbar2_equals">x̄<sub>2</sub> =</string>
     <string name="Z_equals">Z =</string>
     <string name="IC_equals">IC =</string>
     <string name="media_equals">Media =</string>

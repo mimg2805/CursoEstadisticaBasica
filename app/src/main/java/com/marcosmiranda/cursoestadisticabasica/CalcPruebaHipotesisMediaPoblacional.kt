@@ -3,17 +3,15 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import ch.obermuhlner.math.big.BigDecimalMath.sqrt
 import java.math.*
+import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
-import org.apache.commons.math3.distribution.BinomialDistribution
-import org.apache.commons.math3.distribution.NormalDistribution
 
 class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
 
@@ -124,6 +122,13 @@ class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
         Z = BigDecimal.ZERO
         val mc5 = MathContext(5, RoundingMode.HALF_UP)
         val mc6 = MathContext(6, RoundingMode.HALF_UP)
+
+        if (n <= BigInteger.valueOf(30)) {
+            toast?.cancel()
+            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
+            toast?.show()
+            return
+        }
 
         try {
             if (n != BigInteger.ZERO && s != BigDecimal.ZERO) {

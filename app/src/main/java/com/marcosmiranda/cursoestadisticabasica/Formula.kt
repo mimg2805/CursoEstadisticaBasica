@@ -110,7 +110,8 @@ class Formula : AppCompatActivity() {
                     23 -> Intent(this, CalcIntervaloConfianzaMediaPoblacionDesconocida::class.java)
                     24 -> Intent(this, CalcPruebaHipotesisProporcionPoblacional::class.java)
                     25 -> Intent(this, CalcPruebaHipotesisMediaPoblacional::class.java)
-                    26 -> null
+                    26 -> Intent(this, CalcPruebaHipotesis2ProporcionesPoblacionales::class.java)
+                    27 -> Intent(this, CalcPruebaHipotesis2MediasPoblacionales::class.java)
                     else -> null
                 }
             }

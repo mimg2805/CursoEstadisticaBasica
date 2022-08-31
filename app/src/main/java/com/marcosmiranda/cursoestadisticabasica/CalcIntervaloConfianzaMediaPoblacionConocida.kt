@@ -38,7 +38,7 @@ class CalcIntervaloConfianzaMediaPoblacionConocida : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_intervalo_confianza_media_poblacion_conocida)
 
-        mxTxt = findViewById(R.id.mediaTxt)
+        mxTxt = findViewById(R.id.xTxt)
         mSTxt = findViewById(R.id.STxt)
         mNTxt = findViewById(R.id.NTxt)
         mnTxt = findViewById(R.id.nTxt)
@@ -103,6 +103,13 @@ class CalcIntervaloConfianzaMediaPoblacionConocida : AppCompatActivity() {
         val decimals = 10
         val mc = MathContext(decimals, RoundingMode.HALF_UP)
 
+        if (n <= BigInteger.valueOf(30)) {
+            toast?.cancel()
+            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
+            toast?.show()
+            return
+        }
+
         try {
             if (n != BigDecimal.ZERO && x != BigDecimal.ZERO && pobl != BigInteger.ZERO) {
                 val root1 = s.divide(sqrt(n.toDouble()).toBigDecimal(), mc)
@@ -126,21 +133,21 @@ class CalcIntervaloConfianzaMediaPoblacionConocida : AppCompatActivity() {
     }
 
     fun clear(view: View) {
-        if (view.isClickable) {
-            mxTxt.setText("")
-            mNTxt.setText("")
-            mnTxt.setText("")
-            mICTxt.setText("")
+        if (!view.isClickable) return
 
-            mxTxt.clearFocus()
-            mNTxt.clearFocus()
-            mnTxt.clearFocus()
+        mxTxt.setText("")
+        mNTxt.setText("")
+        mnTxt.setText("")
+        mICTxt.setText("")
 
-            x = BigDecimal.ZERO
-            pobl = BigInteger.ZERO
-            n = BigInteger.ZERO
-            limInf = BigDecimal.ZERO
-            limSup = BigDecimal.ZERO
-        }
+        mxTxt.clearFocus()
+        mNTxt.clearFocus()
+        mnTxt.clearFocus()
+
+        x = BigDecimal.ZERO
+        pobl = BigInteger.ZERO
+        n = BigInteger.ZERO
+        limInf = BigDecimal.ZERO
+        limSup = BigDecimal.ZERO
     }
 }

@@ -3,7 +3,6 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -37,7 +36,7 @@ class CalcIntervaloConfianzaMediaPoblacionDesconocida : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_intervalo_confianza_media_poblacion_desconocida)
 
-        mxTxt = findViewById(R.id.mediaTxt)
+        mxTxt = findViewById(R.id.xTxt)
         mSTxt = findViewById(R.id.STxt)
         mnTxt = findViewById(R.id.nTxt)
         mZTxt = findViewById(R.id.ZTxt)
@@ -89,10 +88,16 @@ class CalcIntervaloConfianzaMediaPoblacionDesconocida : AppCompatActivity() {
         val decimals = 10
         val mc = MathContext(decimals, RoundingMode.HALF_UP)
 
+        if (n <= BigInteger.valueOf(30)) {
+            toast?.cancel()
+            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
+            toast?.show()
+            return
+        }
+
         try {
             if (n != BigDecimal.ZERO && x != BigDecimal.ZERO && s != BigDecimal.ZERO) {
                 val error = z.times((s.divide(sqrt(n.toDouble()).toBigDecimal(), mc)))
-                Log.e("error", error.toString())
                 limInf = x.minus(error)
                 limSup = x.plus(error)
                 if (limInf != BigDecimal.ZERO && limSup != BigDecimal.ZERO) {
@@ -111,21 +116,21 @@ class CalcIntervaloConfianzaMediaPoblacionDesconocida : AppCompatActivity() {
     }
 
     fun clear(view: View) {
-        if (view.isClickable) {
-            mxTxt.setText("")
-            mSTxt.setText("")
-            mnTxt.setText("")
-            mICTxt.setText("")
+        if (!view.isClickable) return
 
-            mxTxt.clearFocus()
-            mSTxt.clearFocus()
-            mnTxt.clearFocus()
+        mxTxt.setText("")
+        mSTxt.setText("")
+        mnTxt.setText("")
+        mICTxt.setText("")
 
-            x = BigDecimal.ZERO
-            s = BigDecimal.ZERO
-            n = BigInteger.ZERO
-            limInf = BigDecimal.ZERO
-            limSup = BigDecimal.ZERO
-        }
+        mxTxt.clearFocus()
+        mSTxt.clearFocus()
+        mnTxt.clearFocus()
+
+        x = BigDecimal.ZERO
+        s = BigDecimal.ZERO
+        n = BigInteger.ZERO
+        limInf = BigDecimal.ZERO
+        limSup = BigDecimal.ZERO
     }
 }

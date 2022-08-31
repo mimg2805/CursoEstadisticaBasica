@@ -97,6 +97,8 @@ class RNG : AppCompatActivity() {
             if (len > 2) numsStr = numsStr.slice(1 until numsStr.length - 1)
             mNumsView.text = numsStr
         }
+
+        btnGenerar.setText(R.string.repetir)
     }
 
     fun clear(view: View) {
@@ -114,6 +116,8 @@ class RNG : AppCompatActivity() {
         mNumbersTxt.clearFocus()
         mMinNumTxt.clearFocus()
         mMaxNumTxt.clearFocus()
+
+        btnGenerar.setText(R.string.generar)
     }
 
     fun copy(view: View) {

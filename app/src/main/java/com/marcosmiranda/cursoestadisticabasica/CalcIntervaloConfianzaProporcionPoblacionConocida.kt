@@ -1,10 +1,8 @@
 package com.marcosmiranda.cursoestadisticabasica
 
-import android.icu.math.MathContext
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -90,6 +88,13 @@ class CalcIntervaloConfianzaProporcionPoblacionConocida : AppCompatActivity() {
         val decimals = 10
         val mc = MathContext(decimals, RoundingMode.HALF_UP)
 
+        if (p.times(BigDecimal.ONE.subtract(p)) <= BigDecimal.valueOf(5)) {
+            toast?.cancel()
+            toast = Toast.makeText(this, "p (1 - p) debe ser mayor que 5", Toast.LENGTH_SHORT)
+            toast?.show()
+            return
+        }
+
         try {
             if (n != BigInteger.ZERO && p != BigDecimal.ZERO) {
                 val root1 = sqrt(((p.times(BigDecimal.ONE.subtract(p))).divide(n.toBigDecimal(), mc)).toDouble()).toBigDecimal()
@@ -113,20 +118,20 @@ class CalcIntervaloConfianzaProporcionPoblacionConocida : AppCompatActivity() {
     }
 
     fun clear(view: View) {
-        if (view.isClickable) {
-            mpTxt.setText("")
-            mNTxt.setText("")
-            mnTxt.setText("")
-            mICTxt.setText("")
+        if (!view.isClickable) return
 
-            mpTxt.clearFocus()
-            mnTxt.clearFocus()
+        mpTxt.setText("")
+        mNTxt.setText("")
+        mnTxt.setText("")
+        mICTxt.setText("")
 
-            n = BigInteger.ZERO
-            pobl = BigInteger.ZERO
-            p = BigDecimal.ZERO
-            limInf = BigDecimal.ZERO
-            limSup = BigDecimal.ZERO
-        }
+        mpTxt.clearFocus()
+        mnTxt.clearFocus()
+
+        n = BigInteger.ZERO
+        pobl = BigInteger.ZERO
+        p = BigDecimal.ZERO
+        limInf = BigDecimal.ZERO
+        limSup = BigDecimal.ZERO
     }
 }

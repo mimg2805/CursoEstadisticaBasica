@@ -9,21 +9,23 @@
     tools:layout_editor_absoluteY="80dp">
 
     <TextView
-        android:id="@+id/mediaLbl"
+        android:id="@+id/xLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/media_equals"
+        android:text="@string/xbar_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/SLbl"
-        app:layout_constraintEnd_toStartOf="@+id/mediaTxt"
+        app:layout_constraintEnd_toStartOf="@+id/xTxt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/media_equals" />
+        tools:text="@string/xbar_equals" />
 
     <TextView
         android:id="@+id/SLbl"
@@ -41,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@+id/NLbl"
         app:layout_constraintEnd_toStartOf="@+id/STxt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mediaLbl"
+        app:layout_constraintTop_toBottomOf="@+id/xLbl"
         tools:text="@string/S_equals" />
 
     <TextView
@@ -122,7 +124,7 @@
         tools:text="@string/IC_equals" />
 
     <EditText
-        android:id="@+id/mediaTxt"
+        android:id="@+id/xTxt"
         android:layout_width="200dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -133,14 +135,14 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/media"
+        android:hint="@string/xbar"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/STxt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mediaLbl"
+        app:layout_constraintStart_toEndOf="@+id/xLbl"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -163,7 +165,7 @@
         app:layout_constraintBottom_toTopOf="@+id/NTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/SLbl"
-        app:layout_constraintTop_toBottomOf="@+id/mediaTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/xTxt" />
 
     <EditText
         android:id="@+id/NTxt"

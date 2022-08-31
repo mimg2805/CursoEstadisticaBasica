@@ -13,18 +13,24 @@ import org.apache.commons.math3.distribution.NormalDistribution
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
 
-class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
+class CalcPruebaHipotesis2MediasPoblacionales : AppCompatActivity() {
 
-    private var n: BigInteger = BigInteger.ZERO
-    private var p: BigDecimal = BigDecimal.ZERO
-    private var pi: BigDecimal = BigDecimal.ZERO
+    private var n1: BigInteger = BigInteger.ZERO
+    private var n2: BigInteger = BigInteger.ZERO
+    private var x1: BigDecimal = BigDecimal.ZERO
+    private var x2: BigDecimal = BigDecimal.ZERO
+    private var s1: BigDecimal = BigDecimal.ZERO
+    private var s2: BigDecimal = BigDecimal.ZERO
     private var Z: BigDecimal = BigDecimal.ZERO
     private var prob: BigDecimal = BigDecimal.ZERO
     private var calc: String = ""
 
-    private lateinit var mnTxt: EditText
-    private lateinit var mpTxt: EditText
-    private lateinit var mpiTxt: EditText
+    private lateinit var mn1Txt: EditText
+    private lateinit var mn2Txt: EditText
+    private lateinit var mx1Txt: EditText
+    private lateinit var mx2Txt: EditText
+    private lateinit var ms1Txt: EditText
+    private lateinit var ms2Txt: EditText
     private lateinit var mZTxt: EditText
     private lateinit var mprobTxt: EditText
 
@@ -36,11 +42,14 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calc_prueba_hipotesis_proporcion_poblacional)
+        setContentView(R.layout.activity_calc_prueba_hipotesis_2_medias_poblacionales)
 
-        mnTxt = findViewById(R.id.nTxt)
-        mpTxt = findViewById(R.id.pTxt)
-        mpiTxt = findViewById(R.id.piTxt)
+        mn1Txt = findViewById(R.id.n1Txt)
+        mn2Txt = findViewById(R.id.n2Txt)
+        mx1Txt = findViewById(R.id.x1Txt)
+        mx2Txt = findViewById(R.id.x2Txt)
+        ms1Txt = findViewById(R.id.s1Txt)
+        ms2Txt = findViewById(R.id.s2Txt)
         mZTxt = findViewById(R.id.ZTxt)
         mprobTxt = findViewById(R.id.probTxt)
         btnLimpiar = findViewById(R.id.btnLimpiar)
@@ -53,7 +62,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mprobSpinner.adapter = adapter
 
-        mnTxt.addTextChangedListener(object : TextWatcher {
+        mn1Txt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
                 if (!text.isNullOrBlank()) calc()
             }
@@ -61,11 +70,11 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigInteger(text.toString())
+                if (!text.isNullOrBlank()) n1 = strToBigInteger(text.toString())
             }
         })
 
-        mpTxt.addTextChangedListener(object : TextWatcher {
+        mn2Txt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
                 if (!text.isNullOrBlank()) calc()
             }
@@ -73,11 +82,11 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) p = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) n2 = strToBigInteger(text.toString())
             }
         })
 
-        mpiTxt.addTextChangedListener(object : TextWatcher {
+        mx1Txt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
                 if (!text.isNullOrBlank()) calc()
             }
@@ -85,7 +94,43 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pi = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) x1 = strToBigDecimal(text.toString())
+            }
+        })
+
+        mx2Txt.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(text: Editable?) {
+                if (!text.isNullOrBlank()) calc()
+            }
+
+            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!text.isNullOrBlank()) x2 = strToBigDecimal(text.toString())
+            }
+        })
+
+        ms1Txt.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(text: Editable?) {
+                if (!text.isNullOrBlank()) calc()
+            }
+
+            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!text.isNullOrBlank()) s1 = strToBigDecimal(text.toString())
+            }
+        })
+
+        ms2Txt.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(text: Editable?) {
+                if (!text.isNullOrBlank()) calc()
+            }
+
+            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!text.isNullOrBlank()) s2 = strToBigDecimal(text.toString())
             }
         })
 
@@ -105,26 +150,28 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
 
     fun calc() {
         Z = BigDecimal.ZERO
+        val mc4 = MathContext(4, RoundingMode.HALF_UP)
         val mc5 = MathContext(5, RoundingMode.HALF_UP)
         val mc6 = MathContext(6, RoundingMode.HALF_UP)
 
-        if (p.times(BigDecimal.ONE.subtract(p)) <= BigDecimal.valueOf(5)) {
+        if (n1 + n2 <= BigInteger.valueOf(30)) {
             toast?.cancel()
-            toast = Toast.makeText(this, "p (1 - p) debe ser mayor que 5", Toast.LENGTH_SHORT)
+            toast = Toast.makeText(this, "n1 + n2 debe ser mayor que 30", Toast.LENGTH_SHORT)
             toast?.show()
             return
         }
 
         try {
-            if (n != BigInteger.ZERO && pi != BigDecimal.ZERO) {
-                Z = p.minus(pi).divide(sqrt(pi.times(BigDecimal.ONE.subtract(pi)).divide(n.toBigDecimal()), mc5), mc5)
-                mZTxt.setText(Z.toPlainString())
-
+            if (n1 != BigInteger.ZERO && n2 != BigInteger.ZERO && x1 != BigDecimal.ZERO && x2 != BigDecimal.ZERO && s1 != BigDecimal.ZERO && s2 != BigDecimal.ZERO) {
                 val mi = 0.0
                 val sigma = 1.0
+
+                Z = x1.minus(x2).divide(sqrt(s1.pow(2).divide(n1.toBigDecimal(), mc6).plus(s2.pow(2).divide(n2.toBigDecimal(), mc6)), mc5), mc4)
+                mZTxt.setText(Z.toPlainString())
+
                 val zd = Z.toDouble()
                 val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
-                val greater = BigDecimal.ONE.subtract(lesser, mc5)
+                val greater = BigDecimal.ONE.subtract(lesser, mc6)
 
                 prob = if (calc.contains('>')) {
                     greater
@@ -145,18 +192,29 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
     fun clear(view: View) {
         if (!view.isClickable) return
 
-        n = BigInteger.ZERO
-        p = BigDecimal.ZERO
-        pi = BigDecimal.ZERO
+        n1 = BigInteger.ZERO
+        n2 = BigInteger.ZERO
+        x1 = BigDecimal.ZERO
+        x2 = BigDecimal.ZERO
+        s1 = BigDecimal.ZERO
+        s2 = BigDecimal.ZERO
         Z = BigDecimal.ZERO
 
-        mnTxt.setText("")
-        mpTxt.setText("")
-        mpiTxt.setText("")
+        mn1Txt.setText("")
+        mn2Txt.setText("")
+        mx1Txt.setText("")
+        mx2Txt.setText("")
+        ms1Txt.setText("")
+        ms2Txt.setText("")
         mZTxt.setText("")
+        mprobTxt.setText("")
 
-        mnTxt.clearFocus()
-        mpTxt.clearFocus()
-        mpiTxt.clearFocus()
+        mn1Txt.clearFocus()
+        mn2Txt.clearFocus()
+        mx1Txt.clearFocus()
+        mx2Txt.clearFocus()
+        ms1Txt.clearFocus()
+        ms2Txt.clearFocus()
+        mprobTxt.clearFocus()
     }
 }
