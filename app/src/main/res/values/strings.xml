@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Curso Estadística Básica</string>
 
+    <!-- Más Apps -->
+    <string name="mas_apps">Más Apps</string>
+    <string name="seniasnicas_title">Señas Nicas</string>
+    <string name="seniasnicas_desc">Aprende y enseña lenguaje de señas nicaragüense (LSN)</string>
+    <string name="nicaroadrage_title">Nica Road Rage</string>
+    <string name="nicaroadrage_desc">Un pequeño juego infinito de carreras para Android.</string>
+    <string name="purisima_title">Purísima</string>
+    <string name="purisima_desc">Un juego móvil casual basado en las festividades nicaragüenses de La Purísima.</string>
+
     <string name="calcular">Calcular</string>
     <string name="generar">Generar</string>
     <string name="repetir">Repetir</string>
