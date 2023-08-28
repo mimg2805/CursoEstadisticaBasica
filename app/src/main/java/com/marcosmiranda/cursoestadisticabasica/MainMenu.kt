@@ -52,62 +52,53 @@ class MainMenu : AppCompatActivity() {
 
                 // Log.e("idUnidad", idUnidad.toString())
                 if (showUnits.contains(idUnidad)) {
-                    val button = Button(this)
-                    button.text = titulo//.toUpperCase()
+                    val unitBtn = Button(this)
+                    unitBtn.text = titulo//.toUpperCase()
 
                     val params = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
                     params.setMargins(0, 0, 0, 40)
-                    button.layoutParams = params
+                    unitBtn.layoutParams = params
                     //button.setBackgroundColor(ContextCompat.getColor(this, R.color.button))
-                    button.setBackgroundColor(Color.WHITE)
-                    button.setTextColor(Color.BLACK)
-                    button.textSize = 14f
+                    unitBtn.setBackgroundColor(Color.WHITE)
+                    unitBtn.setTextColor(Color.BLACK)
+                    unitBtn.textSize = 14f
 
-                    button.setOnClickListener {
+                    unitBtn.setOnClickListener {
                         intent = Intent(this, Unidad::class.java)
                         intent.putExtra("idUnidad", idUnidad)
                         intent.putExtra("title", titulo)
                         this.startActivity(intent)
                     }
-                    layout.addView(button)
+                    layout.addView(unitBtn)
                 }
             } while (unidades.moveToNext())
         }
 
         unidades.close()
         db.close()
+
+        // Botón de Más apps
+        val masAppsBtn = Button(this)
+        masAppsBtn.text = getString(R.string.mas_apps)
+
+        val params = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        params.setMargins(0, 0, 0, 40)
+        masAppsBtn.layoutParams = params
+        //button.setBackgroundColor(ContextCompat.getColor(this, R.color.button))
+        masAppsBtn.setBackgroundColor(Color.WHITE)
+        masAppsBtn.setTextColor(Color.BLACK)
+        masAppsBtn.textSize = 14f
+
+        masAppsBtn.setOnClickListener {
+            intent = Intent(this, MasApps::class.java)
+            this.startActivity(intent)
+        }
+        layout.addView(masAppsBtn)
     }
-
-    /*
-    @Throws(IOException::class)
-    private fun copyDB() {
-        val outputFile = File(dbPath + dbName)
-        if (outputFile.exists()) outputFile.delete()
-
-        // Open your local db as the input stream
-        val localDB = applicationContext.assets.open("databases/$dbName")
-
-        // Path to the just created empty db
-        val output = applicationContext.getDatabasePath(dbName)
-
-        // Open the empty db as the output stream
-        val outputStream = FileOutputStream(output)
-
-        // transfer bytes from the input file to the output file
-        val buffer = ByteArray(1024)
-        var length = 0//localDB.read(buffer)
-        do {
-            outputStream.write(buffer, 0, length)
-            length = localDB.read(buffer)
-        } while (length > 0)
-
-        // Close the streams
-        outputStream.flush()
-        outputStream.close()
-        localDB.close()
-    }
-    */
 }

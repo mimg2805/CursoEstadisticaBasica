@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.marcosmiranda.cursoestadisticabasica">
+    >
 
     <application
             android:icon="@mipmap/ic_launcher"
@@ -65,6 +65,15 @@
         <activity android:name=".CalcFFisher" />
         <activity android:name=".CalcTStudent" />
         <activity android:name=".RNG" />
+
+        <activity
+            android:name=".MasApps"
+            android:parentActivityName=".MainMenu"
+            tools:targetApi="jelly_bean">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marcosmiranda.cursoestadisticabasica.MasApps"/>
+        </activity>
     </application>
 
 </manifest>
