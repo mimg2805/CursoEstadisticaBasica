@@ -81,6 +81,7 @@ class Formula : AppCompatActivity() {
                     11 -> Intent(this, CalcIntervaloConfianzaProporcionPoblacionConocida::class.java)
                     12 -> Intent(this, CalcIntervaloConfianzaMediaPoblacionDesconocida::class.java)
                     13 -> Intent(this, CalcIntervaloConfianzaMediaPoblacionConocida::class.java)
+                    14 -> Intent(this, CalcTeoremaBayesSimple::class.java)
                     else -> null
                 }
             } else {

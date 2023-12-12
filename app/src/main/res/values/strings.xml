@@ -2,7 +2,7 @@
     <string name="app_name">Curso Estadística Básica</string>
 
     <!-- Más Apps -->
-    <string name="mas_apps">Más Apps</string>
+    <string name="mas_apps">Más Apps del Desarrollador</string>
     <string name="seniasnicas_title">Señas Nicas</string>
     <string name="seniasnicas_desc">Aprende y enseña lenguaje de señas nicaragüense (LSN)</string>
     <string name="nicaroadrage_title">Nica Road Rage</string>
@@ -17,32 +17,32 @@
     <string name="e_val">2.71828</string>
     <string name="Z_val">1.96</string>
 
-    <string name="d1">d<sub>1</sub></string>
-    <string name="d2">d<sub>2</sub></string>
+    <string name="d1">d₁</string>
+    <string name="d2">d₂</string>
     <string name="E">E</string>
     <string name="e">e</string>
-    <string name="Fn">F<sub>n</sub></string>
+    <string name="Fn">Fₙ</string>
     <string name="M">M</string>
     <string name="N">N</string>
     <string name="n">n</string>
-    <string name="n1">n<sub>1</sub></string>
-    <string name="n2">n<sub>2</sub></string>
-    <string name="Nn">N<sub>n</sub></string>
+    <string name="n1">n₁</string>
+    <string name="n2">n₂</string>
+    <string name="Nn">Nₙ</string>
     <string name="P">P</string>
     <string name="p">p</string>
     <string name="pc">pc</string>
-    <string name="p1">p<sub>1</sub></string>
-    <string name="p2">p<sub>2</sub></string>
+    <string name="p1">p₁</string>
+    <string name="p2">p₂</string>
     <string name="S">S</string>
     <string name="s">s</string>
-    <string name="s1">s<sub>1</sub></string>
-    <string name="s2">s<sub>2</sub></string>
+    <string name="s1">s₁</string>
+    <string name="s2">s₂</string>
     <string name="u">u</string>
     <string name="v">v</string>
     <string name="x">x</string>
     <string name="xbar">x̄</string>
-    <string name="xbar1">x<sub>̄1</sub></string>
-    <string name="xbar2">x̄<sub>2</sub></string>
+    <string name="xbar1">x̄₁</string>
+    <string name="xbar2">x̄₂</string>
     <string name="Z">Z</string>
     <string name="IC">IC</string>
     <string name="media">Media</string>
@@ -63,35 +63,36 @@
 
     <string name="P_AyB">P(A y B)</string>
     <string name="P_AoB">P(A ó B)</string>
+    <string name="P_AoverB">P(A / B)</string>
     <string name="P_BoverA">P(B / A)</string>
     <string name="P_Xequalsx">P(X = x)</string>
 
-    <string name="d1_equals">d<sub>1</sub> =</string>
-    <string name="d2_equals">d<sub>2</sub> =</string>
+    <string name="d1_equals">d₁ =</string>
+    <string name="d2_equals">d₂ =</string>
     <string name="E_equals">E =</string>
     <string name="e_equals">e =</string>
-    <string name="Fn_equals">F<sub>n</sub> =</string>
+    <string name="Fn_equals">Fₙ =</string>
     <string name="M_equals">M =</string>
     <string name="N_equals">N =</string>
     <string name="n_equals">n =</string>
-    <string name="n1_equals">n<sub>1</sub> =</string>
-    <string name="n2_equals">n<sub>2</sub> =</string>
-    <string name="Nn_equals">N<sub>n</sub> =</string>
+    <string name="n1_equals">n₁ =</string>
+    <string name="n2_equals">n₂ =</string>
+    <string name="Nn_equals">Nₙ =</string>
     <string name="P_equals">P =</string>
     <string name="p_equals">p =</string>
     <string name="pc_equals">pc =</string>
-    <string name="p1_equals">p<sub>1</sub> =</string>
-    <string name="p2_equals">p<sub>2</sub> =</string>
+    <string name="p1_equals">p₁ =</string>
+    <string name="p2_equals">p₂ =</string>
     <string name="S_equals">S =</string>
     <string name="s_equals">s =</string>
-    <string name="s1_equals">s<sub>1</sub> =</string>
-    <string name="s2_equals">s<sub>2</sub> =</string>
+    <string name="s1_equals">s₁ =</string>
+    <string name="s2_equals">s₂ =</string>
     <string name="u_equals">u =</string>
     <string name="v_equals">v =</string>
     <string name="x_equals">x =</string>
     <string name="xbar_equals">x̄ =</string>
-    <string name="xbar1_equals">x̄<sub>1</sub> =</string>
-    <string name="xbar2_equals">x̄<sub>2</sub> =</string>
+    <string name="xbar1_equals">x̄₁ =</string>
+    <string name="xbar2_equals">x̄₂ =</string>
     <string name="Z_equals">Z =</string>
     <string name="IC_equals">IC =</string>
     <string name="media_equals">Media =</string>
@@ -112,6 +113,7 @@
 
     <string name="P_AyB_equals">P(A y B) =</string>
     <string name="P_AoB_equals">P(A ó B) =</string>
+    <string name="P_AoverB_equals">P(A / B) =</string>
     <string name="P_BoverA_equals">P(B / A) =</string>
     <string name="P_Xequalsx_equals">P(X = x) =</string>
 

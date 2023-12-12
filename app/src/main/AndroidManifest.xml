@@ -23,16 +23,14 @@
         </activity>
         <activity
                 android:name=".Unidad"
-                android:parentActivityName=".MainMenu"
-                tools:targetApi="jelly_bean">
+                android:parentActivityName=".MainMenu">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu"/>
         </activity>
         <activity
                 android:name=".Tema"
-                android:parentActivityName=".MainMenu"
-                tools:targetApi="jelly_bean">
+                android:parentActivityName=".MainMenu">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu"/>
@@ -54,6 +52,7 @@
         <activity android:name=".CalcProbTeorica" />
         <activity android:name=".CalcProbEmpirica" />
         <activity android:name=".CalcReglaComplemento" />
+        <activity android:name=".CalcTeoremaBayesSimple" />
         <activity android:name=".CalcDistPoisson" />
         <activity android:name=".CalcDistHipergeometrica" />
         <activity android:name=".CalcDistNormalProbabilidades" />
@@ -68,8 +67,7 @@
 
         <activity
             android:name=".MasApps"
-            android:parentActivityName=".MainMenu"
-            tools:targetApi="jelly_bean">
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.marcosmiranda.cursoestadisticabasica.MasApps"/>

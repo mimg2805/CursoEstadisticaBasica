@@ -16,12 +16,13 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
     - Tema 2: Selección Aleatoria de una Muestra
     - Tema 3: Distribución de la Muestra
 - Probabilidades
-    - Tema 1: Cálculo y Reglas
+    - Tema 1: Cálculo, Reglas y Teorema de Bayes
          - Probabilidad Teórica
          - Probabilidad Empírica
          - Regla del Complemento
          - Regla de Adición
          - Regla de Multiplicación
+         - Teorema de Bayes (Simple)
     - Tema 2: Distribución de Probabilidades Binomial
     - Tema 3: Distribución de Probabilidades Poisson
     - Tema 4: Distribución de Probabilidades Hipergeométrica
@@ -40,6 +41,8 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
          - Intervalo de Confianza para una Media Poblacional (Población Conocida)
     - Tema 3: Prueba de Hipótesis para una Proporción Poblacional
     - Tema 4: Prueba de Hipótesis para una Media Poblacional
+    - Tema 5: Prueba de Hipótesis para comparar 2 Proporciones Poblacionales
+    - Tema 6: Prueba de Hipótesis para comparar 2 Medias Poblacionales
 
 **Google Play:**
 https://play.google.com/store/apps/details?id=com.marcosmiranda.cursoestadisticabasica

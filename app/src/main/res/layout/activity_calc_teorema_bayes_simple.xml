@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".CalcTeoremaBayesSimple">
+
+    <TextView
+        android:id="@+id/paLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/P_A_equals"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pbLbl"
+        app:layout_constraintEnd_toStartOf="@+id/paTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pbLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/P_B_equals"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pbaLbl"
+        app:layout_constraintEnd_toStartOf="@+id/pbTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paLbl" />
+
+    <TextView
+        android:id="@+id/pbaLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/P_BoverA_equals"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pabLbl"
+        app:layout_constraintEnd_toStartOf="@+id/pbaTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbLbl" />
+
+    <TextView
+        android:id="@+id/pabLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="108dp"
+        android:text="@string/P_AoverB_equals"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pabTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbaLbl" />
+
+    <EditText
+        android:id="@+id/paTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_edit_text"
+        android:ems="10"
+        android:hint="@string/P_A"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pbTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/paLbl"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/pbTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_edit_text"
+        android:ems="10"
+        android:hint="@string/P_B"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pbaTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pbLbl"
+        app:layout_constraintTop_toBottomOf="@+id/paTxt" />
+
+    <EditText
+        android:id="@+id/pbaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_edit_text"
+        android:ems="10"
+        android:hint="@string/P_BoverA"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pabTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pbaLbl"
+        app:layout_constraintTop_toBottomOf="@+id/pbTxt" />
+
+    <EditText
+        android:id="@+id/pabTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/round_edit_text"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:hint="@string/P_AoverB"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pabLbl"
+        app:layout_constraintTop_toBottomOf="@+id/pbaTxt" />
+
+    <Button
+        android:id="@+id/btnLimpiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="@string/limpiar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
