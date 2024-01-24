@@ -29,7 +29,6 @@ class Unidad : AppCompatActivity() {
 
         val layout: LinearLayout = findViewById(R.id.linLayout)
         var index: Int
-        val temasOmitidos = arrayOf(28, 29)
         if (temas.count > 0) {
             do {
                 val button = Button(this)
@@ -39,11 +38,13 @@ class Unidad : AppCompatActivity() {
                 val tema = temas.getString(index)
                 index = temas.getColumnIndexOrThrow("html")
                 val html = temas.getString(index)
+                index = temas.getColumnIndexOrThrow("show")
+                val show = temas.getInt(index) == 1
                 button.text = tema//.toUpperCase()
                 // Log.e("idTema", tema)
                 // Log.e("tema", tema)
 
-                if (temasOmitidos.contains(idTema)) continue
+                if (!show) continue
 
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -58,18 +59,16 @@ class Unidad : AppCompatActivity() {
 
                 button.setOnClickListener {
                     val subtemas: Cursor = db.getSubTemasByTema(idTema)
-                    var intent = Intent()//= Intent(this, Formula::class.java)
+                    var intent = Intent() //= Intent(this, Formula::class.java)
 
-                    if (subtemas.count > 0)
-                        intent = Intent(this, Tema::class.java)
-                    else if (subtemas.count == 0) {
+                    if (subtemas.count == 0) {
                         if (html.isEmpty()) {
                             when (idTema) {
                                 9 -> intent = Intent(this, CalcDescriptivaVariableCualitativa::class.java)
                                 10 -> intent = Intent(this, CalcMedidasResumenVariableCuantitativa::class.java)
-                                11 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
-                                12 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
-                                13 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
+                                // 11 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
+                                // 12 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
+                                // 13 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
                                 19 -> intent = Intent(this, CalcTStudent::class.java)
                                 20 -> intent = Intent(this, CalcFFisher::class.java)
                                 21 -> intent = Intent(this, CalcChiCuadrado::class.java)
@@ -77,6 +76,8 @@ class Unidad : AppCompatActivity() {
                         } else {
                             intent = Intent(this, Formula::class.java)
                         }
+                    } else {
+                        intent = Intent(this, Tema::class.java)
                     }
 
                     intent.putExtra("idTema", idTema)

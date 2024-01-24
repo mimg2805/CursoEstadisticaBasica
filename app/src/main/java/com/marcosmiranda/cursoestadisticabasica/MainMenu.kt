@@ -42,38 +42,39 @@ class MainMenu : AppCompatActivity() {
 
         val layout: LinearLayout = findViewById(R.id.linLayout)
         var index: Int
-        val showUnits = arrayOf(2, 4, 5)
         if (unidades.count > 0) {
             do {
                 index = unidades.getColumnIndexOrThrow("idUnidad")
                 val idUnidad = unidades.getInt(index)
                 index = unidades.getColumnIndexOrThrow("titulo")
                 val titulo = unidades.getString(index)
+                index = unidades.getColumnIndexOrThrow("show")
+                val show = unidades.getInt(index) == 1
 
                 // Log.e("idUnidad", idUnidad.toString())
-                if (showUnits.contains(idUnidad)) {
-                    val unitBtn = Button(this)
-                    unitBtn.text = titulo//.toUpperCase()
+                if (!show) continue
 
-                    val params = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    )
-                    params.setMargins(0, 0, 0, 40)
-                    unitBtn.layoutParams = params
-                    //button.setBackgroundColor(ContextCompat.getColor(this, R.color.button))
-                    unitBtn.setBackgroundColor(Color.WHITE)
-                    unitBtn.setTextColor(Color.BLACK)
-                    unitBtn.textSize = 14f
+                val unitBtn = Button(this)
+                unitBtn.text = titulo//.toUpperCase()
 
-                    unitBtn.setOnClickListener {
-                        intent = Intent(this, Unidad::class.java)
-                        intent.putExtra("idUnidad", idUnidad)
-                        intent.putExtra("title", titulo)
-                        this.startActivity(intent)
-                    }
-                    layout.addView(unitBtn)
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                params.setMargins(0, 0, 0, 40)
+                unitBtn.layoutParams = params
+                //button.setBackgroundColor(ContextCompat.getColor(this, R.color.button))
+                unitBtn.setBackgroundColor(Color.WHITE)
+                unitBtn.setTextColor(Color.BLACK)
+                unitBtn.textSize = 14f
+
+                unitBtn.setOnClickListener {
+                    intent = Intent(this, Unidad::class.java)
+                    intent.putExtra("idUnidad", idUnidad)
+                    intent.putExtra("title", titulo)
+                    this.startActivity(intent)
                 }
+                layout.addView(unitBtn)
             } while (unidades.moveToNext())
         }
 

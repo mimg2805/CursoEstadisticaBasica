@@ -18,7 +18,7 @@ class DBHelper(
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("idUnidad", "titulo")
+        val sqlSelect = arrayOf("idUnidad", "titulo", "show")
         val sqlTable = "unidades"
 
         qb.tables = sqlTable
@@ -31,7 +31,7 @@ class DBHelper(
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("idTema", "tema", "html")
+        val sqlSelect = arrayOf("idTema", "tema", "html", "show")
         val sqlTable = "temas"
 
         qb.tables = sqlTable
@@ -44,7 +44,7 @@ class DBHelper(
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("idSubTema", "subtema")
+        val sqlSelect = arrayOf("idSubTema", "subtema", "show")
         val sqlTable = "subtemas"
 
         qb.tables = sqlTable
