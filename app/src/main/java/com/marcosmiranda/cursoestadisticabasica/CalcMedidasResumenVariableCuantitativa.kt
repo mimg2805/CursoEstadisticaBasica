@@ -6,6 +6,9 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.cuartiles
+import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.desviacionEstandar
+import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.mediana
 import java.lang.Exception
 import java.math.BigDecimal
 import java.math.MathContext
@@ -89,10 +92,11 @@ class CalcMedidasResumenVariableCuantitativa : AppCompatActivity() {
                 }
             }
             media = sum.divide(size, MathContext(4, RoundingMode.HALF_EVEN))
-            mediana = MathHelper.mediana(numsList)
-            crt1 = MathHelper.cuartil(numsList, 1)
-            crt3 = MathHelper.cuartil(numsList, 3)
-            dest = MathHelper.desvEst(numsList, media)
+            mediana = mediana(numsList)
+            val cuartiles = cuartiles(numsList)
+            crt1 = cuartiles[0]
+            crt3 = cuartiles[2]
+            dest = desviacionEstandar(numsList)
         } else {
             reset()
         }

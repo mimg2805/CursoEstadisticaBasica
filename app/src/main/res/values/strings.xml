@@ -10,10 +10,14 @@
     <string name="purisima_title">Purísima</string>
     <string name="purisima_desc">Un juego móvil casual basado en las festividades nicaragüenses de La Purísima.</string>
 
+    <string name="list">Lista</string>
+    <string name="add_to_list">Introduce datos numéricos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
+
     <string name="calcular">Calcular</string>
     <string name="generar">Generar</string>
     <string name="repetir">Repetir</string>
     <string name="limpiar">Limpiar</string>
+    <string name="aniadir">Añadir</string>
     <string name="e_val">2.71828</string>
     <string name="Z_val">1.96</string>
 
@@ -45,7 +49,16 @@
     <string name="xbar2">x̄₂</string>
     <string name="Z">Z</string>
     <string name="IC">IC</string>
+
     <string name="media">Media</string>
+    <string name="mediana">Mediana</string>
+    <string name="moda">Moda</string>
+    <string name="cuartil1">Cuartil 1</string>
+    <string name="cuartil2">Cuartil 2</string>
+    <string name="cuartil3">Cuartil 3</string>
+    <string name="amplitud">Amplitud</string>
+    <string name="desviacion_media">Desviación Media</string>
+    <string name="desviacion_estandar">Desviación Estándar</string>
 
     <string name="pi">π</string>
     <string name="lambda">λ</string>

@@ -15,6 +15,11 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
          - Tamaño de Muestra para estimar una Media Poblacional
     - Tema 2: Selección Aleatoria de una Muestra
     - Tema 3: Distribución de la Muestra
+- Estadística Descriptiva
+  - Tema 1: Análisis Estadístico Descriptivo de una Variable Cuantitativa
+    - Media, Mediana, Moda
+    - Cuartil 1, 2, 3
+    - Amplitud, Desviación Media, Desviación Estándar
 - Probabilidades
     - Tema 1: Cálculo, Reglas y Teorema de Bayes
          - Probabilidad Teórica

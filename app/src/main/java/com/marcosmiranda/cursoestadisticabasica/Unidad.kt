@@ -4,6 +4,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -41,8 +42,7 @@ class Unidad : AppCompatActivity() {
                 index = temas.getColumnIndexOrThrow("show")
                 val show = temas.getInt(index) == 1
                 button.text = tema//.toUpperCase()
-                // Log.e("idTema", tema)
-                // Log.e("tema", tema)
+                Log.e("idTema", idTema.toString())
 
                 if (!show) continue
 
@@ -77,7 +77,11 @@ class Unidad : AppCompatActivity() {
                             intent = Intent(this, Formula::class.java)
                         }
                     } else {
-                        intent = Intent(this, Tema::class.java)
+                        intent = if (idTema == 9) {
+                            Intent(this, MatrizDatos::class.java)
+                        } else {
+                            Intent(this, Tema::class.java)
+                        }
                     }
 
                     intent.putExtra("idTema", idTema)

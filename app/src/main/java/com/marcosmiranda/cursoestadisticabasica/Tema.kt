@@ -22,6 +22,7 @@ class Tema : AppCompatActivity() {
         db = DBHelper(this, "CursoEstadisticaBasica.db", 1)
         val idTema = intent.getIntExtra("idTema", 0)
         val title = intent.getStringExtra("title")
+        val values = intent.getStringExtra("values")
         if (title != null) {
             Log.e("title", title)
         }
@@ -55,6 +56,22 @@ class Tema : AppCompatActivity() {
 
                 button.setOnClickListener {
                     intent = Intent(this, Formula::class.java)
+
+                    when (idSubTema) {
+                        15 -> {
+                            intent = Intent(this, MedidasTendenciaCentral::class.java)
+                            intent.putExtra("values", values)
+                        }
+                        16 -> {
+                            intent = Intent(this, Cuartiles::class.java)
+                            intent.putExtra("values", values)
+                        }
+                        17 -> {
+                            intent = Intent(this, Desviaciones::class.java)
+                            intent.putExtra("values", values)
+                        }
+                    }
+
                     intent.putExtra("sub", true)
                     intent.putExtra("idSubTema", idSubTema)
                     intent.putExtra("title", subtema)
