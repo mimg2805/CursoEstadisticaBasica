@@ -17,6 +17,8 @@
     <string name="generar">Generar</string>
     <string name="repetir">Repetir</string>
     <string name="limpiar">Limpiar</string>
+    <string name="borrar_ultimo">Borrar último</string>
+    <string name="borrar_todo">Borrar todo</string>
     <string name="aniadir">Añadir</string>
     <string name="e_val">2.71828</string>
     <string name="Z_val">1.96</string>

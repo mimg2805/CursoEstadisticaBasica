@@ -25,6 +25,7 @@ class MatrizDatos : AppCompatActivity() {
 
     private lateinit var etAddToList: EditText
     private lateinit var tvNumberList: TextView
+    private lateinit var btnDeleteLast: Button
     private lateinit var btnClear: Button
     private lateinit var btnCalc: Button
 
@@ -38,6 +39,7 @@ class MatrizDatos : AppCompatActivity() {
         subtemaTitle = intent.getStringExtra("title") ?: ""
 
         tvNumberList = findViewById(R.id.tv_number_list)
+        btnDeleteLast = findViewById(R.id.btn_delete_last)
         btnClear = findViewById(R.id.btn_clear)
         btnCalc = findViewById(R.id.btn_calc)
 
@@ -46,12 +48,16 @@ class MatrizDatos : AppCompatActivity() {
             false
         }
 
+        btnDeleteLast.setOnClickListener {
+            removeLastFromList(it)
+        }
+
         btnClear.setOnClickListener {
             clear(it)
         }
 
         btnCalc.setOnClickListener {
-            if (values.size == 0) {
+            if (values.isEmpty()) {
                 return@setOnClickListener
             }
 
@@ -68,12 +74,25 @@ class MatrizDatos : AppCompatActivity() {
 
         values += strToBigDecimal(etAddToList.text.trim().toString())
 
-        valuesStr = values.joinToString(" ")
-        tvNumberList.text = valuesStr.replace(".0", "")
+        updateValuesList(view)
         etAddToList.text.clear()
     }
 
-    fun clear(view: View) {
+    private fun removeLastFromList(view: View) {
+        if (!view.isClickable) return
+
+        if (values.isNotEmpty()) values.removeLast()
+        updateValuesList(view)
+    }
+
+    private fun updateValuesList(view: View) {
+        if (!view.isClickable) return
+
+        valuesStr = values.joinToString(" ")
+        tvNumberList.text = valuesStr //.replace(".0", "")
+    }
+
+    private fun clear(view: View) {
         if (!view.isClickable) return
 
         values = mutableListOf()
