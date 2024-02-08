@@ -40,5 +40,4 @@ dependencies {
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     implementation 'ch.obermuhlner:big-math:2.0.0'
     implementation 'org.apache.commons:commons-math3:3.6.1'
-    implementation group: 'org.mariuszgromada.math', name: 'MathParser.org-mXparser', version: '4.2.0'
 }
