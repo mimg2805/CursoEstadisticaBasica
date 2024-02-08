@@ -3,13 +3,17 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.*
-import kotlin.math.*
+import ch.obermuhlner.math.big.BigDecimalMath.sqrt
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
@@ -18,6 +22,7 @@ class CalcIntervaloConfianzaProporcionPoblacionDesconocida : AppCompatActivity()
 
     private var n: BigInteger = BigInteger.ZERO
     private var p: BigDecimal = BigDecimal.ZERO
+    private var pComp: BigDecimal = BigDecimal.ZERO
     private val z: BigDecimal = BigDecimal("1.96")
     private var limInf: BigDecimal = BigDecimal.ZERO
     private var limSup: BigDecimal = BigDecimal.ZERO
@@ -50,7 +55,10 @@ class CalcIntervaloConfianzaProporcionPoblacionDesconocida : AppCompatActivity()
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) p = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) {
+                    p = strToBigDecimal(text.toString())
+                    pComp = BigDecimal.ONE.subtract(p)
+                }
             }
         })
 
@@ -74,25 +82,37 @@ class CalcIntervaloConfianzaProporcionPoblacionDesconocida : AppCompatActivity()
         val decimals = 10
         val mc = MathContext(decimals, RoundingMode.HALF_UP)
 
-        if (p.times(BigDecimal.ONE.subtract(p)) <= BigDecimal.valueOf(5)) {
+        if (n.toBigDecimal().times(p) <= BigDecimal.valueOf(5) && n.toBigDecimal().times(pComp) <= BigDecimal.valueOf(5)) {
             toast?.cancel()
-            toast = Toast.makeText(this, "p (1 - p) debe ser mayor que 5", Toast.LENGTH_SHORT)
+            toast = Toast.makeText(this, "(n * p) y (n * (1 - p)) deben ser mayores que 5", Toast.LENGTH_SHORT)
             toast?.show()
             return
+        } else {
+            toast?.cancel()
+        }
+
+        if (n <= BigInteger.valueOf(30)) {
+            toast?.cancel()
+            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
+            toast?.show()
+            return
+        } else {
+            toast?.cancel()
         }
 
         try {
-            if (n != BigInteger.ZERO && p != BigDecimal.ZERO) {
-                val error = z.times(sqrt(p.times(BigDecimal.ONE.subtract(p)).divide(n.toBigDecimal(), mc).toDouble()).toBigDecimal())
-                limInf = p.minus(error)
-                limSup = p.plus(error)
-                if (limInf != BigDecimal.ZERO && limSup != BigDecimal.ZERO) {
-                    val limInfStr = "%.4f".format(limInf)
-                    val limSupStr = "%.4f".format(limSup)
-                    str = "[$limInfStr - $limSupStr]"
-                    mICTxt.setText(str)
-                }
-            }
+            if (n == BigInteger.ZERO && p == BigDecimal.ZERO) return
+
+            val error = z.multiply(sqrt(p.multiply(pComp).divide(n.toBigDecimal(), mc), mc))
+            limInf = p.subtract(error)
+            limSup = p.add(error)
+
+            if (limInf == BigDecimal.ZERO && limSup == BigDecimal.ZERO) return
+
+            val limInfStr = "%.4f".format(limInf)
+            val limSupStr = "%.4f".format(limSup)
+            str = "[$limInfStr - $limSupStr]"
+            mICTxt.setText(str)
         } catch (e: Exception) {
             e.printStackTrace()
             toast?.cancel()

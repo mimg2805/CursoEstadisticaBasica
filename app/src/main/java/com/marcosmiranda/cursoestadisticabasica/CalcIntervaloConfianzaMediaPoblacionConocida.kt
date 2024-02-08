@@ -8,8 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.*
-import kotlin.math.*
+import ch.obermuhlner.math.big.BigDecimalMath.sqrt
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
@@ -108,22 +111,25 @@ class CalcIntervaloConfianzaMediaPoblacionConocida : AppCompatActivity() {
             toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
             toast?.show()
             return
+        } else {
+            toast?.cancel()
         }
 
         try {
-            if (n != BigDecimal.ZERO && x != BigDecimal.ZERO && pobl != BigInteger.ZERO) {
-                val root1 = s.divide(sqrt(n.toDouble()).toBigDecimal(), mc)
-                val root2 = sqrt(((pobl.minus(n)).toBigDecimal().divide(pobl.subtract(BigInteger.ONE).toBigDecimal(), mc)).toDouble()).toBigDecimal()
-                val error = z.times(root1).times(root2)
-                limInf = x.minus(error)
-                limSup = x.plus(error)
-                if (limInf != BigDecimal.ZERO && limSup != BigDecimal.ZERO) {
-                    val limInfStr = "%.4f".format(limInf)
-                    val limSupStr = "%.4f".format(limSup)
-                    str = "[$limInfStr - $limSupStr]"
-                    mICTxt.setText(str)
-                }
-            }
+            if (n == BigDecimal.ZERO && x == BigDecimal.ZERO && pobl == BigInteger.ZERO) return
+
+            val root1 = s.divide(sqrt(n.toBigDecimal(), mc), mc)
+            val root2 = sqrt(((pobl.subtract(n)).toBigDecimal().divide(pobl.subtract(BigInteger.ONE).toBigDecimal(), mc)), mc)
+            val error = z.multiply(root1).multiply(root2)
+            limInf = x.subtract(error)
+            limSup = x.add(error)
+
+            if (limInf == BigDecimal.ZERO && limSup == BigDecimal.ZERO) return
+
+            val limInfStr = "%.4f".format(limInf)
+            val limSupStr = "%.4f".format(limSup)
+            str = "[$limInfStr - $limSupStr]"
+            mICTxt.setText(str)
         } catch (e: Exception) {
             e.printStackTrace()
             toast?.cancel()

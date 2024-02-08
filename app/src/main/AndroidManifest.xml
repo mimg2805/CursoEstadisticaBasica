@@ -65,7 +65,6 @@
         <activity android:name=".CalcDistNormalProbabilidades" />
         <activity android:name=".CalcDistNormalEstandarizacion" />
         <activity android:name=".CalcDistMuestra" />
-        <activity android:name=".CalcMedidasResumenVariableCuantitativa" />
         <activity android:name=".CalcDescriptivaVariableCualitativa" />
         <activity android:name=".CalcChiCuadrado" />
         <activity android:name=".CalcFFisher" />

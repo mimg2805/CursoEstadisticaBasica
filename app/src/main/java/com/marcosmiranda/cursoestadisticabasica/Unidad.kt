@@ -64,8 +64,8 @@ class Unidad : AppCompatActivity() {
                     if (subtemas.count == 0) {
                         if (html.isEmpty()) {
                             when (idTema) {
-                                9 -> intent = Intent(this, CalcDescriptivaVariableCualitativa::class.java)
-                                10 -> intent = Intent(this, CalcMedidasResumenVariableCuantitativa::class.java)
+                                // 9 -> intent = Intent(this, MatrizDatos::class.java)
+                                10 -> intent = Intent(this, MatrizDatos::class.java)
                                 // 11 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
                                 // 12 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
                                 // 13 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
@@ -77,7 +77,7 @@ class Unidad : AppCompatActivity() {
                             intent = Intent(this, Formula::class.java)
                         }
                     } else {
-                        intent = if (idTema == 9) {
+                        intent = if (idTema == 9 || idTema == 10) {
                             Intent(this, MatrizDatos::class.java)
                         } else {
                             Intent(this, Tema::class.java)

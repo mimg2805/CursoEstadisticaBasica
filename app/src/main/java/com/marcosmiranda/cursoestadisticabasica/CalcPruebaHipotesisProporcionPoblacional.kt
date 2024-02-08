@@ -4,10 +4,18 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ch.obermuhlner.math.big.BigDecimalMath.sqrt
-import java.math.*
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
 import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
@@ -18,6 +26,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
     private var n: BigInteger = BigInteger.ZERO
     private var p: BigDecimal = BigDecimal.ZERO
     private var pi: BigDecimal = BigDecimal.ZERO
+    private var piComp: BigDecimal = BigDecimal.ZERO
     private var Z: BigDecimal = BigDecimal.ZERO
     private var prob: BigDecimal = BigDecimal.ZERO
     private var calc: String = ""
@@ -85,7 +94,10 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pi = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) {
+                    pi = strToBigDecimal(text.toString())
+                    piComp = BigDecimal.ONE.subtract(pi)
+                }
             }
         })
 
@@ -108,32 +120,43 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
         val mc5 = MathContext(5, RoundingMode.HALF_UP)
         val mc6 = MathContext(6, RoundingMode.HALF_UP)
 
-        if (p.times(BigDecimal.ONE.subtract(p)) <= BigDecimal.valueOf(5)) {
+        if (pi.times(piComp) <= BigDecimal.valueOf(5)) {
             toast?.cancel()
-            toast = Toast.makeText(this, "p (1 - p) debe ser mayor que 5", Toast.LENGTH_SHORT)
+            toast = Toast.makeText(this, "(π * (1 - π)) debe ser mayor que 5", Toast.LENGTH_SHORT)
             toast?.show()
             return
+        } else {
+            toast?.cancel()
+        }
+
+        if (n <= BigInteger.valueOf(30)) {
+            toast?.cancel()
+            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
+            toast?.show()
+            return
+        } else {
+            toast?.cancel()
         }
 
         try {
-            if (n != BigInteger.ZERO && pi != BigDecimal.ZERO) {
-                Z = p.minus(pi).divide(sqrt(pi.times(BigDecimal.ONE.subtract(pi)).divide(n.toBigDecimal()), mc5), mc5)
-                mZTxt.setText(Z.toPlainString())
+            if (n == BigInteger.ZERO && pi == BigDecimal.ZERO) return
 
-                val mi = 0.0
-                val sigma = 1.0
-                val zd = Z.toDouble()
-                val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
-                val greater = BigDecimal.ONE.subtract(lesser, mc5)
+            Z = p.subtract(pi).divide(sqrt(pi.multiply(piComp).divide(n.toBigDecimal()), mc5), mc5)
+            mZTxt.setText(Z.toPlainString())
 
-                prob = if (calc.contains('>')) {
-                    greater
-                } else {
-                    lesser
-                }
+            val mi = 0.0
+            val sigma = 1.0
+            val zd = Z.toDouble()
+            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
+            val greater = BigDecimal.ONE.subtract(lesser, mc5)
 
-                mprobTxt.setText(prob.toPlainString())
+            prob = if (calc.contains('>')) {
+                greater
+            } else {
+                lesser
             }
+
+            mprobTxt.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
             toast?.cancel()

@@ -70,14 +70,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/x_equals"
+        android:text="@string/xbar_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/uLbl"
         app:layout_constraintEnd_toStartOf="@+id/xTxt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nLbl"
-        tools:text="@string/x_equals" />
+        tools:text="@string/xbar_equals" />
 
     <TextView
         android:id="@+id/uLbl"
@@ -160,7 +160,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/x"
+        android:hint="@string/xbar"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="true"

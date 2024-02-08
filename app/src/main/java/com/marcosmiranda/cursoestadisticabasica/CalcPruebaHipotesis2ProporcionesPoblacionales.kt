@@ -4,10 +4,18 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ch.obermuhlner.math.big.BigDecimalMath.sqrt
-import java.math.*
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
 import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
@@ -18,8 +26,11 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
     private var n1: BigInteger = BigInteger.ZERO
     private var n2: BigInteger = BigInteger.ZERO
     private var p1: BigDecimal = BigDecimal.ZERO
+    private var p1Comp: BigDecimal = BigDecimal.ZERO
     private var p2: BigDecimal = BigDecimal.ZERO
+    private var p2Comp: BigDecimal = BigDecimal.ZERO
     private var pc: BigDecimal = BigDecimal.ZERO
+    private var pcComp: BigDecimal = BigDecimal.ZERO
     private var Z: BigDecimal = BigDecimal.ZERO
     private var prob: BigDecimal = BigDecimal.ZERO
     private var calc: String = ""
@@ -91,7 +102,10 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) p1 = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) {
+                    p1 = strToBigDecimal(text.toString())
+                    p1Comp = BigDecimal.ONE.subtract(p1)
+                }
             }
         })
 
@@ -103,7 +117,10 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) p2 = strToBigDecimal(text.toString())
+                if (!text.isNullOrBlank()) {
+                    p2 = strToBigDecimal(text.toString())
+                    p2Comp = BigDecimal.ONE.subtract(p2)
+                }
             }
         })
 
@@ -128,34 +145,47 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
         val mc5 = MathContext(5, RoundingMode.HALF_UP)
         val mc6 = MathContext(6, RoundingMode.HALF_UP)
 
-        if (p1.times(BigDecimal.ONE.subtract(p1)).plus(p2.times(BigDecimal.ONE.subtract(p2))) <= BigDecimal.valueOf(30)) {
+        if (p1.multiply(p1Comp) <= BigDecimal.valueOf(5) && (p2.multiply(p2Comp)) <= BigDecimal.valueOf(5)) {
             toast?.cancel()
-            toast = Toast.makeText(this, "p1 (1 - p1) + p2 (1 - p2) debe ser mayor que 30", Toast.LENGTH_SHORT)
+            toast = Toast.makeText(this, "(p1 * (1 - p1)) y (p2 * (1 - p2)) deben ser mayores que 5", Toast.LENGTH_SHORT)
             toast?.show()
             return
+        } else {
+            toast?.cancel()
+        }
+
+        if (n1 <= BigInteger.valueOf(30) && n2 <= BigInteger.valueOf(30)) {
+            toast?.cancel()
+            toast = Toast.makeText(this, "n1 y n2 deben ser mayores que 30", Toast.LENGTH_SHORT)
+            toast?.show()
+            return
+        } else {
+            toast?.cancel()
         }
 
         try {
-            if (n1 != BigInteger.ZERO && n2 != BigInteger.ZERO && p1 != BigDecimal.ZERO && p2 != BigDecimal.ZERO) {
-                pc = p1.times(BigDecimal(100)).plus(p2.times(BigDecimal(100))).divide(n1.plus(n2).toBigDecimal(), mc5)
-                mpcTxt.setText(pc.toPlainString())
-                Z = p1.minus(p2).divide(sqrt(pc.times(BigDecimal.ONE.subtract(pc)).divide(n1.toBigDecimal()).plus(pc.times(BigDecimal.ONE.subtract(pc)).divide(n2.toBigDecimal())), mc5), mc4)
-                mZTxt.setText(Z.toPlainString())
+            if (n1 == BigInteger.ZERO && n2 == BigInteger.ZERO && p1 == BigDecimal.ZERO && p2 == BigDecimal.ZERO) return
 
-                val mi = 0.0
-                val sigma = 1.0
-                val zd = Z.toDouble()
-                val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
-                val greater = BigDecimal.ONE.subtract(lesser, mc6)
+            pc = p1.multiply(BigDecimal(100)).add(p2.multiply(BigDecimal(100))).divide(n1.add(n2).toBigDecimal(), mc5)
+            pcComp = BigDecimal.ONE.subtract(pc)
+            mpcTxt.setText(pc.toPlainString())
 
-                prob = if (calc.contains('>')) {
-                    greater
-                } else {
-                    lesser
-                }
+            Z = p1.subtract(p2).divide(sqrt(pc.multiply(pcComp).divide(n1.toBigDecimal()).add(pc.multiply(pcComp).divide(n2.toBigDecimal())), mc5), mc4)
+            mZTxt.setText(Z.toPlainString())
 
-                mprobTxt.setText(prob.toPlainString())
+            val mi = 0.0
+            val sigma = 1.0
+            val zd = Z.toDouble()
+            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
+            val greater = BigDecimal.ONE.subtract(lesser, mc6)
+
+            prob = if (calc.contains('>')) {
+                greater
+            } else {
+                lesser
             }
+
+            mprobTxt.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
             toast?.cancel()
