@@ -32,7 +32,7 @@
         android:background="@drawable/round_edit_text"
         android:ems="10"
         android:imeOptions="actionNone"
-        android:inputType="number|numberDecimal"
+        android:inputType="text"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/tv_number_list"
         app:layout_constraintEnd_toEndOf="parent"

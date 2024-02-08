@@ -11,7 +11,7 @@
     <string name="purisima_desc">Un juego móvil casual basado en las festividades nicaragüenses de La Purísima.</string>
 
     <string name="list">Lista</string>
-    <string name="add_to_list">Introduce datos numéricos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
+    <string name="add_to_list">Introduce datos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
 
     <string name="calcular">Calcular</string>
     <string name="generar">Generar</string>

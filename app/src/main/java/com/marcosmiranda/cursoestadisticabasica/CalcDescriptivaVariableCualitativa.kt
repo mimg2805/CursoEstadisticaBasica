@@ -2,24 +2,24 @@ package com.marcosmiranda.cursoestadisticabasica
 
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-
-import org.mariuszgromada.math.mxparser.mathcollection.MathFunctions.round
+import java.math.BigDecimal
+import java.math.MathContext
+import java.math.RoundingMode
+import kotlin.math.round
 
 class CalcDescriptivaVariableCualitativa : AppCompatActivity() {
 
-    private var uniqueCharsList: MutableMap<Char, Int> = mutableMapOf()
+    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
 
-    private lateinit var mDataTxt: EditText
+    private var valuesStr = ""
+    private var values: MutableMap<String, Int> = mutableMapOf()
+
     private lateinit var mTable: TableLayout
 
     private var line = ""
@@ -28,47 +28,38 @@ class CalcDescriptivaVariableCualitativa : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_descriptiva_variable_cualitativa)
 
-        mDataTxt = findViewById(R.id.dataTxt)
-        mDataTxt.setSelection(mDataTxt.text.length)
         mTable = findViewById(R.id.table)
 
-        for(i in 1..72) line += "-" //72
+        valuesStr = intent.getStringExtra("values") ?: ""
 
-        mDataTxt.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(text: Editable?) {
-                resetTable()
-                updateTable()
-            }
+        for (i in 1..72) line += "-" // 72
 
-            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
+        resetTable()
+        updateTable()
     }
 
     private fun updateTable() {
-        val dataList = mDataTxt.text.toString().replace(" ", "").toList()
-        val dataSize = dataList.size
 
-        for (chr in dataList) {
-            var num = uniqueCharsList[chr] ?: 0
-            if (!uniqueCharsList.contains(chr)) {
-                num = 1
-            } else {
+        val valuesArr = valuesStr.split(' ')
+        val valuesSize = valuesArr.size
+        valuesArr.forEach {str ->
+            var num = values[str] ?: 0
+            if (values.contains(str)) {
                 num++
+            } else {
+                num = 1
             }
-            uniqueCharsList[chr] = num
+            values[str] = num
         }
-        Log.e("list", uniqueCharsList.toString())
 
         val varParams = TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,2f)
         val otherParams = TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1f)
-        for ((chr:Char, num:Int) in uniqueCharsList) {
+        for ((str: String, num: Int) in values) {
             val varRow = TableRow(this)
 
             val varTxt = TextView(this)
             varTxt.setTextColor(Color.BLACK)
-            varTxt.text = chr.toString()
+            varTxt.text = str
             varTxt.layoutParams = varParams
             varRow.addView(varTxt)
 
@@ -78,10 +69,10 @@ class CalcDescriptivaVariableCualitativa : AppCompatActivity() {
             noTxt.layoutParams = otherParams
             varRow.addView(noTxt)
 
-            val freq = round((num.toDouble() / dataSize.toDouble()) * 100, 2)
+            val freq = BigDecimal((num.toDouble() / valuesSize.toDouble()) * 100, mc)
             val porcTxt = TextView(this)
             porcTxt.setTextColor(Color.BLACK)
-            porcTxt.text = freq.toString()
+            porcTxt.text = freq.toPlainString()
             porcTxt.layoutParams = otherParams
             varRow.addView(porcTxt)
 
@@ -100,7 +91,7 @@ class CalcDescriptivaVariableCualitativa : AppCompatActivity() {
 
         val noTxt = TextView(this)
         noTxt.setTextColor(Color.BLACK)
-        noTxt.text = dataSize.toString()
+        noTxt.text = valuesSize.toString()
         noTxt.layoutParams = otherParams
         totalRow.addView(noTxt)
 
@@ -116,11 +107,9 @@ class CalcDescriptivaVariableCualitativa : AppCompatActivity() {
     }
 
     fun clear(view: View) {
-        if (view.isClickable) {
-            mDataTxt.setText("")
-            mDataTxt.clearFocus()
-            resetTable()
-        }
+        if (!view.isClickable) return
+
+        resetTable()
     }
 
     private fun addLine() {
@@ -135,7 +124,7 @@ class CalcDescriptivaVariableCualitativa : AppCompatActivity() {
     }
 
     private fun resetTable() {
-        uniqueCharsList = mutableMapOf()
+        // uniqueCharsList = mutableMapOf()
         val titleRow = mTable.getChildAt(0)
         val tableTitleRow = mTable.getChildAt(2)
         mTable.removeAllViews()

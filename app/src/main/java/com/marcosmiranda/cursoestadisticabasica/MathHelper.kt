@@ -1,9 +1,7 @@
 package com.marcosmiranda.cursoestadisticabasica
 
-import android.util.Log
 import ch.obermuhlner.math.big.BigDecimalMath.pow
 import ch.obermuhlner.math.big.BigDecimalMath.sqrt
-import org.mariuszgromada.math.mxparser.mathcollection.MathFunctions.round
 import org.mariuszgromada.math.mxparser.mathcollection.NumberTheory
 import java.math.BigDecimal
 import java.math.BigInteger

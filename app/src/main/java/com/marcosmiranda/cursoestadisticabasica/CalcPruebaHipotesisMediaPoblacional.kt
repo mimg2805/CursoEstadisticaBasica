@@ -128,27 +128,29 @@ class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
             toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
             toast?.show()
             return
+        } else {
+            toast?.cancel()
         }
 
         try {
-            if (n != BigInteger.ZERO && s != BigDecimal.ZERO) {
-                Z = x.minus(u).divide(s.divide(sqrt(n.toBigDecimal(), mc6), mc6), mc5)
-                mZTxt.setText(Z.toPlainString())
+            if (n == BigInteger.ZERO && s == BigDecimal.ZERO) return
 
-                val mi = 0.0
-                val sigma = 1.0
-                val zd = Z.toDouble()
-                val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
-                val greater = BigDecimal.ONE.subtract(lesser, mc5)
+            Z = x.subtract(u).divide(s.divide(sqrt(n.toBigDecimal(), mc6), mc6), mc5)
+            mZTxt.setText(Z.toPlainString())
 
-                prob = if (calc.contains('>')) {
-                    greater
-                } else {
-                    lesser
-                }
+            val mi = 0.0
+            val sigma = 1.0
+            val zd = Z.toDouble()
+            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
+            val greater = BigDecimal.ONE.subtract(lesser, mc5)
 
-                mprobTxt.setText(prob.toPlainString())
+            prob = if (calc.contains('>')) {
+                greater
+            } else {
+                lesser
             }
+
+            mprobTxt.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
             toast?.cancel()

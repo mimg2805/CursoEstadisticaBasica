@@ -8,8 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.*
-import kotlin.math.*
+import ch.obermuhlner.math.big.BigDecimalMath.sqrt
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
@@ -93,20 +96,23 @@ class CalcIntervaloConfianzaMediaPoblacionDesconocida : AppCompatActivity() {
             toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
             toast?.show()
             return
+        } else {
+            toast?.cancel()
         }
 
         try {
-            if (n != BigDecimal.ZERO && x != BigDecimal.ZERO && s != BigDecimal.ZERO) {
-                val error = z.times((s.divide(sqrt(n.toDouble()).toBigDecimal(), mc)))
-                limInf = x.minus(error)
-                limSup = x.plus(error)
-                if (limInf != BigDecimal.ZERO && limSup != BigDecimal.ZERO) {
-                    val limInfStr = "%.4f".format(limInf)
-                    val limSupStr = "%.4f".format(limSup)
-                    str = "[$limInfStr - $limSupStr]"
-                    mICTxt.setText(str)
-                }
-            }
+            if (n == BigDecimal.ZERO && x == BigDecimal.ZERO && s == BigDecimal.ZERO) return
+
+            val error = z.multiply((s.divide(sqrt(n.toBigDecimal(), mc), mc)))
+            limInf = x.subtract(error)
+            limSup = x.add(error)
+
+            if (limInf == BigDecimal.ZERO && limSup == BigDecimal.ZERO) return
+
+            val limInfStr = "%.4f".format(limInf)
+            val limSupStr = "%.4f".format(limSup)
+            str = "[$limInfStr - $limSupStr]"
+            mICTxt.setText(str)
         } catch (e: Exception) {
             e.printStackTrace()
             toast?.cancel()

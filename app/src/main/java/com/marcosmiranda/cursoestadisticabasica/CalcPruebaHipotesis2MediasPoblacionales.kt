@@ -4,10 +4,18 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ch.obermuhlner.math.big.BigDecimalMath.sqrt
-import java.math.*
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
 import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
@@ -154,33 +162,34 @@ class CalcPruebaHipotesis2MediasPoblacionales : AppCompatActivity() {
         val mc5 = MathContext(5, RoundingMode.HALF_UP)
         val mc6 = MathContext(6, RoundingMode.HALF_UP)
 
-        if (n1 + n2 <= BigInteger.valueOf(30)) {
+        if (n1 <= BigInteger.valueOf(30) && n2 <= BigInteger.valueOf(30)) {
             toast?.cancel()
-            toast = Toast.makeText(this, "n1 + n2 debe ser mayor que 30", Toast.LENGTH_SHORT)
+            toast = Toast.makeText(this, "n1 y n2 deben ser mayores que 30", Toast.LENGTH_SHORT)
             toast?.show()
             return
+        } else {
+            toast?.cancel()
         }
 
         try {
-            if (n1 != BigInteger.ZERO && n2 != BigInteger.ZERO && x1 != BigDecimal.ZERO && x2 != BigDecimal.ZERO && s1 != BigDecimal.ZERO && s2 != BigDecimal.ZERO) {
-                val mi = 0.0
-                val sigma = 1.0
+            if (n1 == BigInteger.ZERO && n2 == BigInteger.ZERO && x1 == BigDecimal.ZERO && x2 == BigDecimal.ZERO && s1 == BigDecimal.ZERO && s2 == BigDecimal.ZERO) return
 
-                Z = x1.minus(x2).divide(sqrt(s1.pow(2).divide(n1.toBigDecimal(), mc6).plus(s2.pow(2).divide(n2.toBigDecimal(), mc6)), mc5), mc4)
-                mZTxt.setText(Z.toPlainString())
+            Z = x1.subtract(x2).divide(sqrt(s1.pow(2).divide(n1.toBigDecimal(), mc6).add(s2.pow(2).divide(n2.toBigDecimal(), mc6)), mc5), mc4)
+            mZTxt.setText(Z.toPlainString())
 
-                val zd = Z.toDouble()
-                val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
-                val greater = BigDecimal.ONE.subtract(lesser, mc6)
+            val mi = 0.0
+            val sigma = 1.0
+            val zd = Z.toDouble()
+            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
+            val greater = BigDecimal.ONE.subtract(lesser, mc6)
 
-                prob = if (calc.contains('>')) {
-                    greater
-                } else {
-                    lesser
-                }
-
-                mprobTxt.setText(prob.toPlainString())
+            prob = if (calc.contains('>')) {
+                greater
+            } else {
+                lesser
             }
+
+            mprobTxt.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
             toast?.cancel()
