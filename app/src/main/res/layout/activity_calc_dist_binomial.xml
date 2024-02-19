@@ -8,7 +8,7 @@
     tools:context=".CalcDistBinomial">
 
     <TextView
-        android:id="@+id/nLbl"
+        android:id="@+id/activity_calc_dist_binomial_tv_n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -18,14 +18,14 @@
         android:text="@string/n_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/xLbl"
-        app:layout_constraintEnd_toStartOf="@+id/nTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_binomial_tv_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_binomial_et_n"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/n_equals" />
 
     <TextView
-        android:id="@+id/xLbl"
+        android:id="@+id/activity_calc_dist_binomial_tv_x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -35,14 +35,14 @@
         android:text="@string/x_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/piLbl"
-        app:layout_constraintEnd_toStartOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_binomial_tv_pi"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_binomial_et_x"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nLbl"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_binomial_tv_n"
         tools:text="@string/x_equals" />
 
     <TextView
-        android:id="@+id/piLbl"
+        android:id="@+id/activity_calc_dist_binomial_tv_pi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -52,14 +52,14 @@
         android:text="@string/pi_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/probSpinner"
-        app:layout_constraintEnd_toStartOf="@+id/piTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_binomial_spn_prob"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_binomial_et_pi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xLbl"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_binomial_tv_x"
         tools:text="@string/pi_equals" />
 
     <Spinner
-        android:id="@+id/probSpinner"
+        android:id="@+id/activity_calc_dist_binomial_spn_prob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -70,12 +70,12 @@
         android:entries="@array/probs_3"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/probTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_binomial_et_prob"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/piLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_binomial_tv_pi" />
 
     <EditText
-        android:id="@+id/nTxt"
+        android:id="@+id/activity_calc_dist_binomial_et_n"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -89,13 +89,13 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_binomial_et_x"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nLbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_binomial_tv_n"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/xTxt"
+        android:id="@+id/activity_calc_dist_binomial_et_x"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -109,13 +109,13 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/piTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_binomial_et_pi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/xLbl"
-        app:layout_constraintTop_toBottomOf="@+id/nTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_binomial_tv_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_binomial_et_n" />
 
     <EditText
-        android:id="@+id/piTxt"
+        android:id="@+id/activity_calc_dist_binomial_et_pi"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -129,13 +129,13 @@
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/probTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_binomial_et_prob"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/piLbl"
-        app:layout_constraintTop_toBottomOf="@+id/xTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_binomial_tv_pi"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_binomial_et_x" />
 
     <EditText
-        android:id="@+id/probTxt"
+        android:id="@+id/activity_calc_dist_binomial_et_prob"
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -154,17 +154,17 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/probSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/piTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_binomial_spn_prob"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_binomial_et_pi" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_dist_binomial_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/limpiar" />
+        tools:text="@string/clear" />
 </androidx.constraintlayout.widget.ConstraintLayout>

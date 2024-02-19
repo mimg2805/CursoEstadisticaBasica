@@ -15,118 +15,125 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDec
 
 class CalcDistNormalEstandarizacion : AppCompatActivity() {
 
-    private var x: BigDecimal = BigDecimal.ZERO
-    private var mi: BigDecimal = BigDecimal.ZERO
-    private var sigma: BigDecimal = BigDecimal.ZERO
-    private var n: BigDecimal = BigDecimal.ONE
-    private var prob: BigDecimal = BigDecimal.ZERO
+    private var x = BigDecimal.ZERO
+    private var mi = BigDecimal.ZERO
+    private var sigma = BigDecimal.ZERO
+    private var n = BigDecimal.ONE
+    private var prob = BigDecimal.ZERO
 
-    private lateinit var mxTxt: EditText
-    private lateinit var mmiTxt: EditText
-    private lateinit var msigmaTxt: EditText
-    private lateinit var mnTxt: EditText
-    private lateinit var mprobTxt: EditText
-
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
+    private lateinit var etX: EditText
+    private lateinit var etMi: EditText
+    private lateinit var etSigma: EditText
+    private lateinit var etN: EditText
+    private lateinit var etProb: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_dist_normal_estandarizacion)
 
-        mxTxt = findViewById(R.id.xTxt)
-        mmiTxt = findViewById(R.id.miTxt)
-        msigmaTxt = findViewById(R.id.sigmaTxt)
-        mnTxt = findViewById(R.id.nTxt)
-        mprobTxt = findViewById(R.id.probTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etX = findViewById(R.id.activity_calc_dist_normal_estandarizacion_et_x)
+        etMi = findViewById(R.id.activity_calc_dist_normal_estandarizacion_et_mi)
+        etSigma = findViewById(R.id.activity_calc_dist_normal_estandarizacion_et_sigma)
+        etN = findViewById(R.id.activity_calc_dist_normal_estandarizacion_et_n)
+        etProb = findViewById(R.id.activity_calc_dist_normal_estandarizacion_et_prob)
+        btnClear = findViewById(R.id.activity_calc_dist_normal_estandarizacion_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mnTxt.setText(n.toPlainString())
+        etN.setText(n.toPlainString())
 
-        mxTxt.addTextChangedListener(object : TextWatcher {
+        etX.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) x = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                x = strToBigDecimal(text.toString())
             }
         })
 
-        mmiTxt.addTextChangedListener(object : TextWatcher {
+        etMi.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) mi = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                mi = strToBigDecimal(text.toString())
             }
         })
 
-        msigmaTxt.addTextChangedListener(object : TextWatcher {
+        etSigma.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) sigma = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                sigma = strToBigDecimal(text.toString())
             }
         })
 
-        mnTxt.addTextChangedListener(object : TextWatcher {
+        etN.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                n = strToBigDecimal(text.toString())
             }
         })
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     fun calc() {
+        if (sigma == BigDecimal.ZERO || n == BigDecimal.ZERO) return
+
         try {
-            if (sigma != BigDecimal.ZERO && n != BigDecimal.ZERO) {
-                prob = distNormalEstandar(x, mi, sigma, n)
-                mprobTxt.setText(prob.toPlainString())
-            }
+            prob = distNormalEstandar(x, mi, sigma, n)
+            etProb.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            x = BigDecimal.ZERO
-            mi = BigDecimal.ZERO
-            sigma = BigDecimal.ZERO
-            n = BigDecimal.ZERO
-            prob = BigDecimal.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mxTxt.setText("")
-            mmiTxt.setText("")
-            msigmaTxt.setText("")
-            mnTxt.setText("")
-            mprobTxt.setText("")
+        x = BigDecimal.ZERO
+        mi = BigDecimal.ZERO
+        sigma = BigDecimal.ZERO
+        n = BigDecimal.ZERO
+        prob = BigDecimal.ZERO
 
-            mxTxt.clearFocus()
-            mmiTxt.clearFocus()
-            msigmaTxt.clearFocus()
-            mnTxt.clearFocus()
-            mprobTxt.clearFocus()
-        }
+        etX.setText("")
+        etMi.setText("")
+        etSigma.setText("")
+        etN.setText("")
+        etProb.setText("")
+
+        etX.clearFocus()
+        etMi.clearFocus()
+        etSigma.clearFocus()
+        etN.clearFocus()
+        etProb.clearFocus()
     }
 }

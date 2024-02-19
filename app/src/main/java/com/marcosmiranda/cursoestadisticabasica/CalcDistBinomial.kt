@@ -4,88 +4,103 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.*
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
+import org.apache.commons.math3.distribution.BinomialDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
-import org.apache.commons.math3.distribution.BinomialDistribution
 
 class CalcDistBinomial : AppCompatActivity() {
 
-    private var n: BigInteger = BigInteger.ZERO
-    private var x: BigInteger = BigInteger.ZERO
-    private var pi: BigDecimal = BigDecimal.ZERO
-    private var prob: BigDecimal = BigDecimal.ZERO
-    private var calc: String = ""
+    private var n = BigInteger.ZERO
+    private var x = BigInteger.ZERO
+    private var pi = BigDecimal.ZERO
+    private var prob = BigDecimal.ZERO
+    private var calc = ""
+    private val mc = MathContext(4, RoundingMode.HALF_UP)
 
-    private lateinit var mnTxt: EditText
-    private lateinit var mxTxt: EditText
-    private lateinit var mpiTxt: EditText
-    private lateinit var mprobTxt: EditText
+    private lateinit var etN: EditText
+    private lateinit var etX: EditText
+    private lateinit var etPi: EditText
+    private lateinit var etProb: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
-
-    private lateinit var mprobSpinner: Spinner
+    private lateinit var spnProb: Spinner
     private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_dist_binomial)
 
-        mnTxt = findViewById(R.id.nTxt)
-        mxTxt = findViewById(R.id.xTxt)
-        mpiTxt = findViewById(R.id.piTxt)
-        mprobTxt = findViewById(R.id.probTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etN = findViewById(R.id.activity_calc_dist_binomial_et_n)
+        etX = findViewById(R.id.activity_calc_dist_binomial_et_x)
+        etPi = findViewById(R.id.activity_calc_dist_binomial_et_pi)
+        etProb = findViewById(R.id.activity_calc_dist_binomial_et_prob)
+        btnClear = findViewById(R.id.activity_calc_dist_binomial_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mprobSpinner = findViewById(R.id.probSpinner)
+        spnProb = findViewById(R.id.activity_calc_dist_binomial_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
             R.array.probs_3, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mprobSpinner.adapter = adapter
+        spnProb.adapter = adapter
 
-        mnTxt.addTextChangedListener(object : TextWatcher {
+        etN.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                n = strToBigInteger(text.toString())
             }
         })
 
-        mxTxt.addTextChangedListener(object : TextWatcher {
+        etX.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) x = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                x = strToBigInteger(text.toString())
             }
         })
 
-        mpiTxt.addTextChangedListener(object : TextWatcher {
+        etPi.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pi = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                pi = strToBigDecimal(text.toString())
             }
         })
 
-        mprobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spnProb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 calc = parent?.getItemAtPosition(pos).toString()
                 calc()
@@ -96,69 +111,59 @@ class CalcDistBinomial : AppCompatActivity() {
             }
         }
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     fun calc() {
         prob = BigDecimal.ZERO
-        val mc = MathContext(4, RoundingMode.HALF_UP)
+        if (n == BigInteger.ZERO || pi == BigDecimal.ZERO) return
 
         try {
-            if (n != BigInteger.ZERO && pi != BigDecimal.ZERO) {
-                val xint = x.toInt()
-                val binomial = BinomialDistribution(null, n.toInt(), pi.toDouble())
+            val xint = x.toInt()
+            val binomial = BinomialDistribution(null, n.toInt(), pi.toDouble())
 
-                val equal = BigDecimal(binomial.probability(xint).toString()).setScale(4, RoundingMode.HALF_UP)
-                val lesser = BigDecimal(binomial.cumulativeProbability(xint).toString()).subtract(equal, mc).abs(mc).setScale(4, RoundingMode.HALF_UP)
-                val greater = BigDecimal.ONE.subtract(equal + lesser, mc).abs(mc).setScale(4, RoundingMode.HALF_UP)
+            val equal = BigDecimal.valueOf(binomial.probability(xint)).round(mc)
+            val lesser = (BigDecimal.valueOf(binomial.cumulativeProbability(xint)) - equal).abs(mc).round(mc)
+            val greater = (BigDecimal.ONE - (equal + lesser)).abs(mc).round(mc)
 
-                //Log.e("x", x.toString())
-                //Log.e("P(X = x)", equal.toPlainString())
-                //Log.e("P(X > x)", greater.toPlainString())
-                //Log.e("P(X < x)", lesser.toPlainString())
-                //Log.e("sum", (equal + lesser + greater).toPlainString())
+            prob = when {
+                calc.contains('>') ->
+                    greater
+                calc.contains('<') ->
+                    lesser
+                else ->
+                    equal
+            }
 
-                prob = when {
-                    calc.contains('>') ->
-                        greater
-                    calc.contains('<') ->
-                        lesser
-                    else ->
-                        equal
-                }
-
-                //prob = prob.setScale(4, RoundingMode.HALF_UP)
-
-                if (prob != BigDecimal.ZERO) {
-                    mprobTxt.setText(prob.toPlainString())
-                }
+            if (prob != BigDecimal.ZERO) {
+                // prob = prob.round(mc)
+                etProb.setText(prob.toPlainString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            n = BigInteger.ZERO
-            x = BigInteger.ZERO
-            pi = BigDecimal.ZERO
-            prob = BigDecimal.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mnTxt.setText("")
-            mxTxt.setText("")
-            mpiTxt.setText("")
-            mprobTxt.setText("")
+        n = BigInteger.ZERO
+        x = BigInteger.ZERO
+        pi = BigDecimal.ZERO
+        prob = BigDecimal.ZERO
 
-            mnTxt.clearFocus()
-            mxTxt.clearFocus()
-            mpiTxt.clearFocus()
-            mprobSpinner.clearFocus()
+        etN.setText("")
+        etX.setText("")
+        etPi.setText("")
+        etProb.setText("")
 
-            mprobSpinner.setSelection(0)
-        }
+        etN.clearFocus()
+        etX.clearFocus()
+        etPi.clearFocus()
+        spnProb.clearFocus()
+
+        spnProb.setSelection(0)
     }
 }

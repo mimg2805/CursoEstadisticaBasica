@@ -8,7 +8,7 @@
     tools:context=".CalcTeoremaBayesSimple">
 
     <TextView
-        android:id="@+id/paLbl"
+        android:id="@+id/activity_calc_teorema_bayes_simple_tv_p_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -16,13 +16,13 @@
         android:layout_marginBottom="16dp"
         android:text="@string/P_A_equals"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/pbLbl"
-        app:layout_constraintEnd_toStartOf="@+id/paTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_teorema_bayes_simple_tv_p_b"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_teorema_bayes_simple_et_p_a"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/pbLbl"
+        android:id="@+id/activity_calc_teorema_bayes_simple_tv_p_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -30,41 +30,41 @@
         android:layout_marginBottom="16dp"
         android:text="@string/P_B_equals"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/pbaLbl"
-        app:layout_constraintEnd_toStartOf="@+id/pbTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_teorema_bayes_simple_tv_p_b_over_a"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_teorema_bayes_simple_et_p_b"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_teorema_bayes_simple_tv_p_a" />
 
     <TextView
-        android:id="@+id/pbaLbl"
+        android:id="@+id/activity_calc_teorema_bayes_simple_tv_p_b_over_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/P_BoverA_equals"
+        android:text="@string/P_B_over_A_equals"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/pabLbl"
-        app:layout_constraintEnd_toStartOf="@+id/pbaTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_teorema_bayes_simple_tv_p_a_over_b"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_teorema_bayes_simple_et_p_b_over_a"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pbLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_teorema_bayes_simple_tv_p_b" />
 
     <TextView
-        android:id="@+id/pabLbl"
+        android:id="@+id/activity_calc_teorema_bayes_simple_tv_p_a_over_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="108dp"
-        android:text="@string/P_AoverB_equals"
+        android:text="@string/P_A_over_B_equals"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pabTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_teorema_bayes_simple_et_p_a_over_b"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pbaLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_teorema_bayes_simple_tv_p_b_over_a" />
 
     <EditText
-        android:id="@+id/paTxt"
+        android:id="@+id/activity_calc_teorema_bayes_simple_et_p_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -76,13 +76,13 @@
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/pbTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_teorema_bayes_simple_et_p_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/paLbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_teorema_bayes_simple_tv_p_a"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/pbTxt"
+        android:id="@+id/activity_calc_teorema_bayes_simple_et_p_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -94,13 +94,13 @@
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/pbaTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_teorema_bayes_simple_et_p_b_over_a"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pbLbl"
-        app:layout_constraintTop_toBottomOf="@+id/paTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_teorema_bayes_simple_tv_p_b"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_teorema_bayes_simple_et_p_a" />
 
     <EditText
-        android:id="@+id/pbaTxt"
+        android:id="@+id/activity_calc_teorema_bayes_simple_et_p_b_over_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -108,17 +108,17 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/P_BoverA"
+        android:hint="@string/P_B_over_A"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/pabTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_teorema_bayes_simple_et_p_a_over_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pbaLbl"
-        app:layout_constraintTop_toBottomOf="@+id/pbTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_teorema_bayes_simple_tv_p_b_over_a"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_teorema_bayes_simple_et_p_b" />
 
     <EditText
-        android:id="@+id/pabTxt"
+        android:id="@+id/activity_calc_teorema_bayes_simple_et_p_a_over_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -128,21 +128,21 @@
         android:cursorVisible="false"
         android:ems="10"
         android:focusableInTouchMode="false"
-        android:hint="@string/P_AoverB"
+        android:hint="@string/P_A_over_B"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pabLbl"
-        app:layout_constraintTop_toBottomOf="@+id/pbaTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_teorema_bayes_simple_tv_p_a_over_b"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_teorema_bayes_simple_et_p_b_over_a" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_teorema_bayes_simple_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

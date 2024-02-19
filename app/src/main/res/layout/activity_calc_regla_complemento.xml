@@ -8,49 +8,43 @@
     tools:context=".CalcReglaComplemento">
 
     <TextView
-        android:id="@+id/PALbl"
+        android:id="@+id/activity_calc_regla_complemento_tv_pa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/P_A_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/PAcLbl"
-        app:layout_constraintEnd_toStartOf="@+id/PATxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_complemento_tv_pac"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_complemento_et_pa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/PAcLbl"
+        android:id="@+id/activity_calc_regla_complemento_tv_pac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="276dp"
         android:text="@string/P_Ac_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PAcTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_complemento_et_pac"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PALbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_complemento_tv_pa" />
 
     <EditText
-        android:id="@+id/PATxt"
+        android:id="@+id/activity_calc_regla_complemento_et_pa"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
@@ -59,20 +53,18 @@
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/PAcTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_complemento_et_pac"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PALbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_complemento_tv_pa"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/PAcTxt"
+        android:id="@+id/activity_calc_regla_complemento_et_pac"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginBottom="304dp"
         android:background="@drawable/round_edit_text"
         android:clickable="false"
@@ -86,15 +78,15 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PAcLbl"
-        app:layout_constraintTop_toBottomOf="@+id/PATxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_complemento_tv_pac"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_complemento_et_pa" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_regla_complemento_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

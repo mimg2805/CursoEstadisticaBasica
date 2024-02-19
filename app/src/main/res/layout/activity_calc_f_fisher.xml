@@ -8,7 +8,7 @@
     tools:context=".CalcFFisher">
 
     <TextView
-        android:id="@+id/d1Lbl"
+        android:id="@+id/activity_calc_f_fisher_tv_d1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -18,13 +18,13 @@
         android:text="@string/d1_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/d2Lbl"
-        app:layout_constraintEnd_toStartOf="@+id/d1Txt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_tv_d2"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_f_fisher_et_d1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/d2Lbl"
+        android:id="@+id/activity_calc_f_fisher_tv_d2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -34,13 +34,13 @@
         android:text="@string/d2_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/xLbl"
-        app:layout_constraintEnd_toStartOf="@+id/d2Txt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_tv_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_f_fisher_et_d2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/d1Lbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_f_fisher_tv_d1" />
 
     <TextView
-        android:id="@+id/xLbl"
+        android:id="@+id/activity_calc_f_fisher_tv_x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -50,13 +50,13 @@
         android:text="@string/x_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/probSpinner"
-        app:layout_constraintEnd_toStartOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_spn_prob"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_f_fisher_et_x"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/d2Lbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_f_fisher_tv_d2" />
 
     <Spinner
-        android:id="@+id/probSpinner"
+        android:id="@+id/activity_calc_f_fisher_spn_prob"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -66,12 +66,12 @@
         android:backgroundTint="#000000"
         android:entries="@array/probs_2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/probTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_f_fisher_et_prob"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_f_fisher_tv_x" />
 
     <EditText
-        android:id="@+id/d1Txt"
+        android:id="@+id/activity_calc_f_fisher_et_d1"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -84,13 +84,13 @@
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/d2Txt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_et_d2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/d1Lbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_f_fisher_tv_d1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/d2Txt"
+        android:id="@+id/activity_calc_f_fisher_et_d2"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -103,13 +103,13 @@
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_et_x"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/d2Lbl"
-        app:layout_constraintTop_toBottomOf="@+id/d1Txt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_f_fisher_tv_d2"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_f_fisher_et_d1" />
 
     <EditText
-        android:id="@+id/xTxt"
+        android:id="@+id/activity_calc_f_fisher_et_x"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
@@ -122,13 +122,13 @@
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/probTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_et_prob"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/xLbl"
-        app:layout_constraintTop_toBottomOf="@+id/d2Txt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_f_fisher_tv_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_f_fisher_et_d2" />
 
     <EditText
-        android:id="@+id/probTxt"
+        android:id="@+id/activity_calc_f_fisher_et_prob"
         android:layout_width="120dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -143,15 +143,15 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/probSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/xTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_f_fisher_spn_prob"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_f_fisher_et_x" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_f_fisher_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

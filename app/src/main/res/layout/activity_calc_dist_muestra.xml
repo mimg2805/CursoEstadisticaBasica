@@ -8,68 +8,60 @@
     tools:context=".CalcDistMuestra">
 
     <TextView
-        android:id="@+id/nLbl"
+        android:id="@+id/activity_calc_dist_muestra_tv_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/n_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/NnLbl"
-        app:layout_constraintEnd_toStartOf="@+id/nTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_muestra_tv_pop"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_muestra_et_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/NnLbl"
+        android:id="@+id/activity_calc_dist_muestra_tv_pop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/Nn_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/FnLbl"
-        app:layout_constraintEnd_toStartOf="@+id/NnTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_muestra_tv_frac"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_muestra_et_pop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_muestra_tv_size" />
 
     <TextView
-        android:id="@+id/FnLbl"
+        android:id="@+id/activity_calc_dist_muestra_tv_frac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="264dp"
         android:text="@string/Fn_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/FnTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_muestra_et_frac"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NnLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_muestra_tv_pop" />
 
     <EditText
-        android:id="@+id/nTxt"
+        android:id="@+id/activity_calc_dist_muestra_et_size"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
@@ -78,20 +70,18 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/NnTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_muestra_et_pop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nLbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_muestra_tv_size"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/NnTxt"
+        android:id="@+id/activity_calc_dist_muestra_et_pop"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
@@ -100,20 +90,18 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/FnTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_muestra_et_frac"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/NnLbl"
-        app:layout_constraintTop_toBottomOf="@+id/nTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_muestra_tv_pop"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_muestra_et_size" />
 
     <EditText
-        android:id="@+id/FnTxt"
+        android:id="@+id/activity_calc_dist_muestra_et_frac"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginBottom="272dp"
         android:background="@drawable/round_edit_text"
         android:clickable="false"
@@ -127,15 +115,15 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/FnLbl"
-        app:layout_constraintTop_toBottomOf="@+id/NnTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_muestra_tv_frac"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_muestra_et_pop" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_dist_muestra_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

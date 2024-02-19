@@ -4,7 +4,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.math.BigDecimal
 
@@ -12,94 +18,99 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDec
 
 class CalcReglaMultiplicacion : AppCompatActivity() {
 
-    private var pa: BigDecimal = BigDecimal.ZERO
-    private var pb: BigDecimal = BigDecimal.ZERO
-    private var payb: BigDecimal = BigDecimal.ZERO
-    private var pbovera: BigDecimal = BigDecimal.ZERO
+    private var pA = BigDecimal.ZERO
+    private var pB = BigDecimal.ZERO
+    private var pAAndB = BigDecimal.ZERO
+    private var pBOverA = BigDecimal.ZERO
     private var indep = false
 
-    private lateinit var mPATxt: EditText
-    private lateinit var mPBTxt: EditText
-    private lateinit var mPBoverALbl: TextView
-    private lateinit var mPBoverATxt: EditText
-    private lateinit var mPAyBTxt: EditText
+    private lateinit var etPA: EditText
+    private lateinit var etPB: EditText
+    private lateinit var tvPBOverA: TextView
+    private lateinit var etPBOverA: EditText
+    private lateinit var etPAAndB: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
-
-    private lateinit var mexcSpinner: Spinner
+    private lateinit var spnExc: Spinner
     private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_regla_multiplicacion)
 
-        mPATxt = findViewById(R.id.PATxt)
-        mPBTxt = findViewById(R.id.PBTxt)
-        mPBoverALbl = findViewById(R.id.PBoverALbl)
-        mPBoverATxt = findViewById(R.id.PBoverATxt)
-        mPAyBTxt = findViewById(R.id.PAyBTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etPA = findViewById(R.id.activity_calc_regla_multiplicacion_et_p_a)
+        etPB = findViewById(R.id.activity_calc_regla_multiplicacion_et_p_b)
+        tvPBOverA = findViewById(R.id.activity_calc_regla_multiplicacion_tv_p_b_over_a)
+        etPBOverA = findViewById(R.id.activity_calc_regla_multiplicacion_et_p_b_over_a)
+        etPAAndB = findViewById(R.id.activity_calc_regla_multiplicacion_et_p_a_and_b)
+        btnClear = findViewById(R.id.activity_calc_regla_multiplicacion_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mexcSpinner = findViewById(R.id.excSpinner)
+        spnExc = findViewById(R.id.activity_calc_regla_multiplicacion_spn_exc)
         adapter = ArrayAdapter.createFromResource(
             this,
             R.array.regla_multiplicacion, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mexcSpinner.adapter = adapter
+        spnExc.adapter = adapter
 
-        mPATxt.addTextChangedListener(object : TextWatcher {
+        etPA.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pa = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                pA = strToBigDecimal(text.toString())
             }
         })
 
-        mPBTxt.addTextChangedListener(object : TextWatcher {
+        etPB.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pb = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                pB = strToBigDecimal(text.toString())
             }
         })
 
-        mPBoverATxt.addTextChangedListener(object : TextWatcher {
+        etPBOverA.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pbovera = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                pBOverA = strToBigDecimal(text.toString())
             }
         })
 
-        mexcSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spnExc.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                val str = parent?.getItemAtPosition(pos).toString()
-                indep = true
-                if (str.contains("No")) indep = false
+                val excStr = parent?.getItemAtPosition(pos).toString()
+                indep = !excStr.contains("No")
 
-                payb = BigDecimal.ZERO
-                val paybstr = mPAyBTxt.text.toString()
+                pAAndB = BigDecimal.ZERO
+                val pAAndBStr = etPAAndB.text.toString()
                 if (indep) {
-                    mPBoverALbl.visibility = View.GONE
-                    mPBoverATxt.visibility = View.GONE
+                    tvPBOverA.visibility = View.GONE
+                    etPBOverA.visibility = View.GONE
                 } else {
-                    mPBoverALbl.visibility = View.VISIBLE
-                    mPBoverATxt.visibility = View.VISIBLE
-                    payb = strToBigDecimal(paybstr)
+                    tvPBOverA.visibility = View.VISIBLE
+                    etPBOverA.visibility = View.VISIBLE
+                    pAAndB = strToBigDecimal(pAAndBStr)
                 }
                 calc()
             }
@@ -107,43 +118,42 @@ class CalcReglaMultiplicacion : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     fun calc() {
+        if (pA == BigDecimal.ZERO || pB == BigDecimal.ZERO) return
+
         try {
-            if (pa != BigDecimal.ZERO && pb != BigDecimal.ZERO) {
-                payb = if (indep) {
-                    pa * pb
-                } else {
-                    pa * pbovera
-                }
-                mPAyBTxt.setText(String.format(payb.toString()))
+            pAAndB = if (indep) {
+                pA * pB
+            } else {
+                pA * pBOverA
             }
+            etPAAndB.setText(String.format(pAAndB.toString()))
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            pa = BigDecimal.ZERO
-            pb = BigDecimal.ZERO
-            pbovera = BigDecimal.ZERO
-            payb = BigDecimal.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mPATxt.setText("")
-            mPBTxt.setText("")
-            mPBoverATxt.setText("")
-            mPAyBTxt.setText("")
+        pA = BigDecimal.ZERO
+        pB = BigDecimal.ZERO
+        pBOverA = BigDecimal.ZERO
+        pAAndB = BigDecimal.ZERO
 
-            mPATxt.clearFocus()
-            mPBTxt.clearFocus()
-            mPBoverATxt.clearFocus()
-            mPAyBTxt.clearFocus()
-        }
+        etPA.setText("")
+        etPB.setText("")
+        etPBOverA.setText("")
+        etPAAndB.setText("")
+
+        etPA.clearFocus()
+        etPB.clearFocus()
+        etPBOverA.clearFocus()
+        etPAAndB.clearFocus()
     }
 }

@@ -8,86 +8,92 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.*
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
+import java.math.MathContext
 
 class CalcProbTeorica : AppCompatActivity() {
 
-    private var rfa: BigDecimal = BigDecimal.ZERO
-    private var tre: BigDecimal = BigDecimal.ZERO
-    private var pa: BigDecimal = BigDecimal.ZERO
+    private var rfa = BigDecimal.ZERO
+    private var tre = BigDecimal.ZERO
+    private var pA = BigDecimal.ZERO
+    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
 
-    private lateinit var mRFATxt: EditText
-    private lateinit var mTRETxt: EditText
-    private lateinit var mPATxt: EditText
-
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
+    private lateinit var etRFA: EditText
+    private lateinit var etTRE: EditText
+    private lateinit var etPA: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_prob_teorica)
 
-        mRFATxt = findViewById(R.id.RFATxt)
-        mTRETxt = findViewById(R.id.TRETxt)
-        mPATxt = findViewById(R.id.PATxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etRFA = findViewById(R.id.activity_calc_prob_teorica_et_rfa)
+        etTRE = findViewById(R.id.activity_calc_prob_teorica_et_tre)
+        etPA = findViewById(R.id.activity_calc_prob_teorica_et_p_a)
+        btnClear = findViewById(R.id.activity_calc_prob_teorica_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mRFATxt.addTextChangedListener(object : TextWatcher {
+        etRFA.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) rfa = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                rfa = strToBigDecimal(text.toString())
             }
         })
 
-        mTRETxt.addTextChangedListener(object : TextWatcher {
+        etTRE.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) tre = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                tre = strToBigDecimal(text.toString())
             }
         })
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     fun calc() {
+        if (tre == BigDecimal.ZERO) return
+
         try {
-            if (tre != BigDecimal.ZERO) {
-                pa = rfa.divide(tre, 4, RoundingMode.HALF_EVEN)
-                mPATxt.setText(String.format(pa.toPlainString()))
-            }
+            pA = (rfa / tre).round(mc)
+            etPA.setText(String.format(pA.toPlainString()))
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            rfa = BigDecimal.ZERO
-            tre = BigDecimal.ZERO
-            pa = BigDecimal.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mRFATxt.setText("")
-            mTRETxt.setText("")
-            mPATxt.setText("")
+        rfa = BigDecimal.ZERO
+        tre = BigDecimal.ZERO
+        pA = BigDecimal.ZERO
 
-            mRFATxt.clearFocus()
-            mTRETxt.clearFocus()
-            mPATxt.clearFocus()
-        }
+        etRFA.setText("")
+        etTRE.setText("")
+        etPA.setText("")
+
+        etRFA.clearFocus()
+        etTRE.clearFocus()
+        etPA.clearFocus()
     }
 }

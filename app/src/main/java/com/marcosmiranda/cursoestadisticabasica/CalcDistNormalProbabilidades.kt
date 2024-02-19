@@ -3,91 +3,102 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
+import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
-import org.apache.commons.math3.distribution.NormalDistribution
 
 class CalcDistNormalProbabilidades : AppCompatActivity() {
 
-    private var mi: BigDecimal = BigDecimal.ZERO
-    private var sigma: BigDecimal = BigDecimal.ZERO
-    private var x: BigDecimal = BigDecimal.ZERO
-    private var prob: BigDecimal = BigDecimal.ZERO
-    private var calc: String = ""
+    private var mi = BigDecimal.ZERO
+    private var sigma = BigDecimal.ZERO
+    private var x = BigDecimal.ZERO
+    private var prob = BigDecimal.ZERO
+    private var calc = ""
+    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
 
-    private lateinit var mmiTxt: EditText
-    private lateinit var msigmaTxt: EditText
-    private lateinit var mxTxt: EditText
-    private lateinit var mprobTxt: EditText
+    private lateinit var etMi: EditText
+    private lateinit var etSigma: EditText
+    private lateinit var etX: EditText
+    private lateinit var etProb: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
-
-    private lateinit var mprobSpinner: Spinner
+    private lateinit var spnProb: Spinner
     private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_dist_normal_probabilidades)
 
-        mmiTxt = findViewById(R.id.miTxt)
-        msigmaTxt = findViewById(R.id.sigmaTxt)
-        mxTxt = findViewById(R.id.xTxt)
-        mprobTxt = findViewById(R.id.probTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etMi = findViewById(R.id.activity_calc_dist_normal_probabilidades_et_mi)
+        etSigma = findViewById(R.id.activity_calc_dist_normal_probabilidades_et_sigma)
+        etX = findViewById(R.id.activity_calc_dist_normal_probabilidades_et_x)
+        etProb = findViewById(R.id.activity_calc_dist_normal_probabilidades_et_prob)
+        btnClear = findViewById(R.id.activity_calc_dist_normal_probabilidades_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mprobSpinner = findViewById(R.id.probSpinner)
+        spnProb = findViewById(R.id.activity_calc_dist_normal_probabilidades_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
             R.array.probs_2_inv, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mprobSpinner.adapter = adapter
+        spnProb.adapter = adapter
 
-        mmiTxt.addTextChangedListener(object : TextWatcher {
+        etMi.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) mi = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                mi = strToBigDecimal(text.toString())
             }
         })
 
-        msigmaTxt.addTextChangedListener(object : TextWatcher {
+        etSigma.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) sigma = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                sigma = strToBigDecimal(text.toString())
             }
         })
 
-        mxTxt.addTextChangedListener(object : TextWatcher {
+        etX.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) x = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                x = strToBigDecimal(text.toString())
             }
         })
 
-        mprobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spnProb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 calc = parent?.getItemAtPosition(pos).toString()
                 calc()
@@ -98,60 +109,54 @@ class CalcDistNormalProbabilidades : AppCompatActivity() {
             }
         }
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     fun calc() {
         prob = BigDecimal.ZERO
-        val mc = MathContext(4, RoundingMode.HALF_EVEN)
-        val mid = mi.toDouble()
-        val sigmad = sigma.toDouble()
-        val xd = x.toDouble()
+
+        if (sigma == BigDecimal.ZERO) return // || x == BigDecimal.ZERO)
 
         try {
-            if (sigma != BigDecimal.ZERO) { // && x != BigDecimal.ZERO) {
-                val lesser = NormalDistribution(null, mid, sigmad).cumulativeProbability(xd).toBigDecimal(mc).setScale(4, RoundingMode.HALF_UP)
-                val greater = BigDecimal.ONE.subtract(lesser, mc)
+            val mid = mi.toDouble()
+            val sigmad = sigma.toDouble()
+            val xd = x.toDouble()
+            val lesser = NormalDistribution(null, mid, sigmad).cumulativeProbability(xd).toBigDecimal(mc)
+            val greater = BigDecimal.ONE - lesser
 
-                prob = if (calc.contains('>')) {
-                    greater
-                } else {
-                    lesser
-                }
-
-                // Log.e("x", x.toString())
-                // Log.e("P(X > x)", greater.toPlainString())
-                // Log.e("P(X < x)", lesser.toPlainString())
-
-                mprobTxt.setText(prob.toPlainString())
+            prob = if (calc.contains('>')) {
+                greater
+            } else {
+                lesser
             }
+
+            etProb.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            mi = BigDecimal.ZERO
-            sigma = BigDecimal.ZERO
-            x = BigDecimal.ZERO
-            prob = BigDecimal.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mmiTxt.setText("")
-            msigmaTxt.setText("")
-            mxTxt.setText("")
-            mprobTxt.setText("")
+        mi = BigDecimal.ZERO
+        sigma = BigDecimal.ZERO
+        x = BigDecimal.ZERO
+        prob = BigDecimal.ZERO
 
-            mmiTxt.clearFocus()
-            msigmaTxt.clearFocus()
-            mxTxt.clearFocus()
-            mprobTxt.clearFocus()
-            mprobSpinner.clearFocus()
+        etMi.setText("")
+        etSigma.setText("")
+        etX.setText("")
+        etProb.setText("")
 
-            mprobSpinner.setSelection(0)
-        }
+        etMi.clearFocus()
+        etSigma.clearFocus()
+        etX.clearFocus()
+        etProb.clearFocus()
+        spnProb.clearFocus()
+
+        spnProb.setSelection(0)
     }
 }

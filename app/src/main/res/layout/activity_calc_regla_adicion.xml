@@ -8,7 +8,7 @@
     tools:context=".CalcReglaAdicion">
 
     <TextView
-        android:id="@+id/PALbl"
+        android:id="@+id/activity_calc_regla_adicion_tv_pa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -18,14 +18,14 @@
         android:text="@string/P_A_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/PBLbl"
-        app:layout_constraintEnd_toStartOf="@+id/PATxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_adicion_tv_pb"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_adicion_et_pa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/P_A_equals" />
 
     <TextView
-        android:id="@+id/PBLbl"
+        android:id="@+id/activity_calc_regla_adicion_tv_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -35,49 +35,49 @@
         android:text="@string/P_B_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/PAyBLbl"
-        app:layout_constraintEnd_toStartOf="@+id/PBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_adicion_tv_p_and_b"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_adicion_et_pb"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PALbl"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_adicion_tv_pa"
         tools:text="@string/P_B_equals" />
 
     <TextView
-        android:id="@+id/PAyBLbl"
+        android:id="@+id/activity_calc_regla_adicion_tv_p_and_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/P_AyB_equals"
+        android:text="@string/P_A_and_B_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/PAoBLbl"
-        app:layout_constraintEnd_toStartOf="@+id/PAyBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_adicion_tv_p_or_b"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_adicion_et_p_and_b"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PBLbl"
-        tools:text="@string/P_AyB_equals" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_adicion_tv_pb"
+        tools:text="@string/P_A_and_B_equals" />
 
     <TextView
-        android:id="@+id/PAoBLbl"
+        android:id="@+id/activity_calc_regla_adicion_tv_p_or_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="240dp"
-        android:text="@string/P_AoB_equals"
+        android:text="@string/P_A_or_B_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PAoBTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_adicion_et_p_or_b"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PAyBLbl"
-        tools:text="@string/P_AoB_equals" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_adicion_tv_p_and_b"
+        tools:text="@string/P_A_or_B_equals" />
 
     <EditText
-        android:id="@+id/PATxt"
+        android:id="@+id/activity_calc_regla_adicion_et_pa"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -91,13 +91,13 @@
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/PBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_adicion_et_pb"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PALbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_adicion_tv_pa"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/PBTxt"
+        android:id="@+id/activity_calc_regla_adicion_et_pb"
         android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -111,13 +111,13 @@
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/PAyBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_adicion_et_p_and_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PBLbl"
-        app:layout_constraintTop_toBottomOf="@+id/PATxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_adicion_tv_pb"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_adicion_et_pa" />
 
     <EditText
-        android:id="@+id/PAyBTxt"
+        android:id="@+id/activity_calc_regla_adicion_et_p_and_b"
         android:layout_width="170dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -126,19 +126,19 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/P_AyB"
+        android:hint="@string/P_A_and_B"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/PAoBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_adicion_et_p_or_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PAyBLbl"
-        app:layout_constraintTop_toBottomOf="@+id/PBTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_adicion_tv_p_and_b"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_adicion_et_pb" />
 
     <EditText
-        android:id="@+id/PAoBTxt"
+        android:id="@+id/activity_calc_regla_adicion_et_p_or_b"
         android:layout_width="170dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -150,34 +150,34 @@
         android:cursorVisible="false"
         android:ems="10"
         android:focusableInTouchMode="false"
-        android:hint="@string/P_AoB"
+        android:hint="@string/P_A_or_B"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PAoBLbl"
-        app:layout_constraintTop_toBottomOf="@+id/PAyBTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_adicion_tv_p_or_b"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_adicion_et_p_and_b" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_regla_adicion_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/limpiar" />
+        tools:text="@string/clear" />
 
     <Spinner
-        android:id="@+id/excSpinner"
+        android:id="@+id/activity_calc_regla_adicion_spn_exc"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/btnLimpiar"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_adicion_btn_clear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

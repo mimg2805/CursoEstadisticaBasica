@@ -8,7 +8,7 @@
     tools:context=".CalcDistNormalProbabilidades">
 
     <TextView
-        android:id="@+id/miLbl"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_tv_mi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -20,13 +20,13 @@
         android:text="@string/mi_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/sigmaLbl"
-        app:layout_constraintEnd_toStartOf="@+id/miTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_normal_probabilidades_tv_sigma"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_normal_probabilidades_et_mi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sigmaLbl"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_tv_sigma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -38,13 +38,13 @@
         android:text="@string/sigma_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/xLbl"
-        app:layout_constraintEnd_toStartOf="@+id/sigmaTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_normal_probabilidades_tv_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_normal_probabilidades_et_sigma"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/miLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_normal_probabilidades_tv_mi" />
 
     <TextView
-        android:id="@+id/xLbl"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_tv_x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -56,13 +56,13 @@
         android:text="@string/x_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/probSpinner"
-        app:layout_constraintEnd_toStartOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_normal_probabilidades_spn_prob"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_normal_probabilidades_et_x"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sigmaLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_normal_probabilidades_tv_sigma" />
 
     <Spinner
-        android:id="@+id/probSpinner"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_spn_prob"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
@@ -70,12 +70,12 @@
         android:backgroundTint="#000000"
         android:entries="@array/probs_2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/probTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_normal_probabilidades_et_prob"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_normal_probabilidades_tv_x" />
 
     <EditText
-        android:id="@+id/miTxt"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_et_mi"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -89,13 +89,13 @@
         android:inputType="numberSigned|numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/sigmaTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_normal_probabilidades_et_sigma"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/miLbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_normal_probabilidades_tv_mi"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/sigmaTxt"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_et_sigma"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -109,13 +109,13 @@
         android:inputType="number|numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_normal_probabilidades_et_x"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sigmaLbl"
-        app:layout_constraintTop_toBottomOf="@+id/miTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_normal_probabilidades_tv_sigma"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_normal_probabilidades_et_mi" />
 
     <EditText
-        android:id="@+id/xTxt"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_et_x"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -129,13 +129,13 @@
         android:inputType="numberSigned|numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/probTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_normal_probabilidades_et_prob"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/xLbl"
-        app:layout_constraintTop_toBottomOf="@+id/sigmaTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_normal_probabilidades_tv_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_normal_probabilidades_et_sigma" />
 
     <EditText
-        android:id="@+id/probTxt"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_et_prob"
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -153,15 +153,15 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/probSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/xTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_normal_probabilidades_spn_prob"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_normal_probabilidades_et_x" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_dist_normal_probabilidades_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

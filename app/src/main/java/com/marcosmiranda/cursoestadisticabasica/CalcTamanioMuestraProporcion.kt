@@ -8,99 +8,109 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.*
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.RoundingMode
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 
 class CalcTamanioMuestraProporcion : AppCompatActivity() {
 
-    private var n: BigInteger = BigInteger.ZERO
-    private var p: BigDecimal = BigDecimal.ZERO
-    private var e: BigDecimal = BigDecimal.ZERO
-    private val z: BigDecimal = BigDecimal("1.96")
-    private var answer: BigInteger = BigInteger.ZERO
+    private var n = BigInteger.ZERO
+    private var p = BigDecimal.ZERO
+    private var pComp = BigDecimal.ZERO
+    private var e = BigDecimal.ZERO
+    private val z = BigDecimal("1.96")
+    private var result = BigInteger.ZERO
 
-    private lateinit var mNTxt: EditText
-    private lateinit var mPTxt: EditText
-    private lateinit var mETxt: EditText
-    private lateinit var mZTxt: EditText
-    private lateinit var mnTxt: EditText
-
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
+    private lateinit var etN: EditText
+    private lateinit var etP: EditText
+    private lateinit var etE: EditText
+    private lateinit var etZ: EditText
+    private lateinit var etNResult: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_tamanio_muestra_proporcion)
 
-        mNTxt = findViewById(R.id.NTxt)
-        mPTxt = findViewById(R.id.PTxt)
-        mETxt = findViewById(R.id.ETxt)
-        mZTxt = findViewById(R.id.ZTxt)
-        mnTxt = findViewById(R.id.nTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etN = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_et_N)
+        etP = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_et_P)
+        etE = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_et_E)
+        etZ = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_et_Z)
+        etNResult = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_et_n_result)
+        btnClear = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mZTxt.setText(z.toPlainString())
+        etZ.setText(z.toPlainString())
 
-        mNTxt.addTextChangedListener(object : TextWatcher {
+        etN.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                n = strToBigInteger(text.toString())
             }
         })
 
-        mPTxt.addTextChangedListener(object : TextWatcher {
+        etP.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) p = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                p = strToBigDecimal(text.toString())
+                pComp = BigDecimal.ONE - p
             }
         })
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     fun calc() {
+        if (n == BigInteger.ZERO || p == BigDecimal.ZERO) return
+
         try {
             e = p * BigDecimal("0.05")
-            mETxt.setText(e.toPlainString())
-            val oneMinusP = BigDecimal.ONE - p
-            val top : BigDecimal = n.toBigDecimal() * z.pow(2) * p * oneMinusP
-            val bottom : BigDecimal = (n - BigInteger.ONE).toBigDecimal() * e.pow(2) + z.pow(2) * p * oneMinusP
-            answer = (top / bottom).setScale(0, RoundingMode.UP).toBigInteger()
-            mnTxt.setText(String.format(answer.toString()))
+            etE.setText(e.toPlainString())
+
+            val pComp = BigDecimal.ONE - p
+            val top = n.toBigDecimal() * z.pow(2) * p * pComp
+            val bottom = (n - BigInteger.ONE).toBigDecimal() * e.pow(2) + z.pow(2) * p * pComp
+            result = (top / bottom).setScale(0, RoundingMode.UP).toBigInteger()
+            etNResult.setText(String.format(result.toString()))
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            n = BigInteger.ZERO
-            p = BigDecimal.ZERO
-            e = BigDecimal.ZERO
-            answer = BigInteger.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mNTxt.setText("")
-            mPTxt.setText("")
-            mETxt.setText("")
-            mnTxt.setText("")
+        n = BigInteger.ZERO
+        p = BigDecimal.ZERO
+        e = BigDecimal.ZERO
+        result = BigInteger.ZERO
 
-            mNTxt.clearFocus()
-            mPTxt.clearFocus()
-        }
+        etN.setText("")
+        etP.setText("")
+        etE.setText("")
+        etNResult.setText("")
+
+        etN.clearFocus()
+        etP.clearFocus()
     }
 }

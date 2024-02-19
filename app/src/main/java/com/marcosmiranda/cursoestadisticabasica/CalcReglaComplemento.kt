@@ -8,66 +8,67 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.*
+import java.math.BigDecimal
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 
 class CalcReglaComplemento : AppCompatActivity() {
 
-    private var pa: BigDecimal = BigDecimal.ZERO
-    private var pac: BigDecimal = BigDecimal.ZERO
+    private var pa = BigDecimal.ZERO
+    private var pac = BigDecimal.ZERO
 
-    private lateinit var mPATxt: EditText
-    private lateinit var mPAcTxt: EditText
-
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
+    private lateinit var etPA: EditText
+    private lateinit var etPAc: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_regla_complemento)
 
-        mPATxt = findViewById(R.id.PATxt)
-        mPAcTxt = findViewById(R.id.PAcTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etPA = findViewById(R.id.activity_calc_regla_complemento_et_pa)
+        etPAc = findViewById(R.id.activity_calc_regla_complemento_et_pac)
+        btnClear = findViewById(R.id.activity_calc_regla_complemento_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mPATxt.addTextChangedListener(object : TextWatcher {
+        etPA.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) pa = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                pa = strToBigDecimal(text.toString())
             }
         })
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     private fun calc() {
         try {
-            pac = BigDecimal.ONE.subtract(pa)
-            mPAcTxt.setText(pac.toPlainString())
+            pac = BigDecimal.ONE - pa
+            etPAc.setText(pac.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            pa = BigDecimal.ZERO
-            pac = BigDecimal.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mPATxt.setText("")
-            mPAcTxt.setText("")
+        pa = BigDecimal.ZERO
+        pac = BigDecimal.ZERO
 
-            mPATxt.clearFocus()
-            mPAcTxt.clearFocus()
-        }
+        etPA.setText("")
+        etPAc.setText("")
+
+        etPA.clearFocus()
+        etPAc.clearFocus()
     }
 }

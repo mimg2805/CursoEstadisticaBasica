@@ -4,81 +4,91 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.math.BigDecimal
 import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
+import org.apache.commons.math3.distribution.PoissonDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
-import org.apache.commons.math3.distribution.PoissonDistribution
-import java.math.MathContext
-import java.math.RoundingMode
 
 class CalcDistPoisson : AppCompatActivity() {
 
-    private var x: BigInteger = BigInteger.ZERO
-    private var lambda: BigDecimal = BigDecimal.ZERO
-    private var e: BigDecimal = BigDecimal("2.71828")
-    private var prob: BigDecimal = BigDecimal.ZERO
-    private var calc: String = ""
+    private var x = BigInteger.ZERO
+    private var lambda = BigDecimal.ZERO
+    private var e = BigDecimal("2.71828")
+    private var prob = BigDecimal.ZERO
+    private var calc = ""
+    private val mc = MathContext(4, RoundingMode.HALF_UP)
 
-    private lateinit var mxTxt: EditText
-    private lateinit var mLambdaTxt: EditText
-    private lateinit var meTxt: EditText
-    private lateinit var mProbTxt: EditText
+    private lateinit var etX: EditText
+    private lateinit var etLambda: EditText
+    private lateinit var etE: EditText
+    private lateinit var etProb: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
-
-    private lateinit var mProbSpinner: Spinner
+    private lateinit var spnProb: Spinner
     private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_dist_poisson)
 
-        mxTxt = findViewById(R.id.xTxt)
-        mLambdaTxt = findViewById(R.id.lambdaTxt)
-        meTxt = findViewById(R.id.eTxt)
-        mProbTxt = findViewById(R.id.probTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etX = findViewById(R.id.activity_calc_dist_poisson_et_x)
+        etLambda = findViewById(R.id.activity_calc_dist_poisson_et_lambda)
+        etE = findViewById(R.id.activity_calc_dist_poisson_et_e)
+        etProb = findViewById(R.id.activity_calc_dist_poisson_et_prob)
+        btnClear = findViewById(R.id.activity_calc_dist_poisson_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        meTxt.setText(e.toPlainString())
+        etE.setText(e.toPlainString())
 
-        mProbSpinner = findViewById(R.id.probSpinner)
+        spnProb = findViewById(R.id.activity_calc_dist_poisson_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
             R.array.probs_3, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mProbSpinner.adapter = adapter
+        spnProb.adapter = adapter
 
-        mxTxt.addTextChangedListener(object : TextWatcher {
+        etX.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) x = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                x = strToBigInteger(text.toString())
             }
         })
 
-        mLambdaTxt.addTextChangedListener(object : TextWatcher {
+        etLambda.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) lambda = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                lambda = strToBigDecimal(text.toString())
             }
         })
 
-        mProbSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spnProb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 calc = parent?.getItemAtPosition(pos).toString()
                 calc()
@@ -89,26 +99,19 @@ class CalcDistPoisson : AppCompatActivity() {
             }
         }
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
     }
 
     private fun calc() {
         prob = BigDecimal.ZERO
-        val mc = MathContext(4, RoundingMode.HALF_UP)
 
         try {
             val xint = x.toInt()
             val lambdad = lambda.toDouble()
 
-            val equal = PoissonDistribution(lambdad).probability(xint).toBigDecimal(mc).setScale(4, RoundingMode.HALF_UP)
-            val lesser = PoissonDistribution(lambdad).cumulativeProbability(xint).toBigDecimal(mc).subtract(equal, mc).setScale(4, RoundingMode.HALF_UP)
-            val greater = BigDecimal.ONE.subtract(lesser + equal, mc).setScale(4, RoundingMode.HALF_UP)
-
-            //Log.e("x", x.toString())
-            //Log.e("P(X = x)", equal.toPlainString())
-            //Log.e("P(X > x)", greater.toPlainString())
-            //Log.e("P(X < x)", lesser.toPlainString())
-            //Log.e("sum", (equal + lesser + greater).toPlainString())
+            val equal = PoissonDistribution(lambdad).probability(xint).toBigDecimal(mc).round(mc)
+            val lesser = (PoissonDistribution(lambdad).cumulativeProbability(xint).toBigDecimal(mc) - equal).round(mc)
+            val greater = (BigDecimal.ONE - (lesser + equal)).round(mc)
 
             prob = when {
                 calc.contains('>') ->
@@ -119,31 +122,30 @@ class CalcDistPoisson : AppCompatActivity() {
                     equal
             }
 
-            mProbTxt.setText(prob.toPlainString())
+            etProb.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (view.isClickable) {
-            x = BigInteger.ZERO
-            lambda = BigDecimal.ZERO
-            prob = BigDecimal.ZERO
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-            mxTxt.setText("")
-            mLambdaTxt.setText("")
-            mProbTxt.setText("")
+        x = BigInteger.ZERO
+        lambda = BigDecimal.ZERO
+        prob = BigDecimal.ZERO
 
-            mxTxt.clearFocus()
-            mLambdaTxt.clearFocus()
-            meTxt.clearFocus()
-            mProbTxt.clearFocus()
+        etX.setText("")
+        etLambda.setText("")
+        etProb.setText("")
 
-            mProbSpinner.setSelection(adapter.getPosition(resources.getStringArray(R.array.probs_3)[0]))
-        }
+        etX.clearFocus()
+        etLambda.clearFocus()
+        etE.clearFocus()
+        etProb.clearFocus()
+
+        spnProb.setSelection(adapter.getPosition(resources.getStringArray(R.array.probs_3)[0]))
     }
 }

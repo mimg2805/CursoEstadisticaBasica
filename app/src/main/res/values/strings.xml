@@ -76,11 +76,11 @@
 
     <string name="P_Ac">P(Ac)</string>
 
-    <string name="P_AyB">P(A y B)</string>
-    <string name="P_AoB">P(A ó B)</string>
-    <string name="P_AoverB">P(A / B)</string>
-    <string name="P_BoverA">P(B / A)</string>
-    <string name="P_Xequalsx">P(X = x)</string>
+    <string name="P_A_and_B">P(A y B)</string>
+    <string name="P_A_or_B">P(A ó B)</string>
+    <string name="P_A_over_B">P(A / B)</string>
+    <string name="P_B_over_A">P(B / A)</string>
+    <string name="P_X_equals_x">P(X = x)</string>
 
     <string name="d1_equals">d₁ =</string>
     <string name="d2_equals">d₂ =</string>
@@ -126,15 +126,17 @@
 
     <string name="P_Ac_equals">P(Ac) =</string>
 
-    <string name="P_AyB_equals">P(A y B) =</string>
-    <string name="P_AoB_equals">P(A ó B) =</string>
-    <string name="P_AoverB_equals">P(A / B) =</string>
-    <string name="P_BoverA_equals">P(B / A) =</string>
-    <string name="P_Xequalsx_equals">P(X = x) =</string>
+    <string name="P_A_and_B_equals">P(A y B) =</string>
+    <string name="P_A_or_B_equals">P(A ó B) =</string>
+    <string name="P_A_over_B_equals">P(A / B) =</string>
+    <string name="P_B_over_A_equals">P(B / A) =</string>
+    <string name="P_X_equals_x_equals">P(X = x) =</string>
 
-    <string name="numbers">¿Cuántos números desea generar?</string>
-    <string name="minNum">Número mínimo</string>
-    <string name="maxNum">Número máximo</string>
+    <string name="random_nums">¿Cuántos números desea generar?</string>
+    <string name="random_generated">Números generados</string>
+    <string name="min_num">Número mínimo</string>
+    <string name="max_num">Número máximo</string>
+    <string name="random_max_error">ERROR: El número de elementos generados debe ser menor que el número máximo.</string>
 
     <string-array name="probs_2">
         <item>P(X > x) =</item>

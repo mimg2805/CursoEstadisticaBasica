@@ -8,7 +8,7 @@
     tools:context=".CalcReglaMultiplicacion">
 
     <TextView
-        android:id="@+id/PALbl"
+        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -18,13 +18,13 @@
         android:text="@string/P_A_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/PBLbl"
-        app:layout_constraintEnd_toStartOf="@+id/PATxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_tv_p_b"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_a"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/PBLbl"
+        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -34,46 +34,46 @@
         android:text="@string/P_B_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/PBoverALbl"
-        app:layout_constraintEnd_toStartOf="@+id/PBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_b"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PALbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_a" />
 
     <TextView
-        android:id="@+id/PBoverALbl"
+        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/P_BoverA_equals"
+        android:text="@string/P_B_over_A_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/PAyBLbl"
-        app:layout_constraintEnd_toStartOf="@+id/PBoverATxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_and_a"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PBLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_b" />
 
     <TextView
-        android:id="@+id/PAyBLbl"
+        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b_and_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="240dp"
-        android:text="@string/P_AyB_equals"
+        android:text="@string/P_A_and_B_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PAyBTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PBoverALbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a" />
 
     <EditText
-        android:id="@+id/PATxt"
+        android:id="@+id/activity_calc_regla_multiplicacion_et_p_a"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -87,13 +87,13 @@
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/PBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_et_p_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PALbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_a"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/PBTxt"
+        android:id="@+id/activity_calc_regla_multiplicacion_et_p_b"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -107,13 +107,13 @@
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/PBoverATxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PBLbl"
-        app:layout_constraintTop_toBottomOf="@+id/PATxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_b"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_a" />
 
     <EditText
-        android:id="@+id/PBoverATxt"
+        android:id="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a"
         android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -122,19 +122,19 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/P_BoverA"
+        android:hint="@string/P_B_over_A"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/PAyBTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PBoverALbl"
-        app:layout_constraintTop_toBottomOf="@+id/PBTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_b" />
 
     <EditText
-        android:id="@+id/PAyBTxt"
+        android:id="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
         android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -146,34 +146,34 @@
         android:cursorVisible="false"
         android:ems="10"
         android:focusableInTouchMode="false"
-        android:hint="@string/P_AyB"
+        android:hint="@string/P_A_and_B"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PAyBLbl"
-        app:layout_constraintTop_toBottomOf="@+id/PBoverATxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_and_a"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_regla_multiplicacion_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/limpiar" />
+        tools:text="@string/clear" />
 
     <Spinner
-        android:id="@+id/excSpinner"
+        android:id="@+id/activity_calc_regla_multiplicacion_spn_exc"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/btnLimpiar"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_btn_clear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

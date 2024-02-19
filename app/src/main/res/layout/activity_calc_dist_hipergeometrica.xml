@@ -8,7 +8,7 @@
     tools:context=".CalcDistHipergeometrica">
 
     <TextView
-        android:id="@+id/NLbl"
+        android:id="@+id/activity_calc_dist_hipergeometrica_tv_population_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -18,13 +18,13 @@
         android:text="@string/N_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/MLbl"
-        app:layout_constraintEnd_toStartOf="@+id/NTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_tv_successes"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_hipergeometrica_et_population_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/MLbl"
+        android:id="@+id/activity_calc_dist_hipergeometrica_tv_successes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -34,13 +34,13 @@
         android:text="@string/M_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/nLbl"
-        app:layout_constraintEnd_toStartOf="@+id/MTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_tv_sample_size"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_hipergeometrica_et_successes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_tv_population_size" />
 
     <TextView
-        android:id="@+id/nLbl"
+        android:id="@+id/activity_calc_dist_hipergeometrica_tv_sample_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -50,13 +50,13 @@
         android:text="@string/n_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/xLbl"
-        app:layout_constraintEnd_toStartOf="@+id/nTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_tv_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_hipergeometrica_et_sample_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_tv_successes" />
 
     <TextView
-        android:id="@+id/xLbl"
+        android:id="@+id/activity_calc_dist_hipergeometrica_tv_x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -66,13 +66,13 @@
         android:text="@string/x_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/probSpinner"
-        app:layout_constraintEnd_toStartOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_spn_prob"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_hipergeometrica_et_x"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_tv_sample_size" />
 
     <Spinner
-        android:id="@+id/probSpinner"
+        android:id="@+id/activity_calc_dist_hipergeometrica_spn_prob"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -81,16 +81,16 @@
         android:layout_marginBottom="84dp"
         android:backgroundTint="#000000"
         android:entries="@array/probs_3"
-        android:text="@string/P_Xequalsx"
+        android:text="@string/P_X_equals_x"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/probTxt"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_hipergeometrica_et_prob"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_tv_x" />
 
     <EditText
-        android:id="@+id/NTxt"
+        android:id="@+id/activity_calc_dist_hipergeometrica_et_population_size"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -104,13 +104,13 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/MTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_et_successes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/NLbl"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_hipergeometrica_tv_population_size"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/MTxt"
+        android:id="@+id/activity_calc_dist_hipergeometrica_et_successes"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -124,13 +124,13 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/nTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_et_sample_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/MLbl"
-        app:layout_constraintTop_toBottomOf="@+id/NTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_hipergeometrica_tv_successes"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_et_population_size" />
 
     <EditText
-        android:id="@+id/nTxt"
+        android:id="@+id/activity_calc_dist_hipergeometrica_et_sample_size"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -144,13 +144,13 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/xTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_et_x"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nLbl"
-        app:layout_constraintTop_toBottomOf="@+id/MTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_hipergeometrica_tv_sample_size"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_et_successes" />
 
     <EditText
-        android:id="@+id/xTxt"
+        android:id="@+id/activity_calc_dist_hipergeometrica_et_x"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -164,13 +164,13 @@
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/probTxt"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_dist_hipergeometrica_et_prob"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/xLbl"
-        app:layout_constraintTop_toBottomOf="@+id/nTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_hipergeometrica_tv_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_et_sample_size" />
 
     <EditText
-        android:id="@+id/probTxt"
+        android:id="@+id/activity_calc_dist_hipergeometrica_et_prob"
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -189,15 +189,15 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/probSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/xTxt" />
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_dist_hipergeometrica_spn_prob"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_dist_hipergeometrica_et_x" />
 
     <Button
-        android:id="@+id/btnLimpiar"
+        android:id="@+id/activity_calc_dist_hipergeometrica_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/limpiar"
+        android:text="@string/clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
