@@ -3,7 +3,6 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -20,116 +19,119 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInt
 
 class CalcIntervaloConfianzaProporcionPoblacionDesconocida : AppCompatActivity() {
 
-    private var n: BigInteger = BigInteger.ZERO
-    private var p: BigDecimal = BigDecimal.ZERO
-    private var pComp: BigDecimal = BigDecimal.ZERO
-    private val z: BigDecimal = BigDecimal("1.96")
-    private var limInf: BigDecimal = BigDecimal.ZERO
-    private var limSup: BigDecimal = BigDecimal.ZERO
-    private var str: String = "[$limInf - $limSup]"
+    private var n = BigInteger.ZERO
+    private var p = BigDecimal.ZERO
+    private var pComp = BigDecimal.ZERO
+    private val z = BigDecimal("1.96")
+    private var limInf = BigDecimal.ZERO
+    private var limSup = BigDecimal.ZERO
+    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
 
-    private lateinit var mpTxt: EditText
-    private lateinit var mnTxt: EditText
-    private lateinit var mZTxt: EditText
-    private lateinit var mICTxt: EditText
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
+    private lateinit var etP: EditText
+    private lateinit var etN: EditText
+    private lateinit var etZ: EditText
+    private lateinit var etIC: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_intervalo_confianza_proporcion_poblacion_desconocida)
 
-        mpTxt = findViewById(R.id.pTxt)
-        mnTxt = findViewById(R.id.nTxt)
-        mZTxt = findViewById(R.id.ZTxt)
-        mICTxt = findViewById(R.id.ICTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etP = findViewById(R.id.activity_calc_intervalo_confianza_proporcion_poblacion_desconocida_et_p)
+        etN = findViewById(R.id.activity_calc_intervalo_confianza_proporcion_poblacion_desconocida_et_n)
+        etZ = findViewById(R.id.activity_calc_intervalo_confianza_proporcion_poblacion_desconocida_et_z)
+        etIC = findViewById(R.id.activity_calc_intervalo_confianza_proporcion_poblacion_desconocida_et_ic)
+        btnClear = findViewById(R.id.activity_calc_intervalo_confianza_proporcion_poblacion_desconocida_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mZTxt.setText(String.format(z.toString()))
+        etZ.setText(z.toPlainString())
 
-        mpTxt.addTextChangedListener(object : TextWatcher {
+        etP.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) {
-                    p = strToBigDecimal(text.toString())
-                    pComp = BigDecimal.ONE.subtract(p)
-                }
+                if (text.isNullOrBlank()) return
+                p = strToBigDecimal(text.toString())
+                pComp = BigDecimal.ONE - p
             }
         })
 
-        mnTxt.addTextChangedListener(object : TextWatcher {
+        etN.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
-            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-            }
+            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                n = strToBigInteger(text.toString())
             }
         })
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
+    }
+
+    private fun checkReqN(): Boolean {
+        return if (n <= BigInteger.valueOf(30)) {
+            etN.error = getText(R.string.req_n_30)
+            etIC.setText("")
+            false
+        } else {
+            etN.error = null
+            true
+        }
+    }
+
+    private fun checkReqNP(): Boolean {
+        if (!checkReqN()) return false
+        return if ((n.toBigDecimal() * p) <= BigDecimal.valueOf(5) || (n.toBigDecimal() * pComp) <= BigDecimal.valueOf(5)) {
+            etP.error = getText(R.string.req_n_p_5)
+            etIC.setText("")
+            false
+        } else {
+            etP.error = null
+            true
+        }
     }
 
     fun calc() {
-        val decimals = 10
-        val mc = MathContext(decimals, RoundingMode.HALF_UP)
-
-        if (n.toBigDecimal().times(p) <= BigDecimal.valueOf(5) && n.toBigDecimal().times(pComp) <= BigDecimal.valueOf(5)) {
-            toast?.cancel()
-            toast = Toast.makeText(this, "(n * p) y (n * (1 - p)) deben ser mayores que 5", Toast.LENGTH_SHORT)
-            toast?.show()
-            return
-        } else {
-            toast?.cancel()
-        }
-
-        if (n <= BigInteger.valueOf(30)) {
-            toast?.cancel()
-            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
-            toast?.show()
-            return
-        } else {
-            toast?.cancel()
-        }
+        if (!checkReqN() || !checkReqNP()) return
 
         try {
-            if (n == BigInteger.ZERO && p == BigDecimal.ZERO) return
+            val error = z * sqrt((p * pComp).divide(n.toBigDecimal(), mc), mc)
+            limInf = p - error
+            limSup = p + error
 
-            val error = z.multiply(sqrt(p.multiply(pComp).divide(n.toBigDecimal(), mc), mc))
-            limInf = p.subtract(error)
-            limSup = p.add(error)
+            if (limInf == BigDecimal.ZERO || limSup == BigDecimal.ZERO) return
 
-            if (limInf == BigDecimal.ZERO && limSup == BigDecimal.ZERO) return
-
-            val limInfStr = "%.4f".format(limInf)
-            val limSupStr = "%.4f".format(limSup)
-            str = "[$limInfStr - $limSupStr]"
-            mICTxt.setText(str)
+            val limInfStr = limInf.toPlainString()
+            val limSupStr = limSup.toPlainString()
+            val limStr = "[$limInfStr - $limSupStr]"
+            etIC.setText(limStr)
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (!view.isClickable) return
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-        mpTxt.setText("")
-        mnTxt.setText("")
-        mICTxt.setText("")
+        etP.setText("")
+        etN.setText("")
+        etIC.setText("")
 
-        mpTxt.clearFocus()
-        mnTxt.clearFocus()
+        etP.clearFocus()
+        etN.clearFocus()
 
         n = BigInteger.ZERO
         p = BigDecimal.ZERO

@@ -19,123 +19,129 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInt
 
 class CalcIntervaloConfianzaMediaPoblacionDesconocida : AppCompatActivity() {
 
-    private var x: BigDecimal = BigDecimal.ZERO
-    private var s: BigDecimal = BigDecimal.ZERO
-    private var n: BigInteger = BigInteger.ZERO
-    private val z: BigDecimal = BigDecimal("1.96")
-    private var limInf: BigDecimal = BigDecimal.ZERO
-    private var limSup: BigDecimal = BigDecimal.ZERO
-    private var str: String = "[$limInf - $limSup]"
+    private var n = BigInteger.ZERO
+    private var x = BigDecimal.ZERO
+    private var s = BigDecimal.ZERO
+    private val z = BigDecimal("1.96")
+    private var limInf = BigDecimal.ZERO
+    private var limSup = BigDecimal.ZERO
+    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
 
-    private lateinit var mxTxt: EditText
-    private lateinit var mSTxt: EditText
-    private lateinit var mnTxt: EditText
-    private lateinit var mZTxt: EditText
-    private lateinit var mICTxt: EditText
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
+    private lateinit var etN: EditText
+    private lateinit var etX: EditText
+    private lateinit var etS: EditText
+    private lateinit var etZ: EditText
+    private lateinit var etIC: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_intervalo_confianza_media_poblacion_desconocida)
 
-        mxTxt = findViewById(R.id.xTxt)
-        mSTxt = findViewById(R.id.STxt)
-        mnTxt = findViewById(R.id.nTxt)
-        mZTxt = findViewById(R.id.ZTxt)
-        mICTxt = findViewById(R.id.ICTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etN = findViewById(R.id.activity_calc_intervalo_confianza_media_poblacion_desconocida_et_n)
+        etX = findViewById(R.id.activity_calc_intervalo_confianza_media_poblacion_desconocida_et_x)
+        etS = findViewById(R.id.activity_calc_intervalo_confianza_media_poblacion_desconocida_et_s)
+        etZ = findViewById(R.id.activity_calc_intervalo_confianza_media_poblacion_desconocida_et_z)
+        etIC = findViewById(R.id.activity_calc_intervalo_confianza_media_poblacion_desconocida_et_ic)
+        btnClear = findViewById(R.id.activity_calc_intervalo_confianza_media_poblacion_desconocida_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mZTxt.setText(String.format(z.toString()))
+        etZ.setText(z.toPlainString())
 
-        mxTxt.addTextChangedListener(object : TextWatcher {
+        etN.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) x = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                n = strToBigInteger(text.toString())
             }
         })
 
-        mSTxt.addTextChangedListener(object : TextWatcher {
+        etX.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) s = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                x = strToBigDecimal(text.toString())
             }
         })
 
-        mnTxt.addTextChangedListener(object : TextWatcher {
+        etS.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                s = strToBigDecimal(text.toString())
             }
         })
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
+    }
+
+    private fun checkReqN(): Boolean {
+        return if (n <= BigInteger.valueOf(30)) {
+            etN.error = getText(R.string.req_n_30)
+            etIC.setText("")
+            false
+        } else {
+            etN.error = null
+            true
+        }
     }
 
     fun calc() {
-        val decimals = 10
-        val mc = MathContext(decimals, RoundingMode.HALF_UP)
-
-        if (n <= BigInteger.valueOf(30)) {
-            toast?.cancel()
-            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
-            toast?.show()
-            return
-        } else {
-            toast?.cancel()
-        }
+        if (!checkReqN()) return
+        if (x == BigDecimal.ZERO || s == BigDecimal.ZERO) return
 
         try {
-            if (n == BigDecimal.ZERO && x == BigDecimal.ZERO && s == BigDecimal.ZERO) return
+            val error = z * s.divide(sqrt(n.toBigDecimal(), mc), mc)
+            limInf = x - error
+            limSup = x + error
 
-            val error = z.multiply((s.divide(sqrt(n.toBigDecimal(), mc), mc)))
-            limInf = x.subtract(error)
-            limSup = x.add(error)
+            if (limInf == BigDecimal.ZERO || limSup == BigDecimal.ZERO) return
 
-            if (limInf == BigDecimal.ZERO && limSup == BigDecimal.ZERO) return
-
-            val limInfStr = "%.4f".format(limInf)
-            val limSupStr = "%.4f".format(limSup)
-            str = "[$limInfStr - $limSupStr]"
-            mICTxt.setText(str)
+            val limInfStr = limInf.round(mc).toPlainString()
+            val limSupStr = limSup.round(mc).toPlainString()
+            val limStr = "[$limInfStr - $limSupStr]"
+            etIC.setText(limStr)
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (!view.isClickable) return
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
-        mxTxt.setText("")
-        mSTxt.setText("")
-        mnTxt.setText("")
-        mICTxt.setText("")
+        etN.setText("")
+        etX.setText("")
+        etS.setText("")
+        etIC.setText("")
 
-        mxTxt.clearFocus()
-        mSTxt.clearFocus()
-        mnTxt.clearFocus()
+        etN.clearFocus()
+        etX.clearFocus()
+        etS.clearFocus()
 
+        n = BigInteger.ZERO
         x = BigDecimal.ZERO
         s = BigDecimal.ZERO
-        n = BigInteger.ZERO
         limInf = BigDecimal.ZERO
         limSup = BigDecimal.ZERO
     }

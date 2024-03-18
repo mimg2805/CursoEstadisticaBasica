@@ -4,10 +4,18 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ch.obermuhlner.math.big.BigDecimalMath.sqrt
-import java.math.*
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+import java.math.RoundingMode
 import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
@@ -15,96 +23,105 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInt
 
 class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
 
-    private var n: BigInteger = BigInteger.ZERO
-    private var x: BigDecimal = BigDecimal.ZERO
-    private var u: BigDecimal = BigDecimal.ZERO
-    private var s: BigDecimal = BigDecimal.ZERO
-    private var Z: BigDecimal = BigDecimal.ZERO
-    private var prob: BigDecimal = BigDecimal.ZERO
-    private var calc: String = ""
+    private var n = BigInteger.ZERO
+    private var x = BigDecimal.ZERO
+    private var u = BigDecimal.ZERO
+    private var s = BigDecimal.ZERO
+    private var z = BigDecimal.ZERO
+    private var prob = BigDecimal.ZERO
+    private var calc = ""
+    private val mc = MathContext(5, RoundingMode.HALF_UP)
 
-    private lateinit var mnTxt: EditText
-    private lateinit var mxTxt: EditText
-    private lateinit var muTxt: EditText
-    private lateinit var msTxt: EditText
-    private lateinit var mZTxt: EditText
-    private lateinit var mprobTxt: EditText
+    private lateinit var etN: EditText
+    private lateinit var etX: EditText
+    private lateinit var etU: EditText
+    private lateinit var etS: EditText
+    private lateinit var etZ: EditText
+    private lateinit var etProb: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
-
-    private lateinit var mprobSpinner: Spinner
+    private lateinit var spnProb: Spinner
     private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_prueba_hipotesis_media_poblacional)
 
-        mnTxt = findViewById(R.id.nTxt)
-        mxTxt = findViewById(R.id.xTxt)
-        muTxt = findViewById(R.id.uTxt)
-        msTxt = findViewById(R.id.sTxt)
-        mZTxt = findViewById(R.id.ZTxt)
-        mprobTxt = findViewById(R.id.probTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etN = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_et_n)
+        etX = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_et_x)
+        etS = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_et_s)
+        etU = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_et_u)
+        etZ = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_et_z)
+        etProb = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_et_prob)
+        btnClear = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mprobSpinner = findViewById(R.id.probSpinner)
+        spnProb = findViewById(R.id.activity_calc_prueba_hipotesis_media_poblacional_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
             R.array.probs_2, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mprobSpinner.adapter = adapter
+        spnProb.adapter = adapter
 
-        mnTxt.addTextChangedListener(object : TextWatcher {
+        etN.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                n = strToBigInteger(text.toString())
             }
         })
 
-        mxTxt.addTextChangedListener(object : TextWatcher {
+        etX.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) x = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                x = strToBigDecimal(text.toString())
             }
         })
 
-        muTxt.addTextChangedListener(object : TextWatcher {
+        etU.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) u = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                u = strToBigDecimal(text.toString())
             }
         })
 
-        msTxt.addTextChangedListener(object : TextWatcher {
+        etS.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) s = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                s = strToBigDecimal(text.toString())
             }
         })
 
-        mprobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spnProb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 calc = parent?.getItemAtPosition(pos).toString()
                 calc()
@@ -115,34 +132,33 @@ class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
             }
         }
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
+    }
+
+    private fun checkReqN(): Boolean {
+        return if (n <= BigInteger.valueOf(30)) {
+            etN.error = getText(R.string.req_n_30)
+            etProb.setText("")
+            false
+        } else {
+            etN.error = null
+            true
+        }
     }
 
     fun calc() {
-        Z = BigDecimal.ZERO
-        val mc5 = MathContext(5, RoundingMode.HALF_UP)
-        val mc6 = MathContext(6, RoundingMode.HALF_UP)
-
-        if (n <= BigInteger.valueOf(30)) {
-            toast?.cancel()
-            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
-            toast?.show()
-            return
-        } else {
-            toast?.cancel()
-        }
+        if (!checkReqN()) return
+        if (s == BigDecimal.ZERO) return
 
         try {
-            if (n == BigInteger.ZERO && s == BigDecimal.ZERO) return
-
-            Z = x.subtract(u).divide(s.divide(sqrt(n.toBigDecimal(), mc6), mc6), mc5)
-            mZTxt.setText(Z.toPlainString())
+            z = (x - u).divide(s.divide(sqrt(n.toBigDecimal(), mc), mc), mc)
+            etZ.setText(z.toPlainString())
 
             val mi = 0.0
             val sigma = 1.0
-            val zd = Z.toDouble()
-            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
-            val greater = BigDecimal.ONE.subtract(lesser, mc5)
+            val zd = z.toDouble()
+            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc)
+            val greater = BigDecimal.ONE - lesser
 
             prob = if (calc.contains('>')) {
                 greater
@@ -150,33 +166,32 @@ class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
                 lesser
             }
 
-            mprobTxt.setText(prob.toPlainString())
+            etProb.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (!view.isClickable) return
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
         n = BigInteger.ZERO
         x = BigDecimal.ZERO
         u = BigDecimal.ZERO
         s = BigDecimal.ZERO
-        Z = BigDecimal.ZERO
+        z = BigDecimal.ZERO
 
-        mnTxt.setText("")
-        mxTxt.setText("")
-        muTxt.setText("")
-        msTxt.setText("")
-        mZTxt.setText("")
+        etN.setText("")
+        etX.setText("")
+        etU.setText("")
+        etS.setText("")
+        etZ.setText("")
 
-        mnTxt.clearFocus()
-        mxTxt.clearFocus()
-        muTxt.clearFocus()
-        msTxt.clearFocus()
+        etN.clearFocus()
+        etX.clearFocus()
+        etU.clearFocus()
+        etS.clearFocus()
     }
 }

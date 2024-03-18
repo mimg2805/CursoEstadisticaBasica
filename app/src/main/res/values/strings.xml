@@ -13,16 +13,32 @@
     <string name="list">Lista</string>
     <string name="add_to_list">Introduce datos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
 
-    <string name="calcular">Calcular</string>
-    <string name="generar">Generar</string>
-    <string name="repetir">Repetir</string>
-    <string name="limpiar">Limpiar</string>
-    <string name="borrar_ultimo">Borrar último</string>
-    <string name="borrar_todo">Borrar todo</string>
-    <string name="aniadir">Añadir</string>
+    <string name="add">Añadir</string>
+    <string name="calc">Calcular</string>
+    <string name="clear">Limpiar</string>
+    <string name="generate">Generar</string>
+    <string name="repeat">Repetir</string>
+    <string name="variable_x">Variable X</string>
+    <string name="variable_y">Variable Y</string>
+    <string name="delete_all">Borrar todo</string>
+    <string name="delete_last">Borrar último</string>
+
+    <string name="invalid_values">Valores inválidos</string>
+    <string name="req_n_30">n debe ser mayor que 30</string>
+    <string name="req_n1_n2_30">n1 y n2 deben ser mayores que 30</string>
+    <string name="req_n_p_5">(n * p) y (n * (1 - p)) deben ser mayores que 5</string>
+    <string name="req_n1_p1_5">(n1 * p1) y (n1 * (1 - p1)) deben ser mayores que 5</string>
+    <string name="req_n2_p2_5">(n2 * p2) y (n2 * (1 - p2)) deben ser mayores que 5</string>
+    <string name="req_n_pi_5">(n * π) y (n * (1 - π)) deben ser mayores que 5</string>
+
+    <string name="copy">Copiar</string>
+    <string name="copied">¡Copiado!</string>
+
     <string name="e_val">2.71828</string>
     <string name="Z_val">1.96</string>
 
+    <string name="a">a</string>
+    <string name="b">b</string>
     <string name="d1">d₁</string>
     <string name="d2">d₂</string>
     <string name="E">E</string>
@@ -39,6 +55,7 @@
     <string name="pc">pc</string>
     <string name="p1">p₁</string>
     <string name="p2">p₂</string>
+    <string name="r">r</string>
     <string name="S">S</string>
     <string name="s">s</string>
     <string name="s1">s₁</string>
@@ -49,6 +66,7 @@
     <string name="xbar">x̄</string>
     <string name="xbar1">x̄₁</string>
     <string name="xbar2">x̄₂</string>
+    <string name="y_aps">y\'</string>
     <string name="Z">Z</string>
     <string name="IC">IC</string>
 
@@ -82,6 +100,8 @@
     <string name="P_B_over_A">P(B / A)</string>
     <string name="P_X_equals_x">P(X = x)</string>
 
+    <string name="a_equals">a =</string>
+    <string name="b_equals">b =</string>
     <string name="d1_equals">d₁ =</string>
     <string name="d2_equals">d₂ =</string>
     <string name="E_equals">E =</string>
@@ -98,6 +118,7 @@
     <string name="pc_equals">pc =</string>
     <string name="p1_equals">p₁ =</string>
     <string name="p2_equals">p₂ =</string>
+    <string name="r_equals">r =</string>
     <string name="S_equals">S =</string>
     <string name="s_equals">s =</string>
     <string name="s1_equals">s₁ =</string>
@@ -108,6 +129,7 @@
     <string name="xbar_equals">x̄ =</string>
     <string name="xbar1_equals">x̄₁ =</string>
     <string name="xbar2_equals">x̄₂ =</string>
+    <string name="y_aps_equals">y\' =</string>
     <string name="Z_equals">Z =</string>
     <string name="IC_equals">IC =</string>
     <string name="media_equals">Media =</string>

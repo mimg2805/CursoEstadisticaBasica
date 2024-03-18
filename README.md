@@ -21,6 +21,7 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
     - Cuartil 1, 2, 3
     - Amplitud, Desviación Media, Desviación Estándar
   - Tema 2: Análisis Estadístico Descriptivo de una Variable Cualitativa
+  - Tema 3: Análisis Estadístico Descriptivo de 2 Variables Cuantitativas
 - Probabilidades
     - Tema 1: Cálculo, Reglas y Teorema de Bayes
          - Probabilidad Teórica

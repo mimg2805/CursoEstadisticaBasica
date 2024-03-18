@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".MatrizDatos">
+
+    <TextView
+        android:id="@+id/activity_matriz_datos_2_variables_tv_add_to_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/add_to_list"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_matriz_datos_2_variables_tv_variable_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/variable_x"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_et_add_to_list_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_matriz_datos_2_variables_tv_variable_y"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/activity_matriz_datos_2_variables_et_add_to_list_x"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNone"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_tv_number_list_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_matriz_datos_2_variables_et_add_to_list_y"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_tv_variable_x" />
+
+    <TextView
+        android:id="@+id/activity_matriz_datos_2_variables_tv_number_list_x"
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/black_border"
+        android:hint="@string/list"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_btn_delete_last_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_matriz_datos_2_variables_tv_number_list_y"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_et_add_to_list_x" />
+
+    <Button
+        android:id="@+id/activity_matriz_datos_2_variables_btn_delete_last_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/delete_last"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_btn_clear_x"
+        app:layout_constraintEnd_toStartOf="@+id/activity_matriz_datos_2_variables_btn_delete_last_y"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_tv_number_list_x" />
+
+    <Button
+        android:id="@+id/activity_matriz_datos_2_variables_btn_clear_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="84dp"
+        android:text="@string/clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/activity_matriz_datos_2_variables_btn_clear_y"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_btn_delete_last_x" />
+
+    <TextView
+        android:id="@+id/activity_matriz_datos_2_variables_tv_variable_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/variable_y"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_et_add_to_list_y"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activity_matriz_datos_2_variables_tv_variable_x"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/activity_matriz_datos_2_variables_et_add_to_list_y"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_edit_text"
+        android:ems="10"
+        android:imeOptions="actionNone"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_tv_number_list_y"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activity_matriz_datos_2_variables_et_add_to_list_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_tv_variable_y" />
+
+    <TextView
+        android:id="@+id/activity_matriz_datos_2_variables_tv_number_list_y"
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/black_border"
+        android:hint="@string/list"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_btn_delete_last_y"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activity_matriz_datos_2_variables_tv_number_list_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_et_add_to_list_y" />
+
+    <Button
+        android:id="@+id/activity_matriz_datos_2_variables_btn_delete_last_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/delete_last"
+        app:layout_constraintBottom_toTopOf="@+id/activity_matriz_datos_2_variables_btn_clear_y"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activity_matriz_datos_2_variables_btn_delete_last_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_tv_number_list_y" />
+
+    <Button
+        android:id="@+id/activity_matriz_datos_2_variables_btn_clear_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="84dp"
+        android:text="@string/clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activity_matriz_datos_2_variables_btn_clear_x"
+        app:layout_constraintTop_toBottomOf="@+id/activity_matriz_datos_2_variables_btn_delete_last_y" />
+
+    <Button
+        android:id="@+id/activity_matriz_datos_2_variables_btn_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/calc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

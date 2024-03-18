@@ -3,6 +3,7 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -23,85 +24,92 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInt
 
 class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
 
-    private var n: BigInteger = BigInteger.ZERO
-    private var p: BigDecimal = BigDecimal.ZERO
-    private var pi: BigDecimal = BigDecimal.ZERO
-    private var piComp: BigDecimal = BigDecimal.ZERO
-    private var Z: BigDecimal = BigDecimal.ZERO
-    private var prob: BigDecimal = BigDecimal.ZERO
-    private var calc: String = ""
+    private var n = BigInteger.ZERO
+    private var p = BigDecimal.ZERO
+    private var pComp = BigDecimal.ZERO
+    private var pi = BigDecimal.ZERO
+    private var piComp = BigDecimal.ZERO
+    private var z = BigDecimal.ZERO
+    private var prob = BigDecimal.ZERO
+    private var calc = ""
+    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
 
-    private lateinit var mnTxt: EditText
-    private lateinit var mpTxt: EditText
-    private lateinit var mpiTxt: EditText
-    private lateinit var mZTxt: EditText
-    private lateinit var mprobTxt: EditText
+    private lateinit var etN: EditText
+    private lateinit var etP: EditText
+    private lateinit var etPi: EditText
+    private lateinit var etZ: EditText
+    private lateinit var etProb: EditText
+    private lateinit var btnClear: Button
+    private lateinit var tstInvalid: Toast
 
-    private lateinit var btnLimpiar: Button
-    private var toast: Toast? = null
-
-    private lateinit var mprobSpinner: Spinner
+    private lateinit var spnProb: Spinner
     private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calc_prueba_hipotesis_proporcion_poblacional)
 
-        mnTxt = findViewById(R.id.nTxt)
-        mpTxt = findViewById(R.id.pTxt)
-        mpiTxt = findViewById(R.id.piTxt)
-        mZTxt = findViewById(R.id.ZTxt)
-        mprobTxt = findViewById(R.id.probTxt)
-        btnLimpiar = findViewById(R.id.btnLimpiar)
+        etN = findViewById(R.id.activity_calc_prueba_hipotesis_proporcion_poblacional_et_n)
+        etP = findViewById(R.id.activity_calc_prueba_hipotesis_proporcion_poblacional_et_p)
+        etPi = findViewById(R.id.activity_calc_prueba_hipotesis_proporcion_poblacional_et_pi)
+        etZ = findViewById(R.id.activity_calc_prueba_hipotesis_proporcion_poblacional_et_z)
+        etProb = findViewById(R.id.activity_calc_prueba_hipotesis_proporcion_poblacional_et_prob)
+        btnClear = findViewById(R.id.activity_calc_prueba_hipotesis_proporcion_poblacional_btn_clear)
+        tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
-        mprobSpinner = findViewById(R.id.probSpinner)
+        spnProb = findViewById(R.id.activity_calc_prueba_hipotesis_proporcion_poblacional_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
             R.array.probs_2, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mprobSpinner.adapter = adapter
+        spnProb.adapter = adapter
 
-        mnTxt.addTextChangedListener(object : TextWatcher {
+        etN.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) n = strToBigInteger(text.toString())
+                if (text.isNullOrBlank()) return
+                n = strToBigInteger(text.toString())
             }
         })
 
-        mpTxt.addTextChangedListener(object : TextWatcher {
+        etP.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) p = strToBigDecimal(text.toString())
+                if (text.isNullOrBlank()) return
+                p = strToBigDecimal(text.toString())
+                pComp = BigDecimal.ONE - p
             }
         })
 
-        mpiTxt.addTextChangedListener(object : TextWatcher {
+        etPi.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
-                if (!text.isNullOrBlank()) calc()
+                if (text.isNullOrBlank()) return
+                calc()
             }
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) {
-                    pi = strToBigDecimal(text.toString())
-                    piComp = BigDecimal.ONE.subtract(pi)
-                }
+                if (text.isNullOrBlank()) return
+                pi = strToBigDecimal(text.toString())
+                piComp = BigDecimal.ONE - pi
             }
         })
 
-        mprobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spnProb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 calc = parent?.getItemAtPosition(pos).toString()
                 calc()
@@ -112,43 +120,45 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
             }
         }
 
-        btnLimpiar.setOnClickListener { view -> clear(view) }
+        btnClear.setOnClickListener { v -> clear(v) }
+    }
+
+    private fun checkReqN(): Boolean {
+        return if (n <= BigInteger.valueOf(30)) {
+            etN.error = getText(R.string.req_n_30)
+            etProb.setText("")
+            false
+        } else {
+            etN.error = null
+            true
+        }
+    }
+
+    private fun checkReqNP(): Boolean {
+        if (!checkReqN()) return false
+        return if ((n.toBigDecimal() * p) <= BigDecimal.valueOf(5) || (n.toBigDecimal() * pComp) <= BigDecimal.valueOf(5)) {
+            etP.error = getText(R.string.req_n_p_5)
+            etProb.setText("")
+            false
+        } else {
+            etP.error = null
+            true
+        }
     }
 
     fun calc() {
-        Z = BigDecimal.ZERO
-        val mc5 = MathContext(5, RoundingMode.HALF_UP)
-        val mc6 = MathContext(6, RoundingMode.HALF_UP)
-
-        if (pi.times(piComp) <= BigDecimal.valueOf(5)) {
-            toast?.cancel()
-            toast = Toast.makeText(this, "(π * (1 - π)) debe ser mayor que 5", Toast.LENGTH_SHORT)
-            toast?.show()
-            return
-        } else {
-            toast?.cancel()
-        }
-
-        if (n <= BigInteger.valueOf(30)) {
-            toast?.cancel()
-            toast = Toast.makeText(this, "n debe ser mayor que 30", Toast.LENGTH_SHORT)
-            toast?.show()
-            return
-        } else {
-            toast?.cancel()
-        }
+        if (!checkReqN() || !checkReqNP()) return
+        if (pi == BigDecimal.ZERO) return
 
         try {
-            if (n == BigInteger.ZERO && pi == BigDecimal.ZERO) return
-
-            Z = p.subtract(pi).divide(sqrt(pi.multiply(piComp).divide(n.toBigDecimal()), mc5), mc5)
-            mZTxt.setText(Z.toPlainString())
+            z = ((p - pi) / (sqrt((pi * piComp).divide(n.toBigDecimal(), mc), mc)))
+            etZ.setText(z.toPlainString())
 
             val mi = 0.0
             val sigma = 1.0
-            val zd = Z.toDouble()
-            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc6)
-            val greater = BigDecimal.ONE.subtract(lesser, mc5)
+            val zd = z.toDouble()
+            val lesser = NormalDistribution(null, mi, sigma).cumulativeProbability(zd).toBigDecimal(mc)
+            val greater = BigDecimal.ONE - lesser
 
             prob = if (calc.contains('>')) {
                 greater
@@ -156,30 +166,32 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
                 lesser
             }
 
-            mprobTxt.setText(prob.toPlainString())
+            etProb.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
-            toast?.cancel()
-            toast = Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT)
-            toast?.show()
+            tstInvalid.cancel()
+            tstInvalid.show()
         }
     }
 
-    fun clear(view: View) {
-        if (!view.isClickable) return
+    fun clear(v: View) {
+        if (!v.isClickable) return
 
         n = BigInteger.ZERO
         p = BigDecimal.ZERO
         pi = BigDecimal.ZERO
-        Z = BigDecimal.ZERO
+        z = BigDecimal.ZERO
+        prob = BigDecimal.ZERO
 
-        mnTxt.setText("")
-        mpTxt.setText("")
-        mpiTxt.setText("")
-        mZTxt.setText("")
+        etN.setText("")
+        etP.setText("")
+        etPi.setText("")
+        etZ.setText("")
+        etProb.setText("")
 
-        mnTxt.clearFocus()
-        mpTxt.clearFocus()
-        mpiTxt.clearFocus()
+        etN.clearFocus()
+        etP.clearFocus()
+        etPi.clearFocus()
+        etZ.clearFocus()
     }
 }

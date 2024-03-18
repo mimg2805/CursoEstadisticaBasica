@@ -10,15 +10,6 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:replace="android:icon">
         <activity
-            android:name=".Desviaciones"
-            android:exported="false" />
-        <activity
-            android:name=".Cuartiles"
-            android:exported="false" />
-        <activity
-            android:name=".MedidasTendenciaCentral"
-            android:exported="false" />
-        <activity
             android:name=".MainMenu"
             android:exported="true">
             <intent-filter>
@@ -71,6 +62,11 @@
         <activity android:name=".CalcTStudent" />
         <activity android:name=".RNG" />
         <activity android:name=".MatrizDatos" />
+        <activity android:name=".Desviaciones" />
+        <activity android:name=".Cuartiles" />
+        <activity android:name=".MedidasTendenciaCentral" />
+        <activity android:name=".MatrizDatos2Variables" />
+        <activity android:name=".CalcDescriptiva2VariablesCuantitativas" />
         <activity
             android:name=".MasApps"
             android:parentActivityName=".MainMenu">

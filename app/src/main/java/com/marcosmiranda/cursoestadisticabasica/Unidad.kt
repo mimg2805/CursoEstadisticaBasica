@@ -4,7 +4,6 @@ import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -42,7 +41,7 @@ class Unidad : AppCompatActivity() {
                 index = temas.getColumnIndexOrThrow("show")
                 val show = temas.getInt(index) == 1
                 button.text = tema//.toUpperCase()
-                Log.e("idTema", idTema.toString())
+                // Log.e("idTema", idTema.toString())
 
                 if (!show) continue
 
@@ -58,17 +57,17 @@ class Unidad : AppCompatActivity() {
                 button.textSize = 14f
 
                 button.setOnClickListener {
-                    val subtemas: Cursor = db.getSubTemasByTema(idTema)
-                    var intent = Intent() //= Intent(this, Formula::class.java)
+                    val subtemas = db.getSubTemasByTema(idTema)
+                    var intent = Intent()
 
                     if (subtemas.count == 0) {
                         if (html.isEmpty()) {
                             when (idTema) {
                                 // 9 -> intent = Intent(this, MatrizDatos::class.java)
                                 10 -> intent = Intent(this, MatrizDatos::class.java)
-                                // 11 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
-                                // 12 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
-                                // 13 -> button.isEnabled = false // intent = Intent(this, Tema::class.java)
+                                11 -> intent = Intent(this, MatrizDatos2Variables::class.java)
+                                12 -> intent = Intent(this, MatrizDatos2Variables::class.java)
+                                // 13 -> intent = Intent(this, MatrizDatos2Variables::class.java)
                                 19 -> intent = Intent(this, CalcTStudent::class.java)
                                 20 -> intent = Intent(this, CalcFFisher::class.java)
                                 21 -> intent = Intent(this, CalcChiCuadrado::class.java)
@@ -77,10 +76,16 @@ class Unidad : AppCompatActivity() {
                             intent = Intent(this, Formula::class.java)
                         }
                     } else {
-                        intent = if (idTema == 9 || idTema == 10) {
-                            Intent(this, MatrizDatos::class.java)
-                        } else {
-                            Intent(this, Tema::class.java)
+                        intent = when (idTema) {
+                            9, 10 -> {
+                                Intent(this, MatrizDatos::class.java)
+                            }
+                            11, 12 -> {
+                                Intent(this, MatrizDatos2Variables::class.java)
+                            }
+                            else -> {
+                                Intent(this, Tema::class.java)
+                            }
                         }
                     }
 

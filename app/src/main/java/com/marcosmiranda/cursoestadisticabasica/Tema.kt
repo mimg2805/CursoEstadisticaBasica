@@ -23,9 +23,6 @@ class Tema : AppCompatActivity() {
         val idTema = intent.getIntExtra("idTema", 0)
         val title = intent.getStringExtra("title")
         val values = intent.getStringExtra("values")
-        if (title != null) {
-            Log.e("title", title)
-        }
         subtemas = db.getSubTemasByTema(idTema)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
