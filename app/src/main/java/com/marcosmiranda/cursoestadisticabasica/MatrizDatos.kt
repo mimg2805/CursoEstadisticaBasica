@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import java.math.BigDecimal
@@ -26,6 +27,7 @@ class MatrizDatos : AppCompatActivity() {
     private lateinit var btnDeleteLast: Button
     private lateinit var btnClear: Button
     private lateinit var btnCalc: Button
+    private lateinit var tstEmpty: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,8 @@ class MatrizDatos : AppCompatActivity() {
         btnClear = findViewById(R.id.activity_matriz_datos_btn_clear)
         btnCalc = findViewById(R.id.activity_matriz_datos_btn_calc)
 
+        tstEmpty = Toast.makeText(this, "La lista no puede estar vacía", Toast.LENGTH_LONG)
+
         etAddToList.setOnEditorActionListener { v, _, _ ->
             addToList(v)
             false
@@ -61,12 +65,16 @@ class MatrizDatos : AppCompatActivity() {
 
             if (idTema == 9) {
                 if (numValuesList.isEmpty()) {
+                    tstEmpty.cancel()
+                    tstEmpty.show()
                     return@setOnClickListener
                 }
 
                 intent = Intent(this, Tema::class.java)
             } else if (idTema == 10) {
                 if (strValuesList.isEmpty()) {
+                    tstEmpty.cancel()
+                    tstEmpty.show()
                     return@setOnClickListener
                 }
 

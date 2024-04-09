@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.text.method.DigitsKeyListener
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -36,7 +37,9 @@ class MatrizDatos2Variables : AppCompatActivity() {
     private lateinit var btnClearY: Button
     private lateinit var btnCalc: Button
     private lateinit var tstEmpty: Toast
-    private lateinit var tstNotMatch: Toast
+    private lateinit var tstListEmpty: Toast
+    private lateinit var tstListNotMatch: Toast
+    private lateinit var tstListNotMatchUnique: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +68,10 @@ class MatrizDatos2Variables : AppCompatActivity() {
         btnClearY = findViewById(R.id.activity_matriz_datos_2_variables_btn_clear_y)
         btnCalc = findViewById(R.id.activity_matriz_datos_2_variables_btn_calc)
 
-        tstEmpty = Toast.makeText(this, "Las listas no pueden estar vacías", Toast.LENGTH_LONG)
-        tstNotMatch = Toast.makeText(this, "Las listas deben tener el mismo número de elementos", Toast.LENGTH_LONG)
+        tstEmpty = Toast.makeText(this, R.string.list_error_empty_input, Toast.LENGTH_LONG)
+        tstListEmpty = Toast.makeText(this, R.string.list_error_empty_list, Toast.LENGTH_LONG)
+        tstListNotMatch = Toast.makeText(this, R.string.list_error_not_match, Toast.LENGTH_LONG)
+        tstListNotMatchUnique = Toast.makeText(this, R.string.list_error_not_match_unique, Toast.LENGTH_LONG)
 
         etAddToListX.setOnEditorActionListener { v, _, _ ->
             addToList1(v)
@@ -86,19 +91,31 @@ class MatrizDatos2Variables : AppCompatActivity() {
 
         btnCalc.setOnClickListener {
             intent = Intent()
-
             if (idTema == 11) {
                 if (numValuesListX.isEmpty() || numValuesListY.isEmpty()) {
                     tstEmpty.cancel()
-                    tstNotMatch.cancel()
+                    tstListEmpty.cancel()
+                    tstListNotMatch.cancel()
+                    tstListNotMatchUnique.cancel()
                     tstEmpty.show()
                     return@setOnClickListener
                 }
 
                 if (numValuesListX.count() != numValuesListY.count()) {
                     tstEmpty.cancel()
-                    tstNotMatch.cancel()
-                    tstNotMatch.show()
+                    tstListEmpty.cancel()
+                    tstListNotMatch.cancel()
+                    tstListNotMatchUnique.cancel()
+                    tstListNotMatch.show()
+                    return@setOnClickListener
+                }
+
+                if (numValuesListX.distinct().count() != numValuesListY.distinct().count()) {
+                    tstEmpty.cancel()
+                    tstListEmpty.cancel()
+                    tstListNotMatch.cancel()
+                    tstListNotMatchUnique.cancel()
+                    tstListNotMatchUnique.show()
                     return@setOnClickListener
                 }
 
@@ -106,8 +123,28 @@ class MatrizDatos2Variables : AppCompatActivity() {
             } else if (idTema == 12) {
                 if (strValuesListX.isEmpty() || strValuesListY.isEmpty()) {
                     tstEmpty.cancel()
-                    tstNotMatch.cancel()
+                    tstListEmpty.cancel()
+                    tstListNotMatch.cancel()
+                    tstListNotMatchUnique.cancel()
                     tstEmpty.show()
+                    return@setOnClickListener
+                }
+
+                if (strValuesListX.count() != strValuesListY.count()) {
+                    tstEmpty.cancel()
+                    tstListEmpty.cancel()
+                    tstListNotMatch.cancel()
+                    tstListNotMatchUnique.cancel()
+                    tstListNotMatch.show()
+                    return@setOnClickListener
+                }
+
+                if (strValuesListX.distinct().count() != strValuesListY.distinct().count()) {
+                    tstEmpty.cancel()
+                    tstListEmpty.cancel()
+                    tstListNotMatch.cancel()
+                    tstListNotMatchUnique.cancel()
+                    tstListNotMatchUnique.show()
                     return@setOnClickListener
                 }
 
@@ -126,6 +163,16 @@ class MatrizDatos2Variables : AppCompatActivity() {
         if (!v.isClickable) return
 
         val etAddToListXStr = etAddToListX.text.toString().lowercase().trim()
+        if (etAddToListXStr.isEmpty()) {
+            tstEmpty.cancel()
+            tstListEmpty.cancel()
+            tstListNotMatch.cancel()
+            tstListNotMatchUnique.cancel()
+            tstEmpty.show()
+            return
+        }
+        tstEmpty.cancel()
+
         if (idTema == 11) {
             numValuesListX += strToBigDecimal(etAddToListXStr)
         } else if (idTema == 12) {
@@ -142,6 +189,16 @@ class MatrizDatos2Variables : AppCompatActivity() {
         if (!v.isClickable) return
 
         val etAddToListYStr = etAddToListY.text.toString().lowercase().trim()
+        if (etAddToListYStr.isEmpty()) {
+            tstEmpty.cancel()
+            tstListEmpty.cancel()
+            tstListNotMatch.cancel()
+            tstListNotMatchUnique.cancel()
+            tstEmpty.show()
+            return
+        }
+        tstEmpty.cancel()
+
         if (idTema == 11) {
             numValuesListY += strToBigDecimal(etAddToListYStr)
         } else if (idTema == 12) {

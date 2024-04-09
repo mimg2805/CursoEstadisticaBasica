@@ -12,6 +12,10 @@
 
     <string name="list">Lista</string>
     <string name="add_to_list">Introduce datos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
+    <string name="list_error_empty_input">Por favor, escriba algo en la caja de texto</string>
+    <string name="list_error_empty_list">Las listas no pueden estar vacías</string>
+    <string name="list_error_not_match">Las listas deben tener el mismo número de elementos</string>
+    <string name="list_error_not_match_unique">Las listas deben tener el mismo número de elementos únicos</string>
 
     <string name="add">Añadir</string>
     <string name="calc">Calcular</string>
