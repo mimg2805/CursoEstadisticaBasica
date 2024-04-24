@@ -131,8 +131,8 @@ class CalcIntervaloConfianzaProporcionPoblacionConocida : AppCompatActivity() {
 
             if (limInf == BigDecimal.ZERO || limSup == BigDecimal.ZERO) return
 
-            val limInfStr = limInf.round(mc).toPlainString()
-            val limSupStr = limSup.round(mc).toPlainString()
+            val limInfStr = String.format("%.2f", limInf)
+            val limSupStr = String.format("%.2f", limSup)
             val limStr = "[$limInfStr - $limSupStr]"
             etIC.setText(limStr)
         } catch (e: Exception) {

@@ -4,14 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.text.method.DigitsKeyListener
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
-import java.math.BigDecimal
+import java.util.Collections
 
 class MatrizDatos : AppCompatActivity() {
 
@@ -19,8 +21,7 @@ class MatrizDatos : AppCompatActivity() {
     private var subtemaTitle = ""
 
     private var valuesStr = ""
-    private var numValuesList = mutableListOf<BigDecimal>()
-    private var strValuesList = mutableListOf<String>()
+    private var valuesList = mutableListOf<String>()
 
     private lateinit var etAddToList: EditText
     private lateinit var tvNumberList: TextView
@@ -28,6 +29,7 @@ class MatrizDatos : AppCompatActivity() {
     private lateinit var btnClear: Button
     private lateinit var btnCalc: Button
     private lateinit var tstEmpty: Toast
+    private lateinit var tstListEmpty: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,8 @@ class MatrizDatos : AppCompatActivity() {
         btnClear = findViewById(R.id.activity_matriz_datos_btn_clear)
         btnCalc = findViewById(R.id.activity_matriz_datos_btn_calc)
 
-        tstEmpty = Toast.makeText(this, "La lista no puede estar vacía", Toast.LENGTH_LONG)
+        tstEmpty = Toast.makeText(this, R.string.list_error_empty_input, Toast.LENGTH_LONG)
+        tstListEmpty = Toast.makeText(this, R.string.list_error_empty_list, Toast.LENGTH_LONG)
 
         etAddToList.setOnEditorActionListener { v, _, _ ->
             addToList(v)
@@ -61,23 +64,16 @@ class MatrizDatos : AppCompatActivity() {
         btnClear.setOnClickListener { v -> clear(v) }
 
         btnCalc.setOnClickListener {
+            if (valuesList.isEmpty()) {
+                tstEmpty.cancel()
+                tstEmpty.show()
+                return@setOnClickListener
+            }
+
             intent = Intent()
-
             if (idTema == 9) {
-                if (numValuesList.isEmpty()) {
-                    tstEmpty.cancel()
-                    tstEmpty.show()
-                    return@setOnClickListener
-                }
-
-                intent = Intent(this, Tema::class.java)
+                intent = Intent(this, CalcDescriptivaVariableCuantitativa::class.java)
             } else if (idTema == 10) {
-                if (strValuesList.isEmpty()) {
-                    tstEmpty.cancel()
-                    tstEmpty.show()
-                    return@setOnClickListener
-                }
-
                 intent = Intent(this, CalcDescriptivaVariableCualitativa::class.java)
             }
 
@@ -88,17 +84,27 @@ class MatrizDatos : AppCompatActivity() {
         }
     }
 
+    private fun cancelToasts() {
+        tstEmpty.cancel()
+        tstListEmpty.cancel()
+    }
+
     private fun addToList(v: View) {
         if (!v.isClickable) return
 
         val etAddToListStr = etAddToList.text.toString().lowercase().trim()
-        if (idTema == 9) {
-            numValuesList += strToBigDecimal(etAddToListStr)
-        } else if (idTema == 10) {
-            for (str in etAddToListStr.split(' ')) {
-                strValuesList += str
-            }
+        if (etAddToListStr.isEmpty()) {
+            cancelToasts()
+            tstEmpty.show()
+            return
         }
+        tstEmpty.cancel()
+
+        for (str in etAddToListStr.split(' ')) {
+            valuesList += str
+        }
+
+        valuesList.sortByDescending { str -> Collections.frequency(valuesList, str) }
 
         updateValuesList(v)
         etAddToList.text.clear()
@@ -107,31 +113,22 @@ class MatrizDatos : AppCompatActivity() {
     private fun removeLastFromList(v: View) {
         if (!v.isClickable) return
 
-        if (idTema == 9) {
-            if (numValuesList.isNotEmpty()) numValuesList.removeLast()
-        } else if (idTema == 10) {
-            if (strValuesList.isNotEmpty()) strValuesList.removeLast()
-        }
+        if (valuesList.isNotEmpty()) valuesList.removeLast()
         updateValuesList(v)
     }
 
     private fun updateValuesList(v: View) {
         if (!v.isClickable) return
 
-        if (idTema == 9) {
-            valuesStr = numValuesList.joinToString(" ")
-        } else if (idTema == 10) {
-            valuesStr = strValuesList.joinToString(" ")
-        }
+        valuesStr = valuesList.joinToString(" ")
         tvNumberList.text = valuesStr
     }
 
     private fun clear(v: View) {
         if (!v.isClickable) return
 
-        numValuesList = mutableListOf()
-        strValuesList = mutableListOf()
         valuesStr = ""
+        valuesList = mutableListOf()
 
         etAddToList.setText("")
         tvNumberList.text = ""

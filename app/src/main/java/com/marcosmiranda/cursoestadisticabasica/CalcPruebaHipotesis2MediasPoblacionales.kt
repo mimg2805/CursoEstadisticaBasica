@@ -198,7 +198,7 @@ class CalcPruebaHipotesis2MediasPoblacionales : AppCompatActivity() {
             val zBottom2 = s2.pow(2).divide(n2.toBigDecimal(), mc)
             val zBottom = sqrt(zBottom1 + zBottom2, mc)
             z = zTop.divide(zBottom, mc)
-            etZ.setText(z.toPlainString())
+            etZ.setText(String.format("%.2f", z))
 
             val mi = 0.0
             val sigma = 1.0
@@ -212,7 +212,7 @@ class CalcPruebaHipotesis2MediasPoblacionales : AppCompatActivity() {
                 lesser
             }
 
-            etProb.setText(prob.toPlainString())
+            etProb.setText(String.format("%.4f", prob))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()

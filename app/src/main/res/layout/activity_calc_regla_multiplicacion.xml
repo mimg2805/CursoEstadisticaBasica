@@ -9,11 +9,11 @@
 
     <TextView
         android:id="@+id/activity_calc_regla_multiplicacion_tv_p_a"
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/P_A_equals"
         android:textColor="@android:color/black"
@@ -22,55 +22,6 @@
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_a"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/P_B_equals"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
-        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_b"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_a" />
-
-    <TextView
-        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/P_B_over_A_equals"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_and_a"
-        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_b" />
-
-    <TextView
-        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b_and_a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="240dp"
-        android:text="@string/P_A_and_B_equals"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a" />
 
     <EditText
         android:id="@+id/activity_calc_regla_multiplicacion_et_p_a"
@@ -92,6 +43,22 @@
         app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_a"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/P_B_equals"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_b"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_a" />
+
     <EditText
         android:id="@+id/activity_calc_regla_multiplicacion_et_p_b"
         android:layout_width="180dp"
@@ -112,9 +79,27 @@
         app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_b"
         app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_a" />
 
+    <TextView
+        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/P_B_over_A_equals"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_spn_exc"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_tv_p_b"
+        tools:visibility="visible" />
+
     <EditText
         android:id="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a"
-        android:layout_width="170dp"
+        android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -128,19 +113,42 @@
         android:singleLine="true"
         android:textColor="@android:color/black"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_spn_exc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_over_a"
-        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_b" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_b"
+        tools:visibility="visible" />
+
+    <Spinner
+        android:id="@+id/activity_calc_regla_multiplicacion_spn_exc"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a" />
+
+    <TextView
+        android:id="@+id/activity_calc_regla_multiplicacion_tv_p_b_and_a"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/P_A_and_B_equals"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_btn_clear"
+        app:layout_constraintEnd_toStartOf="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_spn_exc" />
 
     <EditText
         android:id="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
-        android:layout_width="170dp"
+        android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="248dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/round_edit_text"
         android:clickable="false"
         android:cursorVisible="false"
@@ -151,10 +159,10 @@
         android:inputType="numberDecimal"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_btn_clear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/activity_calc_regla_multiplicacion_tv_p_b_and_a"
-        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_b_over_a" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_spn_exc" />
 
     <Button
         android:id="@+id/activity_calc_regla_multiplicacion_btn_clear"
@@ -165,16 +173,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_regla_multiplicacion_et_p_a_and_b"
         tools:text="@string/clear" />
-
-    <Spinner
-        android:id="@+id/activity_calc_regla_multiplicacion_spn_exc"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/activity_calc_regla_multiplicacion_btn_clear"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

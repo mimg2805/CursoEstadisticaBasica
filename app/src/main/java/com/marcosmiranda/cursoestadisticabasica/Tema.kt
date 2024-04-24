@@ -53,22 +53,6 @@ class Tema : AppCompatActivity() {
 
                 button.setOnClickListener {
                     intent = Intent(this, Formula::class.java)
-
-                    when (idSubTema) {
-                        15 -> {
-                            intent = Intent(this, MedidasTendenciaCentral::class.java)
-                            intent.putExtra("values", values)
-                        }
-                        16 -> {
-                            intent = Intent(this, Cuartiles::class.java)
-                            intent.putExtra("values", values)
-                        }
-                        17 -> {
-                            intent = Intent(this, Desviaciones::class.java)
-                            intent.putExtra("values", values)
-                        }
-                    }
-
                     intent.putExtra("sub", true)
                     intent.putExtra("idSubTema", idSubTema)
                     intent.putExtra("title", subtema)

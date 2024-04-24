@@ -8,6 +8,33 @@
     tools:context=".CalcFFisher">
 
     <TextView
+        android:id="@+id/activity_calc_f_fisher_tv_grados_libertad_numerador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grados_libertad_numerador"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_et_d1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <TextView
+        android:id="@+id/activity_calc_f_fisher_tv_grados_libertad_denominador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:text="@string/grados_libertad_denominador"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_f_fisher_et_d2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <TextView
         android:id="@+id/activity_calc_f_fisher_tv_d1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

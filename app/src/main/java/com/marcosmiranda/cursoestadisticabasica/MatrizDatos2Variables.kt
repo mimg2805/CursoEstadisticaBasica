@@ -4,33 +4,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.text.method.DigitsKeyListener
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.math.BigDecimal
-
-import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 
 class MatrizDatos2Variables : AppCompatActivity() {
 
     private var idTema = 0
     private var subtemaTitle = ""
 
-    private var valuesStrX = ""
-    private var numValuesListX = mutableListOf<BigDecimal>()
-    private var strValuesListX = mutableListOf<String>()
-    private var valuesStrY = ""
-    private var numValuesListY = mutableListOf<BigDecimal>()
-    private var strValuesListY = mutableListOf<String>()
+    private var valuesXStr = ""
+    private var valuesYStr = ""
+    private var valuesXList = mutableListOf<String>()
+    private var valuesYList = mutableListOf<String>()
 
+    private lateinit var tvVariableX: TextView
     private lateinit var etAddToListX: EditText
     private lateinit var tvNumberListX: TextView
     private lateinit var btnDeleteLastX: Button
     private lateinit var btnClearX: Button
+    private lateinit var tvVariableY: TextView
     private lateinit var etAddToListY: EditText
     private lateinit var tvNumberListY: TextView
     private lateinit var btnDeleteLastY: Button
@@ -39,7 +35,7 @@ class MatrizDatos2Variables : AppCompatActivity() {
     private lateinit var tstEmpty: Toast
     private lateinit var tstListEmpty: Toast
     private lateinit var tstListNotMatch: Toast
-    private lateinit var tstListNotMatchUnique: Toast
+    private lateinit var tstList2Unique: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,16 +44,28 @@ class MatrizDatos2Variables : AppCompatActivity() {
         idTema = intent.getIntExtra("idTema", 0)
         subtemaTitle = intent.getStringExtra("title") ?: ""
 
+        tvVariableX = findViewById(R.id.activity_matriz_datos_2_variables_tv_variable_x)
+        tvVariableY = findViewById(R.id.activity_matriz_datos_2_variables_tv_variable_y)
         etAddToListX = findViewById(R.id.activity_matriz_datos_2_variables_et_add_to_list_x)
         etAddToListY = findViewById(R.id.activity_matriz_datos_2_variables_et_add_to_list_y)
-        if (idTema == 11) {
-            etAddToListX.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
-            etAddToListX.keyListener = DigitsKeyListener.getInstance("1234567890.")
-            etAddToListY.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
-            etAddToListY.keyListener = DigitsKeyListener.getInstance("1234567890.")
-        } else if (idTema == 12) {
-            etAddToListX.inputType = InputType.TYPE_CLASS_TEXT
-            etAddToListY.inputType = InputType.TYPE_CLASS_TEXT
+        when (idTema) {
+            11 -> {
+                etAddToListX.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
+                etAddToListX.keyListener = DigitsKeyListener.getInstance("1234567890.")
+                etAddToListY.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
+                etAddToListY.keyListener = DigitsKeyListener.getInstance("1234567890.")
+            }
+            12 -> {
+                etAddToListX.inputType = InputType.TYPE_CLASS_TEXT
+                etAddToListY.inputType = InputType.TYPE_CLASS_TEXT
+            }
+            13 -> {
+                tvVariableX.text = getString(R.string.variable_x_cualitativa)
+                tvVariableY.text = getString(R.string.variable_y_cuantitativa)
+                etAddToListX.inputType = InputType.TYPE_CLASS_TEXT
+                etAddToListY.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
+                etAddToListY.keyListener = DigitsKeyListener.getInstance("1234567890.")
+            }
         }
 
         tvNumberListX = findViewById(R.id.activity_matriz_datos_2_variables_tv_number_list_x)
@@ -71,196 +79,137 @@ class MatrizDatos2Variables : AppCompatActivity() {
         tstEmpty = Toast.makeText(this, R.string.list_error_empty_input, Toast.LENGTH_LONG)
         tstListEmpty = Toast.makeText(this, R.string.list_error_empty_list, Toast.LENGTH_LONG)
         tstListNotMatch = Toast.makeText(this, R.string.list_error_not_match, Toast.LENGTH_LONG)
-        tstListNotMatchUnique = Toast.makeText(this, R.string.list_error_not_match_unique, Toast.LENGTH_LONG)
+        tstList2Unique = Toast.makeText(this, R.string.list_error_2_unique, Toast.LENGTH_LONG)
 
         etAddToListX.setOnEditorActionListener { v, _, _ ->
-            addToList1(v)
+            addToListX(v)
             false
         }
 
         etAddToListY.setOnEditorActionListener { v, _, _ ->
-            addToList2(v)
+            addToListY(v)
             false
         }
 
-        btnDeleteLastX.setOnClickListener { v -> removeLastFromList1(v) }
-        btnDeleteLastY.setOnClickListener { v -> removeLastFromList2(v) }
+        btnDeleteLastX.setOnClickListener { v -> removeLastFromListX(v) }
+        btnDeleteLastY.setOnClickListener { v -> removeLastFromListY(v) }
 
-        btnClearX.setOnClickListener { v -> clearList1(v) }
-        btnClearY.setOnClickListener { v -> clearList2(v) }
+        btnClearX.setOnClickListener { v -> clearListX(v) }
+        btnClearY.setOnClickListener { v -> clearListY(v) }
 
         btnCalc.setOnClickListener {
-            intent = Intent()
-            if (idTema == 11) {
-                if (numValuesListX.isEmpty() || numValuesListY.isEmpty()) {
-                    tstEmpty.cancel()
-                    tstListEmpty.cancel()
-                    tstListNotMatch.cancel()
-                    tstListNotMatchUnique.cancel()
-                    tstEmpty.show()
-                    return@setOnClickListener
-                }
+            etAddToListX.clearFocus()
+            etAddToListY.clearFocus()
 
-                if (numValuesListX.count() != numValuesListY.count()) {
-                    tstEmpty.cancel()
-                    tstListEmpty.cancel()
-                    tstListNotMatch.cancel()
-                    tstListNotMatchUnique.cancel()
-                    tstListNotMatch.show()
-                    return@setOnClickListener
-                }
+            if (valuesXList.isEmpty() || valuesYList.isEmpty()) {
+                cancelToasts()
+                tstEmpty.show()
+                return@setOnClickListener
+            }
 
-                if (numValuesListX.distinct().count() != numValuesListY.distinct().count()) {
-                    tstEmpty.cancel()
-                    tstListEmpty.cancel()
-                    tstListNotMatch.cancel()
-                    tstListNotMatchUnique.cancel()
-                    tstListNotMatchUnique.show()
-                    return@setOnClickListener
-                }
+            if (valuesXList.count() != valuesYList.count()) {
+                cancelToasts()
+                tstListNotMatch.show()
+                return@setOnClickListener
+            }
 
-                intent = Intent(this, CalcDescriptiva2VariablesCuantitativas::class.java)
-            } else if (idTema == 12) {
-                if (strValuesListX.isEmpty() || strValuesListY.isEmpty()) {
-                    tstEmpty.cancel()
-                    tstListEmpty.cancel()
-                    tstListNotMatch.cancel()
-                    tstListNotMatchUnique.cancel()
-                    tstEmpty.show()
-                    return@setOnClickListener
-                }
+            if (valuesXList.distinct().count() < 2 || valuesYList.distinct().count() < 2) {
+                cancelToasts()
+                tstList2Unique.show()
+                return@setOnClickListener
+            }
 
-                if (strValuesListX.count() != strValuesListY.count()) {
-                    tstEmpty.cancel()
-                    tstListEmpty.cancel()
-                    tstListNotMatch.cancel()
-                    tstListNotMatchUnique.cancel()
-                    tstListNotMatch.show()
-                    return@setOnClickListener
-                }
-
-                if (strValuesListX.distinct().count() != strValuesListY.distinct().count()) {
-                    tstEmpty.cancel()
-                    tstListEmpty.cancel()
-                    tstListNotMatch.cancel()
-                    tstListNotMatchUnique.cancel()
-                    tstListNotMatchUnique.show()
-                    return@setOnClickListener
-                }
-
-                intent = Intent(this, CalcDescriptiva2VariablesCualitativas::class.java)
+            intent = when (idTema) {
+                11 -> Intent(this, CalcDescriptiva2VariablesCuantitativas::class.java)
+                12 -> Intent(this, CalcDescriptiva2VariablesCualitativas::class.java)
+                13 -> Intent(this, CalcDescriptiva2VariablesMixtas::class.java)
+                else -> Intent()
             }
 
             intent.putExtra("idTema", idTema)
             intent.putExtra("title", subtemaTitle)
-            intent.putExtra("valuesX", valuesStrX)
-            intent.putExtra("valuesY", valuesStrY)
+            intent.putExtra("valuesX", valuesXStr)
+            intent.putExtra("valuesY", valuesYStr)
             this.startActivity(intent)
         }
     }
 
-    private fun addToList1(v: View) {
+    private fun cancelToasts() {
+        tstEmpty.cancel()
+        tstListEmpty.cancel()
+        tstListNotMatch.cancel()
+        tstList2Unique.cancel()
+    }
+
+    private fun addToListX(v: View) {
         if (!v.isClickable) return
 
         val etAddToListXStr = etAddToListX.text.toString().lowercase().trim()
         if (etAddToListXStr.isEmpty()) {
-            tstEmpty.cancel()
-            tstListEmpty.cancel()
-            tstListNotMatch.cancel()
-            tstListNotMatchUnique.cancel()
+            cancelToasts()
             tstEmpty.show()
             return
         }
         tstEmpty.cancel()
 
-        if (idTema == 11) {
-            numValuesListX += strToBigDecimal(etAddToListXStr)
-        } else if (idTema == 12) {
-            for (str in etAddToListXStr.split(' ')) {
-                strValuesListX += str
-            }
+        for (str in etAddToListXStr.split(" ")) {
+            valuesXList += str
         }
-
-        updateValuesList1(v)
+        updateValuesListX(v)
         etAddToListX.text.clear()
     }
 
-    private fun addToList2(v: View) {
+    private fun addToListY(v: View) {
         if (!v.isClickable) return
 
         val etAddToListYStr = etAddToListY.text.toString().lowercase().trim()
         if (etAddToListYStr.isEmpty()) {
-            tstEmpty.cancel()
-            tstListEmpty.cancel()
-            tstListNotMatch.cancel()
-            tstListNotMatchUnique.cancel()
+            cancelToasts()
             tstEmpty.show()
             return
         }
         tstEmpty.cancel()
 
-        if (idTema == 11) {
-            numValuesListY += strToBigDecimal(etAddToListYStr)
-        } else if (idTema == 12) {
-            for (str in etAddToListYStr.split(' ')) {
-                strValuesListY += str
-            }
+        for (str in etAddToListYStr.split(" ")) {
+            valuesYList += str
         }
-
-        updateValuesList2(v)
+        updateValuesListY(v)
         etAddToListY.text.clear()
     }
 
-    private fun removeLastFromList1(v: View) {
+    private fun removeLastFromListX(v: View) {
         if (!v.isClickable) return
 
-        if (idTema == 11) {
-            if (numValuesListX.isNotEmpty()) numValuesListX.removeLast()
-        } else if (idTema == 12) {
-            if (strValuesListX.isNotEmpty()) strValuesListX.removeLast()
-        }
-        updateValuesList1(v)
+        if (valuesXList.isNotEmpty()) valuesXList.removeLast()
+        updateValuesListX(v)
     }
 
-    private fun removeLastFromList2(v: View) {
+    private fun removeLastFromListY(v: View) {
         if (!v.isClickable) return
 
-        if (idTema == 11) {
-            if (numValuesListY.isNotEmpty()) numValuesListY.removeLast()
-        } else if (idTema == 12) {
-            if (strValuesListY.isNotEmpty()) strValuesListY.removeLast()
-        }
-        updateValuesList2(v)
+        if (valuesYList.isNotEmpty()) valuesYList.removeLast()
+        updateValuesListY(v)
     }
 
-    private fun updateValuesList1(v: View) {
+    private fun updateValuesListX(v: View) {
         if (!v.isClickable) return
 
-        if (idTema == 11) {
-            valuesStrX = numValuesListX.joinToString(" ")
-        } else if (idTema == 12) {
-            valuesStrX = strValuesListX.joinToString(" ")
-        }
-        tvNumberListX.text = valuesStrX
+        valuesXStr = valuesXList.joinToString(" ")
+        tvNumberListX.text = valuesXStr
     }
 
-    private fun updateValuesList2(v: View) {
+    private fun updateValuesListY(v: View) {
         if (!v.isClickable) return
 
-        if (idTema == 11) {
-            valuesStrY = numValuesListY.joinToString(" ")
-        } else if (idTema == 12) {
-            valuesStrY = strValuesListY.joinToString(" ")
-        }
-        tvNumberListY.text = valuesStrY
+        valuesYStr = valuesYList.joinToString(" ")
+        tvNumberListY.text = valuesYStr
     }
 
-    private fun clearList1(v: View) {
+    private fun clearListX(v: View) {
         if (!v.isClickable) return
 
-        numValuesListX = mutableListOf()
-        strValuesListX = mutableListOf()
-        valuesStrX = ""
+        valuesXList = mutableListOf()
+        valuesXStr = ""
 
         etAddToListX.setText("")
         tvNumberListX.text = ""
@@ -268,12 +217,11 @@ class MatrizDatos2Variables : AppCompatActivity() {
         etAddToListX.clearFocus()
     }
 
-    private fun clearList2(v: View) {
+    private fun clearListY(v: View) {
         if (!v.isClickable) return
 
-        numValuesListY = mutableListOf()
-        strValuesListY = mutableListOf()
-        valuesStrY = ""
+        valuesYList = mutableListOf()
+        valuesYStr = ""
 
         etAddToListY.setText("")
         tvNumberListY.text = ""

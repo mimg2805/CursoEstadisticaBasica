@@ -185,7 +185,7 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
         if (n1 == BigInteger.ZERO || n2 == BigInteger.ZERO || p1 == BigDecimal.ZERO || p2 == BigDecimal.ZERO) return
 
         try {
-            val pcTop = (p1 * BigDecimal(100)) + (p2 * BigDecimal(100))
+            val pcTop = (p1 * n1.toBigDecimal()) + (p2 * n2.toBigDecimal())
             val pcBottom = (n1 + n2).toBigDecimal()
             pc = pcTop.divide(pcBottom, mc)
             pcComp = BigDecimal.ONE - pc
@@ -196,7 +196,7 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
             val zBottom2 = (pc * pcComp).divide(n2.toBigDecimal(), mc)
             val zBottom = sqrt(zBottom1 + zBottom2, mc)
             z = zTop.divide(zBottom, mc)
-            etZ.setText(z.toPlainString())
+            etZ.setText(String.format("%.2f", z))
 
             val mi = 0.0
             val sigma = 1.0
@@ -210,7 +210,7 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
                 lesser
             }
 
-            etProb.setText(prob.toPlainString())
+            etProb.setText(String.format("%.4f", prob))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()

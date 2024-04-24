@@ -3,7 +3,6 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -32,7 +31,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
     private var z = BigDecimal.ZERO
     private var prob = BigDecimal.ZERO
     private var calc = ""
-    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
+    private val mc = MathContext(4, RoundingMode.HALF_UP)
 
     private lateinit var etN: EditText
     private lateinit var etP: EditText
@@ -152,7 +151,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
 
         try {
             z = ((p - pi) / (sqrt((pi * piComp).divide(n.toBigDecimal(), mc), mc)))
-            etZ.setText(z.toPlainString())
+            etZ.setText(String.format("%.2f", z))
 
             val mi = 0.0
             val sigma = 1.0
@@ -166,7 +165,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
                 lesser
             }
 
-            etProb.setText(prob.toPlainString())
+            etProb.setText(String.format("%.4f", prob))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()

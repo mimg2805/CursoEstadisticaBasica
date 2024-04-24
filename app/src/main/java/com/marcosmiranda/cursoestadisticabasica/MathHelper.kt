@@ -1,5 +1,6 @@
 package com.marcosmiranda.cursoestadisticabasica
 
+import android.util.Log
 import ch.obermuhlner.math.big.BigDecimalMath.pow
 import ch.obermuhlner.math.big.BigDecimalMath.sqrt
 import org.mariuszgromada.math.mxparser.mathcollection.NumberTheory
@@ -13,12 +14,12 @@ import kotlin.math.floor
 class MathHelper {
     companion object {
 
-        // private val mc0 = MathContext(0, RoundingMode.HALF_EVEN)
-        // private val mc1 = MathContext(1, RoundingMode.HALF_EVEN)
-        // private val mc2 = MathContext(2, RoundingMode.HALF_EVEN)
-        private val mc3 = MathContext(3, RoundingMode.HALF_EVEN)
-        private val mc4 = MathContext(4, RoundingMode.HALF_EVEN)
-        // private val mc5 = MathContext(5, RoundingMode.HALF_EVEN)
+        // private val mc0 = MathContext(0, RoundingMode.HALF_UP)
+        // private val mc1 = MathContext(1, RoundingMode.HALF_UP)
+        // private val mc2 = MathContext(2, RoundingMode.HALF_UP)
+        private val mc3 = MathContext(3, RoundingMode.HALF_UP)
+        private val mc4 = MathContext(4, RoundingMode.HALF_UP)
+        // private val mc5 = MathContext(5, RoundingMode.HALF_UP)
 
         fun strToBigInteger(str: String): BigInteger {
             var num = BigInteger.ZERO

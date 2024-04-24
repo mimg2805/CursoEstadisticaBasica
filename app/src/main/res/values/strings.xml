@@ -13,9 +13,11 @@
     <string name="list">Lista</string>
     <string name="add_to_list">Introduce datos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
     <string name="list_error_empty_input">Por favor, escriba algo en la caja de texto</string>
-    <string name="list_error_empty_list">Las listas no pueden estar vacías</string>
-    <string name="list_error_not_match">Las listas deben tener el mismo número de elementos</string>
-    <string name="list_error_not_match_unique">Las listas deben tener el mismo número de elementos únicos</string>
+    <string name="list_error_empty_list">La lista no puede estar vacía</string>
+    <string name="list_error_empty_lists">Las listas no pueden estar vacías</string>
+    <string name="list_error_not_match">Las listas deben tener el mismo número de datos</string>
+    <string name="list_error_not_match_unique">Las listas deben tener el mismo número de datos únicos</string>
+    <string name="list_error_2_unique">Las listas deben tener al menos 2 datos únicos</string>
 
     <string name="add">Añadir</string>
     <string name="calc">Calcular</string>
@@ -23,7 +25,9 @@
     <string name="generate">Generar</string>
     <string name="repeat">Repetir</string>
     <string name="variable_x">Variable X</string>
+    <string name="variable_x_cualitativa">Variable X (Cualitativa)</string>
     <string name="variable_y">Variable Y</string>
+    <string name="variable_y_cuantitativa">Variable Y (Cuantitativa)</string>
     <string name="delete_all">Borrar todo</string>
     <string name="delete_last">Borrar último</string>
 
@@ -74,6 +78,9 @@
     <string name="Z">Z</string>
     <string name="IC">IC</string>
 
+    <string name="grados_libertad">Grados de libertad</string>
+    <string name="grados_libertad_numerador">Grados de libertad del numerador</string>
+    <string name="grados_libertad_denominador">Grados de libertad del denominador</string>
     <string name="media">Media</string>
     <string name="mediana">Mediana</string>
     <string name="moda">Moda</string>

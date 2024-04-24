@@ -25,7 +25,7 @@ class CalcIntervaloConfianzaProporcionPoblacionDesconocida : AppCompatActivity()
     private val z = BigDecimal("1.96")
     private var limInf = BigDecimal.ZERO
     private var limSup = BigDecimal.ZERO
-    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
+    private val mc = MathContext(4, RoundingMode.HALF_UP)
 
     private lateinit var etP: EditText
     private lateinit var etN: EditText
@@ -112,8 +112,8 @@ class CalcIntervaloConfianzaProporcionPoblacionDesconocida : AppCompatActivity()
 
             if (limInf == BigDecimal.ZERO || limSup == BigDecimal.ZERO) return
 
-            val limInfStr = limInf.toPlainString()
-            val limSupStr = limSup.toPlainString()
+            val limInfStr = String.format("%.2f", limInf)
+            val limSupStr = String.format("%.2f", limSup)
             val limStr = "[$limInfStr - $limSupStr]"
             etIC.setText(limStr)
         } catch (e: Exception) {

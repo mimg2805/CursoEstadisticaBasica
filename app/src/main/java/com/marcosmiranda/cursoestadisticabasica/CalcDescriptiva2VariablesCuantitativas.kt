@@ -12,26 +12,26 @@ import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDec
 
 class CalcDescriptiva2VariablesCuantitativas : AppCompatActivity() {
 
-    private var valuesStrX = ""
-    private var numValuesListX = mutableListOf<BigDecimal>()
-    private var sumValuesX = BigDecimal.ZERO
-    private var sumValuesXSqr = BigDecimal.ZERO
-    private var mediaX = BigDecimal.ZERO
-    private var numValuesXMinusMedia = mutableListOf<BigDecimal>()
-    private var sumValuesXMinusMediaSqr = BigDecimal.ZERO
+    private var valuesXStr = ""
+    private var valuesXList = mutableListOf<BigDecimal>()
+    private var valuesXSum = BigDecimal.ZERO
+    private var valuesXSumSqr = BigDecimal.ZERO
+    private var valuesXMedia = BigDecimal.ZERO
+    private var valuesXListMinusMedia = mutableListOf<BigDecimal>()
+    private var valuesXListMinusMediaSqr = BigDecimal.ZERO
 
-    private var valuesStrY = ""
-    private var numValuesListY = mutableListOf<BigDecimal>()
-    private var sumValuesY = BigDecimal.ZERO
-    private var sumValuesYSqr = BigDecimal.ZERO
-    private var mediaY = BigDecimal.ZERO
-    private var numValuesYMinusMedia = mutableListOf<BigDecimal>()
-    private var sumValuesYMinusMediaSqr = BigDecimal.ZERO
+    private var valuesYStr = ""
+    private var valuesYList = mutableListOf<BigDecimal>()
+    private var valuesYSum = BigDecimal.ZERO
+    private var valuesYSumSqr = BigDecimal.ZERO
+    private var valuesYMedia = BigDecimal.ZERO
+    private var valuesYListMinusMedia = mutableListOf<BigDecimal>()
+    private var valuesYListMinusMediaSqr = BigDecimal.ZERO
 
-    private var numValuesXY = mutableListOf<BigDecimal>()
-    private var sumValuesXY = BigDecimal.ZERO
-    private var numValuesXYMinusMedia = mutableListOf<BigDecimal>()
-    private var sumValuesXYMinusMedia = BigDecimal.ZERO
+    private var valuesXYList = mutableListOf<BigDecimal>()
+    private var valuesXYSum = BigDecimal.ZERO
+    private var valuesXYListMinusMedia = mutableListOf<BigDecimal>()
+    private var valuesXYMinusMediaSum = BigDecimal.ZERO
 
     private var n = 0
     private var a = BigDecimal.ZERO
@@ -54,57 +54,57 @@ class CalcDescriptiva2VariablesCuantitativas : AppCompatActivity() {
         etR = findViewById(R.id.activity_calc_descriptiva_2_variables_cuantitativas_et_r)
         etY = findViewById(R.id.activity_calc_descriptiva_2_variables_cuantitativas_et_y)
 
-        valuesStrX = intent.getStringExtra("valuesX") ?: ""
-        val values1Arr = valuesStrX.split(' ')
+        valuesXStr = intent.getStringExtra("valuesX") ?: ""
+        val values1Arr = valuesXStr.split(' ')
         values1Arr.forEach {str ->
             val num = strToBigDecimal(str)
-            numValuesListX += num
-            sumValuesX += num
-            sumValuesXSqr += num.pow(2)
-            numValuesXY += num
+            valuesXList += num
+            valuesXSum += num
+            valuesXSumSqr += num.pow(2)
+            valuesXYList += num
             n++
         }
-        mediaX = sumValuesX.divide(n.toBigDecimal(), mc)
+        valuesXMedia = valuesXSum.divide(n.toBigDecimal(), mc)
 
-        valuesStrY = intent.getStringExtra("valuesY") ?: ""
-        val values2Arr = valuesStrY.split(' ')
+        valuesYStr = intent.getStringExtra("valuesY") ?: ""
+        val values2Arr = valuesYStr.split(' ')
         var values2Index = 0
         values2Arr.forEach {str ->
             val num = strToBigDecimal(str)
-            numValuesListY += num
-            sumValuesY += num
-            sumValuesYSqr += num.pow(2)
-            numValuesXY[values2Index] *= num
+            valuesYList += num
+            valuesYSum += num
+            valuesYSumSqr += num.pow(2)
+            valuesXYList[values2Index] *= num
             values2Index++
         }
-        mediaY = sumValuesY.divide(n.toBigDecimal(), mc)
+        valuesYMedia = valuesYSum.divide(n.toBigDecimal(), mc)
 
-        numValuesXY.forEach {num ->
-            sumValuesXY += num
+        valuesXYList.forEach { num ->
+            valuesXYSum += num
         }
 
-        numValuesListX.forEach {num ->
-            numValuesXMinusMedia += num - mediaX
-            sumValuesXMinusMediaSqr += (num - mediaX).pow(2)
-            numValuesXYMinusMedia += num - mediaX
+        valuesXList.forEach { num ->
+            valuesXListMinusMedia += num - valuesXMedia
+            valuesXListMinusMediaSqr += (num - valuesXMedia).pow(2)
+            valuesXYListMinusMedia += num - valuesXMedia
         }
 
         values2Index = 0
-        numValuesListY.forEach {num ->
-            numValuesYMinusMedia += num - mediaY
-            sumValuesYMinusMediaSqr += (num - mediaY).pow(2)
-            numValuesXYMinusMedia[values2Index] *= (num - mediaY)
+        valuesYList.forEach { num ->
+            valuesYListMinusMedia += num - valuesYMedia
+            valuesYListMinusMediaSqr += (num - valuesYMedia).pow(2)
+            valuesXYListMinusMedia[values2Index] *= (num - valuesYMedia)
             values2Index++
         }
 
-        numValuesXYMinusMedia.forEach {num ->
-            sumValuesXYMinusMedia += num
+        valuesXYListMinusMedia.forEach { num ->
+            valuesXYMinusMediaSum += num
         }
 
-        b = ((n.toBigDecimal() * sumValuesXY) - (sumValuesX * sumValuesY)).divide((n.toBigDecimal() * sumValuesXSqr) - (sumValuesX.pow(2)), mc)
-        a = (sumValuesY - (b * sumValuesX)).divide(n.toBigDecimal(), mc)
+        b = ((n.toBigDecimal() * valuesXYSum) - (valuesXSum * valuesYSum)).divide((n.toBigDecimal() * valuesXSumSqr) - (valuesXSum.pow(2)), mc)
+        a = (valuesYSum - (b * valuesXSum)).divide(n.toBigDecimal(), mc)
         // r = sumValuesXYMinusMedia.divide((sumValuesXMinusMediaSqr.sqrt(mc) * sumValuesXMinusMediaSqr.sqrt(mc)), mc)
-        r = sumValuesXYMinusMedia.divide((sqrt(sumValuesXMinusMediaSqr.toDouble()) * sqrt(sumValuesYMinusMediaSqr.toDouble())).toBigDecimal(), mc)
+        r = valuesXYMinusMediaSum.divide((sqrt(valuesXListMinusMediaSqr.toDouble()) * sqrt(valuesYListMinusMediaSqr.toDouble())).toBigDecimal(), mc)
         y = if (b < BigDecimal.ZERO) {
             a.toPlainString() + " - " + b.abs().toPlainString() + "x"
         } else {

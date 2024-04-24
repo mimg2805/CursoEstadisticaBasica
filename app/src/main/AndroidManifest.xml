@@ -56,18 +56,17 @@
         <activity android:name=".CalcDistNormalProbabilidades" />
         <activity android:name=".CalcDistNormalEstandarizacion" />
         <activity android:name=".CalcDistMuestra" />
+        <activity android:name=".CalcDescriptivaVariableCuantitativa" />
         <activity android:name=".CalcDescriptivaVariableCualitativa" />
         <activity android:name=".CalcChiCuadrado" />
         <activity android:name=".CalcFFisher" />
         <activity android:name=".CalcTStudent" />
         <activity android:name=".RNG" />
         <activity android:name=".MatrizDatos" />
-        <activity android:name=".Desviaciones" />
-        <activity android:name=".Cuartiles" />
-        <activity android:name=".MedidasTendenciaCentral" />
         <activity android:name=".MatrizDatos2Variables" />
         <activity android:name=".CalcDescriptiva2VariablesCuantitativas" />
         <activity android:name=".CalcDescriptiva2VariablesCualitativas" />
+        <activity android:name=".CalcDescriptiva2VariablesMixtas" />
         <activity
             android:name=".MasApps"
             android:parentActivityName=".MainMenu">

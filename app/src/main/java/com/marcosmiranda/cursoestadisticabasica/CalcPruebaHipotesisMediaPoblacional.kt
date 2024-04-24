@@ -152,7 +152,7 @@ class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
 
         try {
             z = (x - u).divide(s.divide(sqrt(n.toBigDecimal(), mc), mc), mc)
-            etZ.setText(z.toPlainString())
+            etZ.setText(String.format("%.2f", z))
 
             val mi = 0.0
             val sigma = 1.0
@@ -166,7 +166,7 @@ class CalcPruebaHipotesisMediaPoblacional : AppCompatActivity() {
                 lesser
             }
 
-            etProb.setText(prob.toPlainString())
+            etProb.setText(String.format("%.4f", prob))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()
