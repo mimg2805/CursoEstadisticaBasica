@@ -34,7 +34,7 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
     private var z = BigDecimal.ZERO
     private var prob = BigDecimal.ZERO
     private var calc = ""
-    private val mc = MathContext(5, RoundingMode.HALF_UP)
+    private val mc = MathContext(4, RoundingMode.HALF_UP)
 
     private lateinit var etN1: EditText
     private lateinit var etN2: EditText
@@ -189,7 +189,7 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
             val pcBottom = (n1 + n2).toBigDecimal()
             pc = pcTop.divide(pcBottom, mc)
             pcComp = BigDecimal.ONE - pc
-            etPC.setText(pc.toPlainString())
+            etPC.setText(String.format("%.4f", pc))
 
             val zTop = p1 - p2
             val zBottom1 = (pc * pcComp).divide(n1.toBigDecimal(), mc)

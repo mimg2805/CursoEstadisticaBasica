@@ -150,7 +150,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
         if (pi == BigDecimal.ZERO) return
 
         try {
-            z = ((p - pi) / (sqrt((pi * piComp).divide(n.toBigDecimal(), mc), mc)))
+            z = (p - pi).divide(sqrt((pi * piComp).divide(n.toBigDecimal(), mc), mc), mc)
             etZ.setText(String.format("%.2f", z))
 
             val mi = 0.0

@@ -58,22 +58,22 @@ class Unidad : AppCompatActivity() {
 
                 button.setOnClickListener {
                     val subtemas = db.getSubTemasByTema(idTema)
-                    var intent = Intent()
 
                     if (subtemas.count == 0) {
-                        if (html.isEmpty()) {
+                        intent = if (html.isEmpty()) {
                             when (idTema) {
-                                9   -> intent = Intent(this, MatrizDatos::class.java)
-                                10  -> intent = Intent(this, MatrizDatos::class.java)
-                                11  -> intent = Intent(this, MatrizDatos2Variables::class.java)
-                                12  -> intent = Intent(this, MatrizDatos2Variables::class.java)
-                                13  -> intent = Intent(this, MatrizDatos2Variables::class.java)
-                                19  -> intent = Intent(this, CalcTStudent::class.java)
-                                20  -> intent = Intent(this, CalcFFisher::class.java)
-                                21  -> intent = Intent(this, CalcChiCuadrado::class.java)
+                                9       -> Intent(this, MatrizDatos::class.java)
+                                10      -> Intent(this, MatrizDatos::class.java)
+                                11      -> Intent(this, MatrizDatos2Variables::class.java)
+                                12      -> Intent(this, MatrizDatos2Variables::class.java)
+                                13      -> Intent(this, MatrizDatos2Variables::class.java)
+                                19      -> Intent(this, CalcTStudent::class.java)
+                                20      -> Intent(this, CalcFFisher::class.java)
+                                21      -> Intent(this, CalcChiCuadrado::class.java)
+                                else    -> Intent(this, Formula::class.java)
                             }
                         } else {
-                            intent = Intent(this, Formula::class.java)
+                            Intent(this, Formula::class.java)
                         }
                     } else {
                         intent = when (idTema) {

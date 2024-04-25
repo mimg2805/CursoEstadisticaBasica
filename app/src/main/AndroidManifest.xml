@@ -10,6 +10,12 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:replace="android:icon">
         <activity
+            android:name=".CalcTamanioMuestra2MediasPoblaciones"
+            android:exported="false" />
+        <activity
+            android:name=".CalcTamanioMuestra2ProporcionesPoblaciones"
+            android:exported="false" />
+        <activity
             android:name=".MainMenu"
             android:exported="true">
             <intent-filter>

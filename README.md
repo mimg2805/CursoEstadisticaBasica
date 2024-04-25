@@ -13,6 +13,8 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
     - Tema 1: Tamaño de la Muestra
          - Tamaño de Muestra para estimar una Proporción Poblacional
          - Tamaño de Muestra para estimar una Media Poblacional
+         - Tamaños de Muestras para la Diferencia de 2 Proporciones Poblacionales
+         - Tamaños de Muestras para la Diferencia de 2 Medias Poblacionales
     - Tema 2: Selección Aleatoria de una Muestra
     - Tema 3: Distribución de la Muestra
 - Estadística Descriptiva
