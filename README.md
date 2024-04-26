@@ -18,14 +18,14 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
     - Tema 2: Selección Aleatoria de una Muestra
     - Tema 3: Distribución de la Muestra
 - Estadística Descriptiva
-  - Tema 1: Análisis Estadístico Descriptivo de una Variable Cuantitativa
-    - Media, Mediana, Moda
-    - Cuartil 1, 2, 3
-    - Amplitud, Desviación Media, Desviación Estándar
-  - Tema 2: Análisis Estadístico Descriptivo de una Variable Cualitativa
-  - Tema 3: Análisis Estadístico Descriptivo de 2 Variables Cuantitativas
-  - Tema 4: Análisis Estadístico Descriptivo de 2 Variables Cualitativas
-  - Tema 5: Análisis Estadístico Descriptivo de una Variable Cuantitativa y una Variable Cualitativa
+    - Tema 1: Análisis Estadístico Descriptivo de una Variable Cuantitativa
+        - Media, Mediana, Moda
+        - Cuartil 1, 2, 3
+        - Amplitud, Desviación Media, Desviación Estándar
+    - Tema 2: Análisis Estadístico Descriptivo de una Variable Cualitativa
+    - Tema 3: Análisis Estadístico Descriptivo de 2 Variables Cuantitativas
+    - Tema 4: Análisis Estadístico Descriptivo de 2 Variables Cualitativas
+    - Tema 5: Análisis Estadístico Descriptivo de una Variable Cuantitativa y una Variable Cualitativa
 - Probabilidades
     - Tema 1: Cálculo, Reglas y Teorema de Bayes
          - Probabilidad Teórica

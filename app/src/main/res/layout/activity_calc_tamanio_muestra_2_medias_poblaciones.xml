@@ -10,12 +10,12 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_s1"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/s1_equals"
+        android:text="@string/S1_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_s2"
@@ -32,7 +32,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/s1"
+        android:hint="@string/S1"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_et_s2"
@@ -42,12 +42,12 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_s2"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/s2_equals"
+        android:text="@string/S2_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_z"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/s2"
+        android:hint="@string/S2"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_et_z"
@@ -74,7 +74,7 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_z"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -110,7 +110,7 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_e"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -142,12 +142,12 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_s"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/s_equals"
+        android:text="@string/S_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_n1"
@@ -168,7 +168,7 @@
         android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:hint="@string/s"
+        android:hint="@string/S"
         android:inputType="numberDecimal"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_et_n1"
@@ -178,7 +178,7 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_n1"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -214,7 +214,7 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_2_medias_poblaciones_tv_n2"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"

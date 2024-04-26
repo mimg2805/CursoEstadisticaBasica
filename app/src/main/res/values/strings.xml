@@ -61,11 +61,15 @@
     <string name="P">P</string>
     <string name="p">p</string>
     <string name="pc">pc</string>
+    <string name="P1">P₁</string>
+    <string name="P2">P₂</string>
     <string name="p1">p₁</string>
     <string name="p2">p₂</string>
     <string name="r">r</string>
     <string name="S">S</string>
     <string name="s">s</string>
+    <string name="S1">S₁</string>
+    <string name="S2">S₂</string>
     <string name="s1">s₁</string>
     <string name="s2">s₂</string>
     <string name="u">u</string>
@@ -127,11 +131,15 @@
     <string name="P_equals">P =</string>
     <string name="p_equals">p =</string>
     <string name="pc_equals">pc =</string>
+    <string name="P1_equals">P₁ =</string>
+    <string name="P2_equals">P₂ =</string>
     <string name="p1_equals">p₁ =</string>
     <string name="p2_equals">p₂ =</string>
     <string name="r_equals">r =</string>
     <string name="S_equals">S =</string>
     <string name="s_equals">s =</string>
+    <string name="S1_equals">S₁ =</string>
+    <string name="S2_equals">S₂ =</string>
     <string name="s1_equals">s₁ =</string>
     <string name="s2_equals">s₂ =</string>
     <string name="u_equals">u =</string>

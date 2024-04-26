@@ -52,12 +52,7 @@ class Tema : AppCompatActivity() {
                 button.textSize = 14f
 
                 button.setOnClickListener {
-                    intent = when (idSubTema) {
-                        15      -> Intent(this, CalcTamanioMuestra2ProporcionesPoblaciones::class.java)
-                        16      -> Intent(this, CalcTamanioMuestra2MediasPoblaciones::class.java)
-                        else    -> Intent(this, Formula::class.java)
-                    }
-
+                    intent = Intent(this, Formula::class.java)
                     intent.putExtra("sub", true)
                     intent.putExtra("idSubTema", idSubTema)
                     intent.putExtra("title", subtema)

@@ -13,8 +13,8 @@ android {
         targetSdkVersion 34
 
         versionCode getDate()
-        versionName '1.3.5'
-        // versionName '1.3.5-' + getDate()
+        versionName '1.3.5.1'
+        // versionName '1.3.6-' + getDate()
     }
     buildTypes {
         release {
