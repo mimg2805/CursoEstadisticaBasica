@@ -11,7 +11,7 @@
         android:id="@+id/activity_calc_chi_cuadrado_tv_grados_libertad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/grados_libertad"
+        android:text="@string/degrees_freedom"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_chi_cuadrado_et_v"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,211 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Estadística Básica</string>
+    <string name="app_name">Basic Statistics</string>
+    <string name="banner_ad_id" translatable="false">ca-app-pub-2838402743054690/2181824400</string>
 
     <!-- Más Apps -->
-    <string name="mas_apps">Más Apps del Desarrollador</string>
-    <string name="seniasnicas_title">Señas Nicas</string>
-    <string name="seniasnicas_desc">Aprende y enseña lenguaje de señas nicaragüense (LSN)</string>
-    <string name="nicaroadrage_title">Nica Road Rage</string>
-    <string name="nicaroadrage_desc">Un pequeño juego infinito de carreras para Android.</string>
-    <string name="purisima_title">Purísima</string>
-    <string name="purisima_desc">Un juego móvil casual basado en las festividades nicaragüenses de La Purísima.</string>
+    <string name="mas_apps">More Apps by this Developer</string>
+    <string name="seniasnicas_title" translatable="false">Señas Nicas</string>
+    <string name="seniasnicas_desc">Learn and teach Nicaraguan Sign Language (NSL)\n(App in Spanish)</string>
+    <string name="nicaroadrage_title" translatable="false">Nica Road Rage</string>
+    <string name="nicaroadrage_desc">A small infinite racing game for Android\n(App in Spanish)</string>
+    <string name="purisima_title" translatable="false">Purísima</string>
+    <string name="purisima_desc">A casual mobile game based on the Nicaraguan festivies of La Purísima.\n(App in Spanish)</string>
 
-    <string name="list">Lista</string>
-    <string name="add_to_list">Introduce datos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
-    <string name="list_error_empty_input">Por favor, escriba algo en la caja de texto</string>
-    <string name="list_error_empty_list">La lista no puede estar vacía</string>
-    <string name="list_error_empty_lists">Las listas no pueden estar vacías</string>
-    <string name="list_error_not_match">Las listas deben tener el mismo número de datos</string>
-    <string name="list_error_not_match_unique">Las listas deben tener el mismo número de datos únicos</string>
-    <string name="list_error_2_unique">Las listas deben tener al menos 2 datos únicos</string>
+    <string name="list">List</string>
+    <string name="add_to_list">Type data to add to the list\nPress Enter on the keyboard to add</string>
+    <string name="list_error_empty_input">Please, write something on the text input</string>
+    <string name="list_error_empty_list">The list cannot be empty</string>
+    <string name="list_error_empty_lists">The lists cannot both be empty</string>
+    <string name="list_error_not_match">The lists must have the same number of variables</string>
+    <string name="list_error_not_match_unique">The lists must have the same number of unique variables</string>
+    <string name="list_error_2_unique">The lists must have at least 2 unique variables</string>
 
-    <string name="add">Añadir</string>
-    <string name="calc">Calcular</string>
-    <string name="clear">Limpiar</string>
-    <string name="generate">Generar</string>
-    <string name="repeat">Repetir</string>
-    <string name="variable_x">Variable X</string>
-    <string name="variable_x_cualitativa">Variable X (Cualitativa)</string>
-    <string name="variable_y">Variable Y</string>
-    <string name="variable_y_cuantitativa">Variable Y (Cuantitativa)</string>
-    <string name="delete_all">Borrar todo</string>
-    <string name="delete_last">Borrar último</string>
+    <string name="add">Add</string>
+    <string name="calc">Calculate</string>
+    <string name="clear">Clear</string>
+    <string name="generate">Generate</string>
+    <string name="generate_save">Generate and Save</string>
+    <string name="repeat">Repeat</string>
+    <string name="var_x">Variable X</string>
+    <string name="var_x_qualitative">Variable X (Qualitative)</string>
+    <string name="var_y">Variable Y</string>
+    <string name="var_y_quantitative">Variable Y (Quantitative)</string>
+    <string name="delete_all">Delete all</string>
+    <string name="delete_last">Delete last</string>
 
-    <string name="invalid_values">Valores inválidos</string>
-    <string name="req_n_30">n debe ser mayor que 30</string>
-    <string name="req_n1_n2_30">n1 y n2 deben ser mayores que 30</string>
-    <string name="req_n_p_5">(n * p) y (n * (1 - p)) deben ser mayores que 5</string>
-    <string name="req_n1_p1_5">(n1 * p1) y (n1 * (1 - p1)) deben ser mayores que 5</string>
-    <string name="req_n2_p2_5">(n2 * p2) y (n2 * (1 - p2)) deben ser mayores que 5</string>
-    <string name="req_n_pi_5">(n * π) y (n * (1 - π)) deben ser mayores que 5</string>
+    <string name="invalid_values">Invalid values</string>
+    <string name="req_n_30">"n must be greater than 30 "</string>
+    <string name="req_n1_n2_30">n1 and n2 must be greater than 30</string>
+    <string name="req_n_p_5">(n * p) and (n * (1 - p)) must be greater than 5</string>
+    <string name="req_n1_p1_5">(n1 * p1) and (n1 * (1 - p1)) must be greater than 5</string>
+    <string name="req_n2_p2_5">(n2 * p2) and (n2 * (1 - p2)) must be greater than 5</string>
+    <string name="req_n_pi_5">(n * π) and (n * (1 - π)) must be greater than 5</string>
 
-    <string name="copy">Copiar</string>
-    <string name="copied">¡Copiado!</string>
+    <string name="copy">Copy</string>
+    <string name="copied">¡Copied!</string>
 
-    <string name="e_val">2.71828</string>
-    <string name="Z_val">1.96</string>
+    <string name="degrees_freedom">Degrees of freedom</string>
+    <string name="degrees_freedom_numerator">Degrees of freedom of numerator</string>
+    <string name="degrees_freedom_denominator">Degrees of freedom of denominator</string>
+    <string name="mean">Mean</string>
+    <string name="median">Median</string>
+    <string name="mode">Mode</string>
+    <string name="quartile_1">1st Quartile</string>
+    <string name="quartile_2">2nd Quartile</string>
+    <string name="quartile_3">3rd Quartile</string>
+    <string name="amplitude">Amplitude</string>
+    <string name="mean_deviation">Mean Deviation</string>
+    <string name="standard_deviation">Standard Deviation</string>
 
-    <string name="a">a</string>
-    <string name="b">b</string>
-    <string name="d1">d₁</string>
-    <string name="d2">d₂</string>
-    <string name="E">E</string>
-    <string name="e">e</string>
-    <string name="Fn">Fₙ</string>
-    <string name="M">M</string>
-    <string name="N">N</string>
-    <string name="n">n</string>
-    <string name="n1">n₁</string>
-    <string name="n2">n₂</string>
-    <string name="Nn">Nₙ</string>
-    <string name="P">P</string>
-    <string name="p">p</string>
-    <string name="pc">pc</string>
-    <string name="P1">P₁</string>
-    <string name="P2">P₂</string>
-    <string name="p1">p₁</string>
-    <string name="p2">p₂</string>
-    <string name="r">r</string>
-    <string name="S">S</string>
-    <string name="s">s</string>
-    <string name="S1">S₁</string>
-    <string name="S2">S₂</string>
-    <string name="s1">s₁</string>
-    <string name="s2">s₂</string>
-    <string name="u">u</string>
-    <string name="v">v</string>
-    <string name="x">x</string>
-    <string name="xbar">x̄</string>
-    <string name="xbar1">x̄₁</string>
-    <string name="xbar2">x̄₂</string>
-    <string name="y_aps">y\'</string>
-    <string name="Z">Z</string>
-    <string name="IC">IC</string>
+    <string name="e_val" translatable="false">2.71828</string>
+    <string name="Z_val" translatable="false">1.96</string>
 
-    <string name="grados_libertad">Grados de libertad</string>
-    <string name="grados_libertad_numerador">Grados de libertad del numerador</string>
-    <string name="grados_libertad_denominador">Grados de libertad del denominador</string>
-    <string name="media">Media</string>
-    <string name="mediana">Mediana</string>
-    <string name="moda">Moda</string>
-    <string name="cuartil1">Cuartil 1</string>
-    <string name="cuartil2">Cuartil 2</string>
-    <string name="cuartil3">Cuartil 3</string>
-    <string name="amplitud">Amplitud</string>
-    <string name="desviacion_media">Desviación Media</string>
-    <string name="desviacion_estandar">Desviación Estándar</string>
+    <string name="a" translatable="false">a</string>
+    <string name="b" translatable="false">b</string>
+    <string name="d1" translatable="false">d₁</string>
+    <string name="d2" translatable="false">d₂</string>
+    <string name="E" translatable="false">E</string>
+    <string name="e" translatable="false">e</string>
+    <string name="Fn" translatable="false">Fₙ</string>
+    <string name="M" translatable="false">M</string>
+    <string name="N" translatable="false">N</string>
+    <string name="n" translatable="false">n</string>
+    <string name="n1" translatable="false">n₁</string>
+    <string name="n2" translatable="false">n₂</string>
+    <string name="Nn" translatable="false">Nₙ</string>
+    <string name="P" translatable="false">P</string>
+    <string name="p" translatable="false">p</string>
+    <string name="pc" translatable="false">pc</string>
+    <string name="P1" translatable="false">P₁</string>
+    <string name="P2" translatable="false">P₂</string>
+    <string name="p1" translatable="false">p₁</string>
+    <string name="p2" translatable="false">p₂</string>
+    <string name="r" translatable="false">r</string>
+    <string name="S" translatable="false">S</string>
+    <string name="s" translatable="false">s</string>
+    <string name="S1" translatable="false">S₁</string>
+    <string name="S2" translatable="false">S₂</string>
+    <string name="s1" translatable="false">s₁</string>
+    <string name="s2" translatable="false">s₂</string>
+    <string name="u" translatable="false">u</string>
+    <string name="v" translatable="false">v</string>
+    <string name="x" translatable="false">x</string>
+    <string name="xbar" translatable="false">x̄</string>
+    <string name="xbar1" translatable="false">x̄₁</string>
+    <string name="xbar2" translatable="false">x̄₂</string>
+    <string name="y_aps" translatable="false">y\'</string>
+    <string name="Z" translatable="false">Z</string>
+    <string name="IC" translatable="false">IC</string>
 
-    <string name="pi">π</string>
-    <string name="lambda">λ</string>
-    <string name="mi">μ</string>
-    <string name="sigma">σ</string>
+    <string name="pi" translatable="false">π</string>
+    <string name="lambda" translatable="false">λ</string>
+    <string name="mi" translatable="false">μ</string>
+    <string name="sigma" translatable="false">σ</string>
 
-    <string name="P_A">P(A)</string>
-    <string name="P_B">P(B)</string>
+    <string name="P_A" translatable="false">P(A)</string>
+    <string name="P_B" translatable="false">P(B)</string>
 
-    <string name="RFA">#RFA</string>
-    <string name="TRE">#TRE</string>
-    <string name="TRO">#TRO</string>
+    <string name="RFA" translatable="false">#RFA</string>
+    <string name="TRE" translatable="false">#TRE</string>
+    <string name="TRO" translatable="false">#TRO</string>
 
-    <string name="P_Ac">P(Ac)</string>
+    <string name="P_Ac" translatable="false">P(Ac)</string>
 
-    <string name="P_A_and_B">P(A y B)</string>
-    <string name="P_A_or_B">P(A ó B)</string>
-    <string name="P_A_over_B">P(A / B)</string>
-    <string name="P_B_over_A">P(B / A)</string>
-    <string name="P_X_equals_x">P(X = x)</string>
+    <string name="P_A_and_B" translatable="false">P(A &amp;&amp; B)</string>
+    <string name="P_A_or_B" translatable="false">P(A || B)</string>
+    <string name="P_A_over_B" translatable="false">P(A / B)</string>
+    <string name="P_B_over_A" translatable="false">P(B / A)</string>
+    <string name="P_X_equals_x" translatable="false">P(X = x)</string>
 
-    <string name="a_equals">a =</string>
-    <string name="b_equals">b =</string>
-    <string name="d1_equals">d₁ =</string>
-    <string name="d2_equals">d₂ =</string>
-    <string name="E_equals">E =</string>
-    <string name="e_equals">e =</string>
-    <string name="Fn_equals">Fₙ =</string>
-    <string name="M_equals">M =</string>
-    <string name="N_equals">N =</string>
-    <string name="n_equals">n =</string>
-    <string name="n1_equals">n₁ =</string>
-    <string name="n2_equals">n₂ =</string>
-    <string name="Nn_equals">Nₙ =</string>
-    <string name="P_equals">P =</string>
-    <string name="p_equals">p =</string>
-    <string name="pc_equals">pc =</string>
-    <string name="P1_equals">P₁ =</string>
-    <string name="P2_equals">P₂ =</string>
-    <string name="p1_equals">p₁ =</string>
-    <string name="p2_equals">p₂ =</string>
-    <string name="r_equals">r =</string>
-    <string name="S_equals">S =</string>
-    <string name="s_equals">s =</string>
-    <string name="S1_equals">S₁ =</string>
-    <string name="S2_equals">S₂ =</string>
-    <string name="s1_equals">s₁ =</string>
-    <string name="s2_equals">s₂ =</string>
-    <string name="u_equals">u =</string>
-    <string name="v_equals">v =</string>
-    <string name="x_equals">x =</string>
-    <string name="xbar_equals">x̄ =</string>
-    <string name="xbar1_equals">x̄₁ =</string>
-    <string name="xbar2_equals">x̄₂ =</string>
-    <string name="y_aps_equals">y\' =</string>
-    <string name="Z_equals">Z =</string>
-    <string name="IC_equals">IC =</string>
-    <string name="media_equals">Media =</string>
+    <string name="a_equals" translatable="false">a =</string>
+    <string name="b_equals" translatable="false">b =</string>
+    <string name="d1_equals" translatable="false">d₁ =</string>
+    <string name="d2_equals" translatable="false">d₂ =</string>
+    <string name="E_equals" translatable="false">E =</string>
+    <string name="e_equals" translatable="false">e =</string>
+    <string name="Fn_equals" translatable="false">Fₙ =</string>
+    <string name="M_equals" translatable="false">M =</string>
+    <string name="N_equals" translatable="false">N =</string>
+    <string name="n_equals" translatable="false">n =</string>
+    <string name="n1_equals" translatable="false">n₁ =</string>
+    <string name="n2_equals" translatable="false">n₂ =</string>
+    <string name="Nn_equals" translatable="false">Nₙ =</string>
+    <string name="P_equals" translatable="false">P =</string>
+    <string name="p_equals" translatable="false">p =</string>
+    <string name="pc_equals" translatable="false">pc =</string>
+    <string name="P1_equals" translatable="false">P₁ =</string>
+    <string name="P2_equals" translatable="false">P₂ =</string>
+    <string name="p1_equals" translatable="false">p₁ =</string>
+    <string name="p2_equals" translatable="false">p₂ =</string>
+    <string name="r_equals" translatable="false">r =</string>
+    <string name="S_equals" translatable="false">S =</string>
+    <string name="s_equals" translatable="false">s =</string>
+    <string name="S1_equals" translatable="false">S₁ =</string>
+    <string name="S2_equals" translatable="false">S₂ =</string>
+    <string name="s1_equals" translatable="false">s₁ =</string>
+    <string name="s2_equals" translatable="false">s₂ =</string>
+    <string name="u_equals" translatable="false">u =</string>
+    <string name="v_equals" translatable="false">v =</string>
+    <string name="x_equals" translatable="false">x =</string>
+    <string name="xbar_equals" translatable="false">x̄ =</string>
+    <string name="xbar1_equals" translatable="false">x̄₁ =</string>
+    <string name="xbar2_equals" translatable="false">x̄₂ =</string>
+    <string name="y_aps_equals" translatable="false">y\' =</string>
+    <string name="Z_equals" translatable="false">Z =</string>
+    <string name="IC_equals" translatable="false">IC =</string>
+    <string name="mean_equals">Mean =</string>
 
-    <string name="pi_equals">π =</string>
-    <string name="lambda_equals">λ =</string>
-    <string name="mi_equals">μ =</string>
-    <string name="sigma_equals">σ =</string>
+    <string name="random_nums">How many numbers do you want to generate?</string>
+    <string name="random_generated">Generated numbers</string>
+    <string name="min_num">Min Number</string>
+    <string name="max_num">Max Number</string>
+    <string name="random_max_error">ERROR: The number of generated numbers has to be lower than the max number.</string>
 
-    <string name="P_A_equals">P(A) =</string>
-    <string name="P_B_equals">P(B) =</string>
+    <string name="population_size">Population Size (N)</string>
+    <string name="sample_size">Sample Size (n)</string>
+    <string name="selection_interval">Selection Interval (SI)</string>
+    <string name="random_start">Random Start (RS)</string>
+    <string name="selected_sample">Selected sample</string>
+    <string name="stratum">Stratum</string>
+    <string name="stratum_num">Stratum #%1$s</string>
+    <string name="stratum_num_saved">Stratum #%1$s saved</string>
+    <string name="conglomerates_total_num">Total number of conglomerates (M)</string>
+    <string name="conglomerates_select_num"># of conglomerates to select (m)</string>
 
-    <string name="RFA_equals">#RFA =</string>
-    <string name="TRE_equals">#TRE =</string>
-    <string name="TRO_equals">#TRO =</string>
+    <string name="pi_equals" translatable="false">π =</string>
+    <string name="lambda_equals" translatable="false">λ =</string>
+    <string name="mi_equals" translatable="false">μ =</string>
+    <string name="sigma_equals" translatable="false">σ =</string>
 
-    <string name="P_Ac_equals">P(Ac) =</string>
+    <string name="P_A_equals" translatable="false">P(A) =</string>
+    <string name="P_B_equals" translatable="false">P(B) =</string>
 
-    <string name="P_A_and_B_equals">P(A y B) =</string>
-    <string name="P_A_or_B_equals">P(A ó B) =</string>
-    <string name="P_A_over_B_equals">P(A / B) =</string>
-    <string name="P_B_over_A_equals">P(B / A) =</string>
-    <string name="P_X_equals_x_equals">P(X = x) =</string>
+    <string name="RFA_equals" translatable="false">#RFA =</string>
+    <string name="TRE_equals" translatable="false">#TRE =</string>
+    <string name="TRO_equals" translatable="false">#TRO =</string>
 
-    <string name="random_nums">¿Cuántos números desea generar?</string>
-    <string name="random_generated">Números generados</string>
-    <string name="min_num">Número mínimo</string>
-    <string name="max_num">Número máximo</string>
-    <string name="random_max_error">ERROR: El número de elementos generados debe ser menor que el número máximo.</string>
+    <string name="P_Ac_equals" translatable="false">P(Ac) =</string>
 
-    <string-array name="probs_2">
+    <string name="P_A_and_B_equals" translatable="false">P(A &amp;&amp; B) =</string>
+    <string name="P_A_or_B_equals" translatable="false">P(A || B) =</string>
+    <string name="P_A_over_B_equals" translatable="false">P(A / B) =</string>
+    <string name="P_B_over_A_equals" translatable="false">P(B / A) =</string>
+    <string name="P_X_equals_x_equals" translatable="false">P(X = x) =</string>
+
+    <string-array name="probs_2" translatable="false">
         <item>P(X > x) =</item>
         <item>P(X &lt; x) =</item>
     </string-array>
 
-    <string-array name="probs_2_inv">
+    <string-array name="probs_2_inv" translatable="false">
         <item>P(X &lt; x) =</item>
         <item>P(X > x) =</item>
     </string-array>
 
-    <string-array name="probs_3">
+    <string-array name="probs_3" translatable="false">
         <item>P(X = x) =</item>
         <item>P(X > x) =</item>
         <item>P(X &lt; x) =</item>
     </string-array>
 
-    <string-array name="regla_adicion">
-        <item>Eventos Mutuamente Excluyentes</item>
-        <item>Eventos No Mutuamente Excluyentes</item>
+    <string-array name="addition_rule">
+        <item>Mutually Exclusive Events</item>
+        <item>Non Mutually Exclusive Events</item>
     </string-array>
 
-    <string-array name="regla_multiplicacion">
-        <item>Eventos Independientes</item>
-        <item>Eventos No Independientes</item>
+    <string-array name="multiplication_rule">
+        <item>Independent Events</item>
+        <item>Non Independent Events</item>
     </string-array>
 
-    <string-array name="rng_range">
+    <string-array name="rng_range" translatable="false">
         <item>1</item>
         <item>2</item>
         <item>3</item>

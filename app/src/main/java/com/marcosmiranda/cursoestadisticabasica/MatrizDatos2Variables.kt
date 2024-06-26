@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MatrizDatos2Variables : AppCompatActivity() {
 
-    private var idTema = 0
-    private var subtemaTitle = ""
+    private var temaId = 0
+    private var subtemaNombre = ""
 
     private var valuesXStr = ""
     private var valuesYStr = ""
@@ -41,27 +41,27 @@ class MatrizDatos2Variables : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matriz_datos_2_variables)
 
-        idTema = intent.getIntExtra("idTema", 0)
-        subtemaTitle = intent.getStringExtra("title") ?: ""
+        temaId = intent.getIntExtra("temaId", 0)
+        subtemaNombre = intent.getStringExtra("subtemaNombre") ?: ""
 
         tvVariableX = findViewById(R.id.activity_matriz_datos_2_variables_tv_variable_x)
         tvVariableY = findViewById(R.id.activity_matriz_datos_2_variables_tv_variable_y)
         etAddToListX = findViewById(R.id.activity_matriz_datos_2_variables_et_add_to_list_x)
         etAddToListY = findViewById(R.id.activity_matriz_datos_2_variables_et_add_to_list_y)
-        when (idTema) {
-            11 -> {
+        when (temaId) {
+            12 -> {
                 etAddToListX.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
                 etAddToListX.keyListener = DigitsKeyListener.getInstance("1234567890.")
                 etAddToListY.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
                 etAddToListY.keyListener = DigitsKeyListener.getInstance("1234567890.")
             }
-            12 -> {
+            13 -> {
                 etAddToListX.inputType = InputType.TYPE_CLASS_TEXT
                 etAddToListY.inputType = InputType.TYPE_CLASS_TEXT
             }
-            13 -> {
-                tvVariableX.text = getString(R.string.variable_x_cualitativa)
-                tvVariableY.text = getString(R.string.variable_y_cuantitativa)
+            14 -> {
+                tvVariableX.text = getString(R.string.var_x_qualitative)
+                tvVariableY.text = getString(R.string.var_y_quantitative)
                 etAddToListX.inputType = InputType.TYPE_CLASS_TEXT
                 etAddToListY.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
                 etAddToListY.keyListener = DigitsKeyListener.getInstance("1234567890.")
@@ -119,15 +119,15 @@ class MatrizDatos2Variables : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            intent = when (idTema) {
+            intent = when (temaId) {
                 11 -> Intent(this, CalcDescriptiva2VariablesCuantitativas::class.java)
                 12 -> Intent(this, CalcDescriptiva2VariablesCualitativas::class.java)
                 13 -> Intent(this, CalcDescriptiva2VariablesMixtas::class.java)
                 else -> Intent()
             }
 
-            intent.putExtra("idTema", idTema)
-            intent.putExtra("title", subtemaTitle)
+            intent.putExtra("temaId", temaId)
+            intent.putExtra("subtemaNombre", subtemaNombre)
             intent.putExtra("valuesX", valuesXStr)
             intent.putExtra("valuesY", valuesYStr)
             this.startActivity(intent)

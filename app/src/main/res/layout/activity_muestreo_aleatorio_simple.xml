@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".MuestreoAleatorioSimple">
+
+    <LinearLayout
+        android:id="@+id/activity_muestreo_aleatorio_simple_ll_population_size"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_simple_ll_sample_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/activity_muestreo_aleatorio_simple_tv_population_size"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:labelFor="@id/activity_muestreo_aleatorio_simple_et_population_size"
+            android:text="@string/population_size"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/activity_muestreo_aleatorio_simple_et_population_size"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_edit_text"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_muestreo_aleatorio_simple_ll_sample_size"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_simple_nsv_random_nums"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_muestreo_aleatorio_simple_ll_population_size">
+
+        <TextView
+            android:id="@+id/activity_muestreo_aleatorio_simple_tv_sample_size"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:labelFor="@id/activity_muestreo_aleatorio_simple_et_sample_size"
+            android:text="@string/sample_size"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/activity_muestreo_aleatorio_simple_et_sample_size"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_edit_text"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/activity_muestreo_aleatorio_simple_nsv_random_nums"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="32dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_simple_ll_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_muestreo_aleatorio_simple_ll_sample_size">
+
+        <TextView
+            android:id="@+id/activity_muestreo_aleatorio_simple_tv_random_nums"
+            android:background="@drawable/black_border"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="@string/selected_sample"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:textSize="18sp" />
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/activity_muestreo_aleatorio_simple_ll_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_muestreo_aleatorio_simple_nsv_random_nums">
+
+        <Button
+            android:id="@+id/activity_muestreo_aleatorio_simple_btn_generate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/generate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/activity_muestreo_aleatorio_simple_btn_clear"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/activity_muestreo_aleatorio_simple_btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="@string/clear"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/activity_muestreo_aleatorio_simple_btn_generate" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

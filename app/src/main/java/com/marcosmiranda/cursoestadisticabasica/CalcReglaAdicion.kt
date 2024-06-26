@@ -50,7 +50,7 @@ class CalcReglaAdicion : AppCompatActivity() {
         spnExc = findViewById(R.id.activity_calc_regla_adicion_spn_exc)
         adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.regla_adicion, R.layout.spinner_item
+            R.array.addition_rule, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnExc.adapter = adapter

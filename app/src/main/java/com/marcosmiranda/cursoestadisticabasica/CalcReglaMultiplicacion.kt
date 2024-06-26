@@ -50,7 +50,7 @@ class CalcReglaMultiplicacion : AppCompatActivity() {
         spnExc = findViewById(R.id.activity_calc_regla_multiplicacion_spn_exc)
         adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.regla_multiplicacion, R.layout.spinner_item
+            R.array.multiplication_rule, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnExc.adapter = adapter

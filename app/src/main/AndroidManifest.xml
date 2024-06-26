@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:installLocation="preferExternal"
@@ -14,12 +16,6 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-2838402743054690~6699653912"/>
 
-        <activity
-            android:name=".CalcTamanioMuestra2MediasPoblaciones"
-            android:exported="false" />
-        <activity
-            android:name=".CalcTamanioMuestra2ProporcionesPoblaciones"
-            android:exported="false" />
         <activity
             android:name=".MainMenu"
             android:exported="true">
@@ -39,6 +35,13 @@
         </activity>
         <activity
             android:name=".Tema"
+            android:parentActivityName=".MainMenu">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu" />
+        </activity>
+        <activity
+            android:name=".Subtema"
             android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -78,13 +81,12 @@
         <activity android:name=".CalcDescriptiva2VariablesCuantitativas" />
         <activity android:name=".CalcDescriptiva2VariablesCualitativas" />
         <activity android:name=".CalcDescriptiva2VariablesMixtas" />
-        <activity
-            android:name=".MasApps"
-            android:parentActivityName=".MainMenu">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.marcosmiranda.cursoestadisticabasica.MasApps" />
-        </activity>
+        <activity android:name=".CalcTamanioMuestra2ProporcionesPoblaciones" />
+        <activity android:name=".CalcTamanioMuestra2MediasPoblaciones" />
+        <activity android:name=".MuestreoAleatorioSimple" />
+        <activity android:name=".MuestreoAleatorioSistematico" />
+        <activity android:name=".MuestreoAleatorioEstratificado" />
+        <activity android:name=".MuestreoAleatorioConglomerados" />
     </application>
 
 </manifest>

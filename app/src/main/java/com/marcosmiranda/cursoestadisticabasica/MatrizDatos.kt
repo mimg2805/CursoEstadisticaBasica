@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.text.method.DigitsKeyListener
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -12,13 +11,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import java.util.Collections
 
 class MatrizDatos : AppCompatActivity() {
 
-    private var idTema = 0
-    private var subtemaTitle = ""
+    private var temaId = 0
+    private var subtemaNombre = ""
 
     private var valuesStr = ""
     private var valuesList = mutableListOf<String>()
@@ -35,14 +33,14 @@ class MatrizDatos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matriz_datos)
 
-        idTema = intent.getIntExtra("idTema", 0)
-        subtemaTitle = intent.getStringExtra("title") ?: ""
+        temaId = intent.getIntExtra("temaId", 0)
+        subtemaNombre = intent.getStringExtra("subtemaNombre") ?: ""
 
         etAddToList = findViewById(R.id.activity_matriz_datos_et_add_to_list)
-        if (idTema == 9) {
+        if (temaId == 9) {
             etAddToList.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
             etAddToList.keyListener = DigitsKeyListener.getInstance("1234567890.")
-        } else if (idTema == 10) {
+        } else if (temaId == 10) {
             etAddToList.inputType = InputType.TYPE_CLASS_TEXT
         }
 
@@ -71,14 +69,14 @@ class MatrizDatos : AppCompatActivity() {
             }
 
             intent = Intent()
-            if (idTema == 9) {
+            if (temaId == 10) {
                 intent = Intent(this, CalcDescriptivaVariableCuantitativa::class.java)
-            } else if (idTema == 10) {
+            } else if (temaId == 11) {
                 intent = Intent(this, CalcDescriptivaVariableCualitativa::class.java)
             }
 
-            intent.putExtra("idTema", idTema)
-            intent.putExtra("title", subtemaTitle)
+            intent.putExtra("temaId", temaId)
+            intent.putExtra("subtemaNombre", subtemaNombre)
             intent.putExtra("values", valuesStr)
             this.startActivity(intent)
         }

@@ -1,12 +1,24 @@
 package com.marcosmiranda.cursoestadisticabasica
 
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 
 class MainMenu : AppCompatActivity() {
@@ -20,6 +32,9 @@ class MainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+
+        // Language
+        val lang = Resources.getSystem().configuration.locales.get(0).language
 
         // Ads
         startAds()
@@ -50,18 +65,22 @@ class MainMenu : AppCompatActivity() {
         var index: Int
         if (unidades.count > 0) {
             do {
-                index = unidades.getColumnIndexOrThrow("idUnidad")
-                val idUnidad = unidades.getInt(index)
-                index = unidades.getColumnIndexOrThrow("titulo")
-                val titulo = unidades.getString(index)
-                index = unidades.getColumnIndexOrThrow("show")
-                val show = unidades.getInt(index) == 1
+                index = unidades.getColumnIndexOrThrow("id")
+                val unidadId = unidades.getInt(index)
+                index = unidades.getColumnIndexOrThrow("nombre")
+                val unidadNombreEs = unidades.getString(index)
+                index = unidades.getColumnIndexOrThrow("nombre_en")
+                val unidadNombreEn = unidades.getString(index)
+                index = unidades.getColumnIndexOrThrow("mostrar")
 
-                // Log.e("idUnidad", idUnidad.toString())
-                if (!show) continue
+                val unidadMostrar = unidades.getInt(index) == 1
+                if (!unidadMostrar) continue
+
+                val unidadNombre = if (lang == "en") unidadNombreEn
+                else unidadNombreEs
 
                 val unitBtn = Button(this)
-                unitBtn.text = titulo//.toUpperCase()
+                unitBtn.text = unidadNombre
 
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -76,8 +95,8 @@ class MainMenu : AppCompatActivity() {
 
                 unitBtn.setOnClickListener {
                     intent = Intent(this, Unidad::class.java)
-                    intent.putExtra("idUnidad", idUnidad)
-                    intent.putExtra("title", titulo)
+                    intent.putExtra("unidadId", unidadId)
+                    intent.putExtra("unidadNombre", unidadNombre)
                     this.startActivity(intent)
                 }
                 layout.addView(unitBtn)
@@ -103,7 +122,7 @@ class MainMenu : AppCompatActivity() {
         masAppsBtn.textSize = 14f
 
         masAppsBtn.setOnClickListener {
-            intent = Intent(this, MasApps::class.java)
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Marcos+I.+Miranda+G."))
             this.startActivity(intent)
         }
         layout.addView(masAppsBtn)
@@ -129,6 +148,8 @@ class MainMenu : AppCompatActivity() {
         // Initialize the Google Mobile Ads SDK on a background thread.
         val backgroundScope = CoroutineScope(Dispatchers.IO)
         backgroundScope.launch {
+            val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf("BE89C404157C24CCDB17A860A9B5B878")).build()
+            MobileAds.setRequestConfiguration(conf)
             MobileAds.initialize(this@MainMenu)
         }
 

@@ -1,13 +1,24 @@
 package com.marcosmiranda.cursoestadisticabasica
 
 import android.content.Intent
+import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class Unidad : AppCompatActivity() {
 
@@ -21,80 +32,84 @@ class Unidad : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_unidad)
 
+        // Language
+        val lang = Resources.getSystem().configuration.locales.get(0).language
+
         // Ads
         startAds()
 
         db = DBHelper(this, "CursoEstadisticaBasica.db", 1)
-        val idUnidad = intent.getIntExtra("idUnidad", 0)
-        val title = intent.getStringExtra("title")
-        temas = db.getTemasByUnidad(idUnidad)
+        val unidadId = intent.getIntExtra("unidadId", 0)
+        val unidadNombre = intent.getStringExtra("unidadNombre")
+        temas = db.getTemasByUnidad(unidadId)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = title
+        supportActionBar?.title = unidadNombre
 
         val layout: LinearLayout = findViewById(R.id.linLayout)
         var index: Int
         if (temas.count > 0) {
             do {
-                val button = Button(this)
-                index = temas.getColumnIndexOrThrow("idTema")
-                val idTema = temas.getInt(index)
-                index = temas.getColumnIndexOrThrow("tema")
-                val tema = temas.getString(index)
+                index = temas.getColumnIndexOrThrow("id")
+                val temaId = temas.getInt(index)
+                index = temas.getColumnIndexOrThrow("nombre")
+                val temaNombreEs = temas.getString(index)
+                index = temas.getColumnIndexOrThrow("nombre_en")
+                val temaNombreEn = temas.getString(index)
                 index = temas.getColumnIndexOrThrow("html")
-                val html = temas.getString(index)
-                index = temas.getColumnIndexOrThrow("show")
-                val show = temas.getInt(index) == 1
-                button.text = tema//.toUpperCase()
-                // Log.e("idTema", idTema.toString())
+                val temaHtml = temas.getString(index)
+                index = temas.getColumnIndexOrThrow("mostrar")
 
-                if (!show) continue
+                val temaMostrar = temas.getInt(index) == 1
+                if (!temaMostrar) continue
+
+                val temaNombre = if (lang == "en") temaNombreEn
+                else temaNombreEs
+
+                val temaBtn = Button(this)
+                temaBtn.text = temaNombre
 
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
                 params.setMargins(0, 0, 0, 40)
-                button.layoutParams = params
-                // button.setBackgroundColor(ContextCompat.getColor(this, R.color.button))
-                button.setBackgroundColor(Color.WHITE)
-                button.setTextColor(Color.BLACK)
-                button.textSize = 14f
+                temaBtn.layoutParams = params
+                temaBtn.setBackgroundColor(Color.WHITE)
+                temaBtn.setTextColor(Color.BLACK)
+                temaBtn.textSize = 14f
 
-                button.setOnClickListener {
-                    val subtemas = db.getSubTemasByTema(idTema)
+                temaBtn.setOnClickListener {
+                    val subtemas = db.getSubtemasByTema(temaId)
 
                     if (subtemas.count == 0) {
-                        intent = if (html.isEmpty()) {
-                            when (idTema) {
-                                9       -> Intent(this, MatrizDatos::class.java)
-                                10      -> Intent(this, MatrizDatos::class.java)
-                                11      -> Intent(this, MatrizDatos2Variables::class.java)
-                                12      -> Intent(this, MatrizDatos2Variables::class.java)
-                                13      -> Intent(this, MatrizDatos2Variables::class.java)
-                                19      -> Intent(this, CalcTStudent::class.java)
-                                20      -> Intent(this, CalcFFisher::class.java)
-                                21      -> Intent(this, CalcChiCuadrado::class.java)
-                                else    -> Intent(this, Formula::class.java)
+                        intent = if (temaHtml.isEmpty()) {
+                            when (temaId) {
+                                10, 11      -> Intent(this, MatrizDatos::class.java)
+                                12, 13, 14  -> Intent(this, MatrizDatos2Variables::class.java)
+                                20          -> Intent(this, CalcTStudent::class.java)
+                                21          -> Intent(this, CalcFFisher::class.java)
+                                22          -> Intent(this, CalcChiCuadrado::class.java)
+                                else        -> Intent(this, Formula::class.java)
                             }
                         } else {
                             Intent(this, Formula::class.java)
                         }
                     } else {
-                        intent = when (idTema) {
+                        intent = when (temaId) {
                             9, 10   -> Intent(this, MatrizDatos::class.java)
                             11, 12  -> Intent(this, MatrizDatos2Variables::class.java)
                             else    -> Intent(this, Tema::class.java)
                         }
                     }
 
-                    intent.putExtra("idTema", idTema)
-                    intent.putExtra("title", tema)
+                    intent.putExtra("temaId", temaId)
+                    intent.putExtra("temaNombre", temaNombre)
                     this.startActivity(intent)
                 }
 
-                layout.addView(button)
+                layout.addView(temaBtn)
             } while (temas.moveToNext())
         }
 
@@ -122,6 +137,8 @@ class Unidad : AppCompatActivity() {
         // Initialize the Google Mobile Ads SDK on a background thread.
         val backgroundScope = CoroutineScope(Dispatchers.IO)
         backgroundScope.launch {
+            val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf("BE89C404157C24CCDB17A860A9B5B878")).build()
+            MobileAds.setRequestConfiguration(conf)
             MobileAds.initialize(this@Unidad)
         }
 

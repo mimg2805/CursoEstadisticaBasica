@@ -52,14 +52,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/media_equals"
+        android:text="@string/mean_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_media_tv_E"
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_tamanio_muestra_media_et_media"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_media_tv_S"
-        tools:text="@string/media_equals" />
+        tools:text="@string/mean_equals" />
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_media_tv_E"
@@ -168,7 +168,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/round_edit_text"
         android:ems="10"
-        android:hint="@string/media"
+        android:hint="@string/mean"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:singleLine="true"

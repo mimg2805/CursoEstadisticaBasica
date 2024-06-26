@@ -18,7 +18,7 @@ class DBHelper(
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("idUnidad", "titulo", "show")
+        val sqlSelect = arrayOf("id", "nombre", "nombre_en", "mostrar")
         val sqlTable = "unidades"
 
         qb.tables = sqlTable
@@ -27,54 +27,80 @@ class DBHelper(
         return c
     }
 
-    fun getTemasByUnidad(idUnidad : Int) : Cursor {
+    fun getTemasByUnidad(unidad : Int) : Cursor {
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("idTema", "tema", "html", "show")
+        val sqlSelect = arrayOf("id", "nombre", "nombre_en", "html", "mostrar")
         val sqlTable = "temas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "idUnidad = $idUnidad", null, null, null, null)
+        val c : Cursor = qb.query(db, sqlSelect, "unidad = $unidad", null, null, null, null)
         c.moveToFirst()
         return c
     }
 
-    fun getSubTemasByTema(idTema : Int) : Cursor {
+    fun getSubtemasByTema(tema : Int) : Cursor {
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("idSubTema", "subtema", "show")
+        val sqlSelect = arrayOf("id", "nombre", "nombre_en", "mostrar")
         val sqlTable = "subtemas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "idTema = $idTema", null, null, null, null)
+        val c : Cursor = qb.query(db, sqlSelect, "tema = $tema", null, null, null, null)
         c.moveToFirst()
         return c
     }
 
-    fun getTxtOfTema(idTema : Int) : Cursor {
+    fun getSubsubtemasBySubtema(subtema : Int) : Cursor {
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("html")
+        val sqlSelect = arrayOf("id", "nombre", "nombre_en", "mostrar")
+        val sqlTable = "subsubtemas"
+
+        qb.tables = sqlTable
+        val c : Cursor = qb.query(db, sqlSelect, "subtema = $subtema", null, null, null, null)
+        c.moveToFirst()
+        return c
+    }
+
+    fun getHtmlOfTema(tema : Int) : Cursor {
+        val db = readableDatabase
+        val qb = SQLiteQueryBuilder()
+
+        val sqlSelect = arrayOf("html", "html_en")
         val sqlTable = "temas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "idTema = $idTema", null, null, null, null)
+        val c : Cursor = qb.query(db, sqlSelect, "id = $tema", null, null, null, null)
         c.moveToFirst()
         return c
     }
 
-    fun getTxtOfSubTema(idSubTema : Int) : Cursor {
+    fun getHtmlOfSubtema(subtema : Int) : Cursor {
         val db = readableDatabase
         val qb = SQLiteQueryBuilder()
 
-        val sqlSelect = arrayOf("html")
+        val sqlSelect = arrayOf("html", "html_en")
         val sqlTable = "subtemas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "idSubTema = $idSubTema", null, null, null, null)
+        val c : Cursor = qb.query(db, sqlSelect, "id = $subtema", null, null, null, null)
+        c.moveToFirst()
+        return c
+    }
+
+    fun getHtmlOfSubsubtema(subsubtema : Int) : Cursor {
+        val db = readableDatabase
+        val qb = SQLiteQueryBuilder()
+
+        val sqlSelect = arrayOf("html", "html_en")
+        val sqlTable = "subsubtemas"
+
+        qb.tables = sqlTable
+        val c : Cursor = qb.query(db, sqlSelect, "id = $subsubtema", null, null, null, null)
         c.moveToFirst()
         return c
     }

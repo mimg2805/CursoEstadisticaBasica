@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Estadística Básica</string>
+
+    <!-- Más Apps -->
+    <string name="mas_apps">Más Apps del Desarrollador</string>
+    <string name="seniasnicas_desc">Aprende y enseña lenguaje de señas nicaragüense (LSN)</string>
+    <string name="nicaroadrage_desc">Un pequeño juego infinito de carreras para Android.</string>
+    <string name="purisima_desc">Un juego móvil casual basado en las festividades nicaragüenses de La Purísima.</string>
+
+    <!-- Listas -->
+    <string name="list">Lista</string>
+    <string name="add_to_list">Introduce datos para añadir a la lista\nPresionar Enter en el teclado para añadir</string>
+    <string name="list_error_empty_input">Por favor, escriba algo en la caja de texto</string>
+    <string name="list_error_empty_list">La lista no puede estar vacía</string>
+    <string name="list_error_empty_lists">Las listas no pueden estar vacías</string>
+    <string name="list_error_not_match">Las listas deben tener el mismo número de variables</string>
+    <string name="list_error_not_match_unique">Las listas deben tener el mismo número de variables únicas</string>
+    <string name="list_error_2_unique">Las listas deben tener al menos 2 variables únicas</string>
+
+    <string name="add">Añadir</string>
+    <string name="calc">Calcular</string>
+    <string name="clear">Limpiar</string>
+    <string name="generate">Generar</string>
+    <string name="generate_save">Generar y Guardar</string>
+    <string name="repeat">Repetir</string>
+    <string name="var_x">Variable X</string>
+    <string name="var_x_qualitative">Variable X (Cualitativa)</string>
+    <string name="var_y">Variable Y</string>
+    <string name="var_y_quantitative">Variable Y (Cuantitativa)</string>
+    <string name="delete_all">Borrar todo</string>
+    <string name="delete_last">Borrar último</string>
+
+    <!-- Mensajes de error -->
+    <string name="invalid_values">Valores inválidos</string>
+    <string name="req_n_30">n debe ser mayor que 30</string>
+    <string name="req_n1_n2_30">n1 y n2 deben ser mayores que 30</string>
+    <string name="req_n_p_5">(n * p) y (n * (1 - p)) deben ser mayores que 5</string>
+    <string name="req_n1_p1_5">(n1 * p1) y (n1 * (1 - p1)) deben ser mayores que 5</string>
+    <string name="req_n2_p2_5">(n2 * p2) y (n2 * (1 - p2)) deben ser mayores que 5</string>
+    <string name="req_n_pi_5">(n * π) y (n * (1 - π)) deben ser mayores que 5</string>
+
+    <!-- Copia -->
+    <string name="copy">Copiar</string>
+    <string name="copied">¡Copiado!</string>
+
+    <string name="degrees_freedom">Grados de libertad</string>
+    <string name="degrees_freedom_numerator">Grados de libertad del numerador</string>
+    <string name="degrees_freedom_denominator">Grados de libertad del denominador</string>
+    <string name="mean">Media</string>
+    <string name="median">Mediana</string>
+    <string name="mode">Moda</string>
+    <string name="quartile_1">Cuartil 1</string>
+    <string name="quartile_2">Cuartil 2</string>
+    <string name="quartile_3">Cuartil 3</string>
+    <string name="amplitude">Amplitud</string>
+    <string name="mean_deviation">Desviación Media</string>
+    <string name="standard_deviation">Desviación Estándar</string>
+    <string name="mean_equals">Media =</string>
+
+    <string name="random_nums">¿Cuántos números desea generar?</string>
+    <string name="random_generated">Números generados</string>
+    <string name="min_num">Número mínimo</string>
+    <string name="max_num">Número máximo</string>
+    <string name="random_max_error">ERROR: El número de números generados debe ser menor que el número máximo.</string>
+
+    <string name="population_size">Tamaño de la Población (N)</string>
+    <string name="sample_size">Tamaño de la muestra (n)</string>
+    <string name="selection_interval">Intervalo de Selección (SI)</string>
+    <string name="random_start">Arranque Aleatorio (AA)</string>
+    <string name="selected_sample">Muestra seleccionada</string>
+    <string name="stratum">Estrato</string>
+    <string name="stratum_num">Estrato #%1$s</string>
+    <string name="stratum_num_saved">Estrato #%1$s guardado</string>
+    <string name="conglomerates_total_num">Número total de conglomerados (M)</string>
+    <string name="conglomerates_select_num">Número de conglomerados a seleccionar (m)</string>
+
+    <string-array name="addition_rule">
+        <item>Eventos Mutuamente Excluyentes</item>
+        <item>Eventos No Mutuamente Excluyentes</item>
+    </string-array>
+
+    <string-array name="multiplication_rule">
+        <item>Eventos Independientes</item>
+        <item>Eventos No Independientes</item>
+    </string-array>
+</resources>

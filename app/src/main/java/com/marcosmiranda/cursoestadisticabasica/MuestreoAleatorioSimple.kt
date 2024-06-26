@@ -16,15 +16,14 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
 
-class RNG : AppCompatActivity() {
+class MuestreoAleatorioSimple : AppCompatActivity() {
 
-    private var nums: Int = 0
-    private var min: Int = 0
-    private var max: Int = 0
+    private var population = 0
+    private var sample = 0
+    private val min = 1
 
-    private lateinit var etNums: EditText
-    private lateinit var etMin: EditText
-    private lateinit var etMax: EditText
+    private lateinit var etPopulationSize: EditText
+    private lateinit var etSampleSize: EditText
     private lateinit var tvRandomNums: TextView
     private lateinit var btnGenerate: Button
     private lateinit var btnClear: Button
@@ -33,47 +32,37 @@ class RNG : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rng)
+        setContentView(R.layout.activity_muestreo_aleatorio_simple)
 
-        etNums = findViewById(R.id.activity_rng_et_nums)
-        etMin = findViewById(R.id.activity_rng_et_min)
-        etMax = findViewById(R.id.activity_rng_et_max)
-        tvRandomNums = findViewById(R.id.activity_rng_tv_random_nums)
-        btnGenerate = findViewById(R.id.activity_rng_btn_generate)
-        btnClear = findViewById(R.id.activity_rng_btn_clear)
+        etPopulationSize = findViewById(R.id.activity_muestreo_aleatorio_simple_et_population_size)
+        etSampleSize = findViewById(R.id.activity_muestreo_aleatorio_simple_et_sample_size)
+        tvRandomNums = findViewById(R.id.activity_muestreo_aleatorio_simple_tv_random_nums)
+        btnGenerate = findViewById(R.id.activity_muestreo_aleatorio_simple_btn_generate)
+        btnClear = findViewById(R.id.activity_muestreo_aleatorio_simple_btn_clear)
         tstMaxError = Toast.makeText(this, R.string.random_max_error, Toast.LENGTH_SHORT)
         tstCopy = Toast.makeText(this, R.string.copy, Toast.LENGTH_SHORT)
 
-        etNums.addTextChangedListener(object : TextWatcher {
+        etPopulationSize.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {}
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
                 if (text.isNullOrBlank()) return
-                nums = strToBigInteger(text.toString()).toInt()
+                // population = strToBigInteger(text.toString()).toInt()
+                population = text.toString().toInt()
             }
         })
 
-        etMin.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(text: Editable?) {}
-
-            override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                if (text.isNullOrBlank()) return 
-                min = strToBigInteger(text.toString()).toInt()
-            }
-        })
-
-        etMax.addTextChangedListener(object : TextWatcher {
+        etSampleSize.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {}
 
             override fun beforeTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
                 if (text.isNullOrBlank()) return
-                max = strToBigInteger(text.toString()).toInt()
+                // sample = strToBigInteger(text.toString()).toInt()
+                sample = text.toString().toInt()
             }
         })
 
@@ -85,15 +74,15 @@ class RNG : AppCompatActivity() {
     private fun generate(v : View) {
         if (!v.isClickable) return
 
-        if (nums > max) {
+        if (sample > population) {
             tstMaxError.cancel()
             tstMaxError.show()
             return
         }
 
-        if (nums > 0 && min != max && max > min) {
+        if (sample > 0 && population > min) {
             val numsSet: MutableSet<Int> = mutableSetOf()
-            while (numsSet.size < nums) numsSet.add((min..max).random())
+            while (numsSet.size < sample) numsSet.add((min..population).random())
 
             val finalNumsList = numsSet.shuffled()
             var numsStr = finalNumsList.toString().replace(",", "")
@@ -108,18 +97,15 @@ class RNG : AppCompatActivity() {
     private fun clear(v: View) {
         if (!v.isClickable) return
 
-        nums = 0
-        min = 0
-        max = 0
+        population = 0
+        sample = 0
 
-        etNums.setText("")
-        etMin.setText("")
-        etMax.setText("")
+        etPopulationSize.setText("")
+        etSampleSize.setText("")
         tvRandomNums.text = ""
 
-        etNums.clearFocus()
-        etMin.clearFocus()
-        etMax.clearFocus()
+        etPopulationSize.clearFocus()
+        etSampleSize.clearFocus()
 
         btnGenerate.setText(R.string.generate)
     }

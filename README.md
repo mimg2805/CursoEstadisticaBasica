@@ -1,4 +1,4 @@
-# Curso Estadística Básica
+# Estadística Básica
 
 Una guía para el aprendizaje de la estadística.
 
@@ -15,8 +15,22 @@ Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, pa
          - Tamaño de Muestra para estimar una Media Poblacional
          - Tamaños de Muestras para la Diferencia de 2 Proporciones Poblacionales
          - Tamaños de Muestras para la Diferencia de 2 Medias Poblacionales
-    - Tema 2: Selección Aleatoria de una Muestra
-    - Tema 3: Distribución de la Muestra
+    - Tema 2: Métodos de Muestreo
+         - Métodos de Muestreo Probabilísticos
+            - Muestreo Aleatorio Simple
+            - Muestreo Sistemático
+            - Muestreo Estratificado
+            - Muestreo por Conglomerados
+            - Muestreo Aleatorio de Múltiples Etapas
+         - Métodos de Muestreo No Probabilísticos
+            - Muestreo por Conveniencia
+            - Muestreo por Juicio
+            - Muestreo por Cuotas
+            - Muestreo Bola de Nieve
+            - Muestreo por Voluntarios
+            - Muestreo Teórico
+    - Tema 3: Selección Aleatoria de una Muestra
+    - Tema 4: Distribución de la Muestra
 - Estadística Descriptiva
     - Tema 1: Análisis Estadístico Descriptivo de una Variable Cuantitativa
         - Media, Mediana, Moda

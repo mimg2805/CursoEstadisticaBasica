@@ -20,17 +20,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class Tema : AppCompatActivity() {
+class Subtema : AppCompatActivity() {
 
     lateinit var db: DBHelper
-    private lateinit var subtemas: Cursor
+    private lateinit var subsubtemas: Cursor
 
     private lateinit var adViewContainer : FrameLayout
     private lateinit var adView : AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tema)
+        setContentView(R.layout.activity_subtema)
 
         // Language
         val lang = Resources.getSystem().configuration.locales.get(0).language
@@ -39,57 +39,52 @@ class Tema : AppCompatActivity() {
         startAds()
 
         db = DBHelper(this, "CursoEstadisticaBasica.db", 1)
-        val temaId = intent.getIntExtra("temaId", 0)
-        val temaNombre = intent.getStringExtra("temaNombre")
-        subtemas = db.getSubtemasByTema(temaId)
+        val subtemaId = intent.getIntExtra("subtemaId", 0)
+        val subtemaNombre = intent.getStringExtra("subtemaNombre")
+        subsubtemas = db.getSubsubtemasBySubtema(subtemaId)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = temaNombre
+        supportActionBar?.title = subtemaNombre
 
         val layout: LinearLayout = findViewById(R.id.linLayout)
         var index: Int
-        if (subtemas.count > 0) {
+        if (subsubtemas.count > 0) {
             do {
-                index = subtemas.getColumnIndexOrThrow("id")
-                val subtemaId = subtemas.getInt(index)
-                index = subtemas.getColumnIndexOrThrow("nombre")
-                val subtemaNombreEs = subtemas.getString(index)
-                index = subtemas.getColumnIndexOrThrow("nombre_en")
-                val subtemaNombreEn = subtemas.getString(index)
+                index = subsubtemas.getColumnIndexOrThrow("id")
+                val subsubtemaId = subsubtemas.getInt(index)
+                index = subsubtemas.getColumnIndexOrThrow("nombre")
+                val subsubtemaNombreEs = subsubtemas.getString(index)
+                index = subsubtemas.getColumnIndexOrThrow("nombre_en")
+                val subsubtemaNombreEn = subsubtemas.getString(index)
 
-                val hasSubsubtemas = db.getSubsubtemasBySubtema(subtemaId).count > 0
+                val subsubtemaNombre = if (lang == "en") subsubtemaNombreEn
+                else subsubtemaNombreEs
 
-                val subtemaNombre = if (lang == "en") subtemaNombreEn
-                else subtemaNombreEs
-
-                val subtemaBtn = Button(this)
-                subtemaBtn.text = subtemaNombre
+                val subsubtemasBtn = Button(this)
+                subsubtemasBtn.text = subsubtemaNombre
 
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
                 params.setMargins(0, 0, 0, 40)
-                subtemaBtn.layoutParams = params
-                // button.setBackgroundColor(ContextCompat.getColor(this, R.color.button))
-                subtemaBtn.setBackgroundColor(Color.WHITE)
-                subtemaBtn.setTextColor(Color.BLACK)
-                subtemaBtn.textSize = 14f
+                subsubtemasBtn.layoutParams = params
+                subsubtemasBtn.setBackgroundColor(Color.WHITE)
+                subsubtemasBtn.setTextColor(Color.BLACK)
+                subsubtemasBtn.textSize = 14f
 
-                subtemaBtn.setOnClickListener {
-                    // intent = if (hasSubsubtemas) Intent(this, Subtema::class.java)
-                    // else Intent(this, Formula::class.java)
+                subsubtemasBtn.setOnClickListener {
                     intent = Intent(this, Formula::class.java)
-                    intent.putExtra("subtemaId", subtemaId)
-                    intent.putExtra("subtemaNombre", subtemaNombre)
+                    intent.putExtra("subsubtemaId", subsubtemaId)
+                    intent.putExtra("subsubtemaNombre", subsubtemaNombre)
                     this.startActivity(intent)
                 }
-                layout.addView(subtemaBtn)
-            } while (subtemas.moveToNext())
+                layout.addView(subsubtemasBtn)
+            } while (subsubtemas.moveToNext())
         }
 
-        subtemas.close()
+        subsubtemas.close()
         db.close()
     }
 
@@ -115,7 +110,7 @@ class Tema : AppCompatActivity() {
         backgroundScope.launch {
             // val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf("BE89C404157C24CCDB17A860A9B5B878")).build()
             // MobileAds.setRequestConfiguration(conf)
-            MobileAds.initialize(this@Tema)
+            MobileAds.initialize(this@Subtema)
         }
 
         // Create a new ad view.
