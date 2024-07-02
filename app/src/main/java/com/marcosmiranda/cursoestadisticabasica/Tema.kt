@@ -113,8 +113,8 @@ class Tema : AppCompatActivity() {
         // Initialize the Google Mobile Ads SDK on a background thread.
         val backgroundScope = CoroutineScope(Dispatchers.IO)
         backgroundScope.launch {
-            // val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf("BE89C404157C24CCDB17A860A9B5B878")).build()
-            // MobileAds.setRequestConfiguration(conf)
+            val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf("BE89C404157C24CCDB17A860A9B5B878")).build()
+            MobileAds.setRequestConfiguration(conf)
             MobileAds.initialize(this@Tema)
         }
 
@@ -130,7 +130,7 @@ class Tema : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
 
         // Start loading the ad in the background.
-        // adView.loadAd(adRequest)
+        adView.loadAd(adRequest)
     }
 
     private val adSize: AdSize

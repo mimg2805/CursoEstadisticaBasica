@@ -16,6 +16,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
+import java.util.Locale
 import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
@@ -189,14 +190,14 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
             val pcBottom = (n1 + n2).toBigDecimal()
             pc = pcTop.divide(pcBottom, mc)
             pcComp = BigDecimal.ONE - pc
-            etPC.setText(String.format("%.4f", pc))
+            etPC.setText(String.format(Locale.ENGLISH, "%.4f", pc))
 
             val zTop = p1 - p2
             val zBottom1 = (pc * pcComp).divide(n1.toBigDecimal(), mc)
             val zBottom2 = (pc * pcComp).divide(n2.toBigDecimal(), mc)
             val zBottom = sqrt(zBottom1 + zBottom2, mc)
             z = zTop.divide(zBottom, mc)
-            etZ.setText(String.format("%.2f", z))
+            etZ.setText(String.format(Locale.ENGLISH, "%.2f", z))
 
             val mi = 0.0
             val sigma = 1.0
@@ -210,7 +211,7 @@ class CalcPruebaHipotesis2ProporcionesPoblacionales : AppCompatActivity() {
                 lesser
             }
 
-            etProb.setText(String.format("%.4f", prob))
+            etProb.setText(String.format(Locale.ENGLISH, "%.4f", prob))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()

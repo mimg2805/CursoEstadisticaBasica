@@ -3,6 +3,7 @@ package com.marcosmiranda.cursoestadisticabasica
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
+import java.util.Locale
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 
@@ -65,15 +67,15 @@ class CalcDistMuestra : AppCompatActivity() {
             }
         })
 
-        btnClear.setOnClickListener { v -> clear(v) }
+        btnClear.setOnClickListener { _ -> clear() }
     }
 
     fun calc() {
         if (pop == BigDecimal.ZERO) return
 
         try {
-            frac = (size / pop).round(mc)
-            etFrac.setText(frac.toPlainString())
+            frac = size.divide(pop, mc)
+            etFrac.setText(String.format(Locale.ENGLISH, "%.2f", frac).replace(".00", ""))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()
@@ -82,9 +84,7 @@ class CalcDistMuestra : AppCompatActivity() {
 
     }
 
-    fun clear(v: View) {
-        if (!v.isClickable) return
-
+    fun clear() {
         size = BigDecimal.ZERO
         pop = BigDecimal.ZERO
         frac = BigDecimal.ZERO

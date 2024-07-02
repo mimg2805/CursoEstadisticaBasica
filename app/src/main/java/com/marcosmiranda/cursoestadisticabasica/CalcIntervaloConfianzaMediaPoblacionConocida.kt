@@ -13,6 +13,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
+import java.util.Locale
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigInteger
@@ -135,8 +136,8 @@ class CalcIntervaloConfianzaMediaPoblacionConocida : AppCompatActivity() {
 
             if (limInf == BigDecimal.ZERO || limSup == BigDecimal.ZERO) return
 
-            val limInfStr = String.format("%.2f", limInf)
-            val limSupStr = String.format("%.2f", limSup)
+            val limInfStr = String.format(Locale.ENGLISH, "%.2f", limInf)
+            val limSupStr = String.format(Locale.ENGLISH, "%.2f", limSup)
             val limStr = "[$limInfStr - $limSupStr]"
             etIC.setText(limStr)
         } catch (e: Exception) {

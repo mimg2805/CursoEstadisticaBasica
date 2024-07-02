@@ -4,13 +4,8 @@
     <string name="banner_ad_id" translatable="false">ca-app-pub-2838402743054690/2181824400</string>
 
     <!-- Más Apps -->
-    <string name="mas_apps">More Apps by this Developer</string>
-    <string name="seniasnicas_title" translatable="false">Señas Nicas</string>
-    <string name="seniasnicas_desc">Learn and teach Nicaraguan Sign Language (NSL)\n(App in Spanish)</string>
-    <string name="nicaroadrage_title" translatable="false">Nica Road Rage</string>
-    <string name="nicaroadrage_desc">A small infinite racing game for Android\n(App in Spanish)</string>
-    <string name="purisima_title" translatable="false">Purísima</string>
-    <string name="purisima_desc">A casual mobile game based on the Nicaraguan festivies of La Purísima.\n(App in Spanish)</string>
+    <string name="more_apps">More Apps by this Developer</string>
+    <string name="developer_url" translatable="false">https://play.google.com/store/apps/developer?id=Marcos+I.+Miranda+G.</string>
 
     <string name="list">List</string>
     <string name="add_to_list">Type data to add to the list\nPress Enter on the keyboard to add</string>
@@ -23,6 +18,7 @@
 
     <string name="add">Add</string>
     <string name="calc">Calculate</string>
+    <string name="view">View</string>
     <string name="clear">Clear</string>
     <string name="generate">Generate</string>
     <string name="generate_save">Generate and Save</string>
@@ -112,8 +108,8 @@
 
     <string name="P_Ac" translatable="false">P(Ac)</string>
 
-    <string name="P_A_and_B" translatable="false">P(A &amp;&amp; B)</string>
-    <string name="P_A_or_B" translatable="false">P(A || B)</string>
+    <string name="P_A_and_B">P(A and B)</string>
+    <string name="P_A_or_B">P(A or B)</string>
     <string name="P_A_over_B" translatable="false">P(A / B)</string>
     <string name="P_B_over_A" translatable="false">P(B / A)</string>
     <string name="P_X_equals_x" translatable="false">P(X = x)</string>
@@ -187,8 +183,8 @@
 
     <string name="P_Ac_equals" translatable="false">P(Ac) =</string>
 
-    <string name="P_A_and_B_equals" translatable="false">P(A &amp;&amp; B) =</string>
-    <string name="P_A_or_B_equals" translatable="false">P(A || B) =</string>
+    <string name="P_A_and_B_equals">P(A and B) =</string>
+    <string name="P_A_or_B_equals">P(A or B) =</string>
     <string name="P_A_over_B_equals" translatable="false">P(A / B) =</string>
     <string name="P_B_over_A_equals" translatable="false">P(B / A) =</string>
     <string name="P_X_equals_x_equals" translatable="false">P(X = x) =</string>

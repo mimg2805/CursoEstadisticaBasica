@@ -108,7 +108,7 @@ class MainMenu : AppCompatActivity() {
 
         // Botón de Más apps
         val masAppsBtn = Button(this)
-        masAppsBtn.text = getString(R.string.mas_apps)
+        masAppsBtn.text = getString(R.string.more_apps)
 
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -122,7 +122,7 @@ class MainMenu : AppCompatActivity() {
         masAppsBtn.textSize = 14f
 
         masAppsBtn.setOnClickListener {
-            intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Marcos+I.+Miranda+G."))
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.developer_url)))
             this.startActivity(intent)
         }
         layout.addView(masAppsBtn)

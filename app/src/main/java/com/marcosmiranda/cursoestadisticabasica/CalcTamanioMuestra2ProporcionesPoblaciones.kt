@@ -4,22 +4,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import ch.obermuhlner.math.big.BigDecimalMath
-import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
-import org.apache.commons.math3.distribution.NormalDistribution
 import java.math.BigDecimal
-import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
+import java.util.Locale
+
+import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 
 class CalcTamanioMuestra2ProporcionesPoblaciones : AppCompatActivity() {
 
@@ -118,8 +112,8 @@ class CalcTamanioMuestra2ProporcionesPoblaciones : AppCompatActivity() {
             n2 = pTimesCompSum * zDivESqr
 
             tstInvalid.cancel()
-            etN1.setText(String.format("%.0f", n1))
-            etN2.setText(String.format("%.0f", n2))
+            etN1.setText(String.format(Locale.ENGLISH, "%.0f", n1))
+            etN2.setText(String.format(Locale.ENGLISH, "%.0f", n2))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()

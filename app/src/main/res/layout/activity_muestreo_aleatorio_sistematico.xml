@@ -15,6 +15,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_sistematico_ll_sample_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +24,7 @@
 
         <TextView
             android:id="@+id/activity_muestreo_aleatorio_sistematico_tv_population_size"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
@@ -51,6 +52,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_sistematico_ll_selection_interval"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +61,7 @@
 
         <TextView
             android:id="@+id/activity_muestreo_aleatorio_sistematico_tv_sample_size"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
@@ -87,6 +89,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_sistematico_ll_random_start"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +98,7 @@
 
         <TextView
             android:id="@+id/activity_muestreo_aleatorio_sistematico_tv_selection_interval"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
@@ -126,6 +129,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_sistematico_nsv_random_nums"
         app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +138,7 @@
 
         <TextView
             android:id="@+id/activity_muestreo_aleatorio_sistematico_tv_random_start"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"

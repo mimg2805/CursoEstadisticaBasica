@@ -47,7 +47,7 @@ INSERT INTO "temas" ("id","nombre","html","mostrar","unidad") VALUES
  (5,'Escalas de Medición','',1,1),
  (6,'Tema 1: Tamaño de la Muestra','',1,2),
  (7,'Tema 2: Métodos de Muestreo','',1,2),
- (8,'Tema 3: Selección Aleatoria de una Muestra','seleccion_muestra.html',1,2),
+ (8,'Tema 3: Selección Aleatoria de una Muestra','seleccion_aleatoria_muestra.html',1,2),
  (9,'Tema 4: Distribución de la Muestra','dist_muestra.html',1,2),
  (10,'Tema 1: Análisis Estadístico Descriptivo de una Variable Cuantitativa','',1,3),
  (11,'Tema 2: Análisis Estadístico Descriptivo de una Variable Cualitativa','',1,3),

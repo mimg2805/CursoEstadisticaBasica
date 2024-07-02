@@ -57,6 +57,7 @@ class MuestreoAleatorioSistematico : AppCompatActivity() {
                 if (text.isNullOrBlank()) return
                 // population = strToBigInteger(text.toString()).toInt()
                 population = text.toString().toInt()
+                calc()
             }
         })
 
@@ -69,17 +70,26 @@ class MuestreoAleatorioSistematico : AppCompatActivity() {
                 if (text.isNullOrBlank()) return
                 // sample = strToBigInteger(text.toString()).toInt()
                 sample = text.toString().toInt()
+                calc()
             }
         })
 
-        tvRandomNums.setOnClickListener { v -> copy(v) }
-        btnGenerate.setOnClickListener { v -> generate(v) }
-        btnClear.setOnClickListener { v -> clear(v) }
+        tvRandomNums.setOnClickListener { _ -> copy() }
+        btnGenerate.setOnClickListener { _ -> generate() }
+        btnClear.setOnClickListener { _ -> clear() }
     }
 
-    private fun generate(v : View) {
-        if (!v.isClickable) return
+    private fun calc() {
+        if (sample == 0) return
 
+        selectionInterval = population / sample
+        etSelectionInterval.setText(selectionInterval.toString())
+
+        randomStart = (1..selectionInterval).random()
+        etRandomStart.setText(randomStart.toString())
+    }
+
+    private fun generate() {
         etPopulationSize.clearFocus()
         etSampleSize.clearFocus()
 
@@ -88,14 +98,6 @@ class MuestreoAleatorioSistematico : AppCompatActivity() {
             tstMaxError.show()
             return
         }
-
-        if (sample == 0) return
-
-        selectionInterval = population / sample
-        etSelectionInterval.setText(selectionInterval.toString())
-
-        randomStart = (1..selectionInterval).random()
-        etRandomStart.setText(randomStart.toString())
 
         val numsSet: MutableSet<Int> = mutableSetOf()
         numsSet.add(randomStart)
@@ -113,9 +115,7 @@ class MuestreoAleatorioSistematico : AppCompatActivity() {
         btnGenerate.setText(R.string.repeat)
     }
 
-    private fun clear(v: View) {
-        if (!v.isClickable) return
-
+    private fun clear() {
         population = 0
         sample = 0
         selectionInterval = 0
@@ -133,9 +133,7 @@ class MuestreoAleatorioSistematico : AppCompatActivity() {
         btnGenerate.setText(R.string.generate)
     }
 
-    private fun copy(v: View) {
-        if (!v.isClickable) return
-
+    private fun copy() {
         val nums = tvRandomNums.text.toString()
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("nums", nums)

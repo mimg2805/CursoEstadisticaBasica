@@ -11,10 +11,11 @@
         android:id="@+id/activity_muestreo_aleatorio_conglomerados_ll_population_size"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_conglomerados_ll_sample_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +24,7 @@
 
         <TextView
             android:id="@+id/activity_muestreo_aleatorio_conglomerados_tv_population_size"
-            android:layout_width="250dp"
+            android:layout_width="220dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:gravity="center"
@@ -47,10 +48,11 @@
         android:id="@+id/activity_muestreo_aleatorio_conglomerados_ll_sample_size"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_muestreo_aleatorio_conglomerados_nsv_random_nums"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +61,7 @@
 
         <TextView
             android:id="@+id/activity_muestreo_aleatorio_conglomerados_tv_sample_size"
-            android:layout_width="250dp"
+            android:layout_width="220dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:gravity="center"

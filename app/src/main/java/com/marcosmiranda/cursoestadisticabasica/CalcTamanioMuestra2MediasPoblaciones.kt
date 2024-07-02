@@ -7,14 +7,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
+import java.util.Locale
+
+import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
 
 class CalcTamanioMuestra2MediasPoblaciones : AppCompatActivity() {
 
@@ -114,9 +113,9 @@ class CalcTamanioMuestra2MediasPoblaciones : AppCompatActivity() {
             n2 = (s * z).divide(e, mc).pow(2) * BigDecimal.valueOf(2)
 
             tstInvalid.cancel()
-            etS.setText(String.format("%.1f", s))
-            etN1.setText(String.format("%.0f", n1))
-            etN2.setText(String.format("%.0f", n2))
+            etS.setText(String.format(Locale.ENGLISH, "%.1f", s))
+            etN1.setText(String.format(Locale.ENGLISH, "%.0f", n1))
+            etN2.setText(String.format(Locale.ENGLISH, "%.0f", n2))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()

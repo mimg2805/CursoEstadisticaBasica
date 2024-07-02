@@ -10,8 +10,8 @@
     <LinearLayout
         android:id="@+id/activity_rng_ll_nums"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
@@ -24,9 +24,11 @@
 
         <TextView
             android:id="@+id/activity_rng_tv_nums"
-            android:labelFor="@id/activity_rng_et_nums"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:labelFor="@id/activity_rng_et_nums"
             android:text="@string/random_nums"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -35,8 +37,6 @@
             android:id="@+id/activity_rng_et_nums"
             android:layout_width="80dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:background="@drawable/round_edit_text"
             android:ems="10"
             android:importantForAutofill="no"
@@ -47,12 +47,10 @@
     <LinearLayout
         android:id="@+id/activity_rng_ll_min"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_rng_ll_max"
@@ -62,9 +60,11 @@
 
         <TextView
             android:id="@+id/activity_rng_tv_min"
-            android:labelFor="@id/activity_rng_et_min"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:labelFor="@id/activity_rng_et_min"
             android:text="@string/min_num"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -73,7 +73,6 @@
             android:id="@+id/activity_rng_et_min"
             android:layout_width="80dp"
             android:layout_height="48dp"
-            android:layout_marginTop="8dp"
             android:background="@drawable/round_edit_text"
             android:ems="10"
             android:importantForAutofill="no"
@@ -84,12 +83,10 @@
     <LinearLayout
         android:id="@+id/activity_rng_ll_max"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/activity_rng_scr_random_nums"
@@ -99,9 +96,11 @@
 
         <TextView
             android:id="@+id/activity_rng_tv_max"
-            android:labelFor="@id/activity_rng_et_max"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:labelFor="@id/activity_rng_et_max"
             android:text="@string/max_num"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -110,7 +109,6 @@
             android:id="@+id/activity_rng_et_max"
             android:layout_width="80dp"
             android:layout_height="48dp"
-            android:layout_marginTop="8dp"
             android:background="@drawable/round_edit_text"
             android:ems="10"
             android:importantForAutofill="no"

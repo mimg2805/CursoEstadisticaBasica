@@ -16,6 +16,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
+import java.util.Locale
 import org.apache.commons.math3.distribution.NormalDistribution
 
 import com.marcosmiranda.cursoestadisticabasica.MathHelper.Companion.strToBigDecimal
@@ -151,7 +152,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
 
         try {
             z = (p - pi).divide(sqrt((pi * piComp).divide(n.toBigDecimal(), mc), mc), mc)
-            etZ.setText(String.format("%.2f", z))
+            etZ.setText(String.format(Locale.ENGLISH, "%.2f", z))
 
             val mi = 0.0
             val sigma = 1.0
@@ -165,7 +166,7 @@ class CalcPruebaHipotesisProporcionPoblacional : AppCompatActivity() {
                 lesser
             }
 
-            etProb.setText(String.format("%.4f", prob))
+            etProb.setText(String.format(Locale.ENGLISH, "%.4f", prob))
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()
