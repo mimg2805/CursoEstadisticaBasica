@@ -53,7 +53,7 @@ class CalcDistBinomial : AppCompatActivity() {
         spnProb = findViewById(R.id.activity_calc_dist_binomial_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.probs_3, R.layout.spinner_item
+            R.array.x_probs_3, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnProb.adapter = adapter

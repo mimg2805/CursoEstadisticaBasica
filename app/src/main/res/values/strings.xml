@@ -189,20 +189,36 @@
     <string name="P_B_over_A_equals" translatable="false">P(B / A) =</string>
     <string name="P_X_equals_x_equals" translatable="false">P(X = x) =</string>
 
-    <string-array name="probs_2" translatable="false">
+    <string-array name="x_probs_2" translatable="false">
         <item>P(X > x) =</item>
         <item>P(X &lt; x) =</item>
     </string-array>
 
-    <string-array name="probs_2_inv" translatable="false">
+    <string-array name="x_probs_2_inv" translatable="false">
         <item>P(X &lt; x) =</item>
         <item>P(X > x) =</item>
     </string-array>
 
-    <string-array name="probs_3" translatable="false">
+    <string-array name="x_probs_3" translatable="false">
         <item>P(X = x) =</item>
         <item>P(X > x) =</item>
         <item>P(X &lt; x) =</item>
+    </string-array>
+
+    <string-array name="z_probs_2" translatable="false">
+        <item>P(Z > z) =</item>
+        <item>P(Z &lt; z) =</item>
+    </string-array>
+
+    <string-array name="z_probs_2_inv" translatable="false">
+        <item>P(Z &lt; z) =</item>
+        <item>P(Z > z) =</item>
+    </string-array>
+
+    <string-array name="z_probs_3" translatable="false">
+        <item>P(Z = z) =</item>
+        <item>P(Z > z) =</item>
+        <item>P(Z &lt; z) =</item>
     </string-array>
 
     <string-array name="addition_rule">

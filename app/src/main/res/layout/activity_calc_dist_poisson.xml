@@ -67,7 +67,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="92dp"
         android:backgroundTint="#000000"
-        android:entries="@array/probs_3"
+        android:entries="@array/x_probs_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_poisson_et_prob"
         app:layout_constraintStart_toStartOf="parent"

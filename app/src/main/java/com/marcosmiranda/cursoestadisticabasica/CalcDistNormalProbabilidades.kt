@@ -51,7 +51,7 @@ class CalcDistNormalProbabilidades : AppCompatActivity() {
         spnProb = findViewById(R.id.activity_calc_dist_normal_probabilidades_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.probs_2_inv, R.layout.spinner_item
+            R.array.z_probs_2_inv, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnProb.adapter = adapter
@@ -109,7 +109,7 @@ class CalcDistNormalProbabilidades : AppCompatActivity() {
             }
         }
 
-        btnClear.setOnClickListener { v -> clear(v) }
+        btnClear.setOnClickListener { _ -> clear() }
     }
 
     fun calc() {
@@ -138,9 +138,7 @@ class CalcDistNormalProbabilidades : AppCompatActivity() {
         }
     }
 
-    fun clear(v: View) {
-        if (!v.isClickable) return
-
+    fun clear() {
         mi = BigDecimal.ZERO
         sigma = BigDecimal.ZERO
         x = BigDecimal.ZERO

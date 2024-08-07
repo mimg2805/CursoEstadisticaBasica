@@ -67,7 +67,7 @@ class CalcPruebaHipotesis2MediasPoblacionales : AppCompatActivity() {
         spnProb = findViewById(R.id.activity_calc_prueba_hipotesis_2_medias_poblacionales_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.probs_2, R.layout.spinner_item
+            R.array.x_probs_2, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnProb.adapter = adapter

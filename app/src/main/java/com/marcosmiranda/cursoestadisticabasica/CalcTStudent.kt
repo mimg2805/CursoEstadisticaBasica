@@ -48,7 +48,7 @@ class CalcTStudent : AppCompatActivity() {
         spnProb = findViewById(R.id.activity_calc_t_student_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.probs_2_inv, R.layout.spinner_item
+            R.array.x_probs_2_inv, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnProb.adapter = adapter

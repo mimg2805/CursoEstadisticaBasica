@@ -55,7 +55,7 @@ class CalcDistPoisson : AppCompatActivity() {
         spnProb = findViewById(R.id.activity_calc_dist_poisson_spn_prob)
         adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.probs_3, R.layout.spinner_item
+            R.array.x_probs_3, R.layout.spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnProb.adapter = adapter
@@ -146,6 +146,6 @@ class CalcDistPoisson : AppCompatActivity() {
         etE.clearFocus()
         etProb.clearFocus()
 
-        spnProb.setSelection(adapter.getPosition(resources.getStringArray(R.array.probs_3)[0]))
+        spnProb.setSelection(adapter.getPosition(resources.getStringArray(R.array.x_probs_3)[0]))
     }
 }

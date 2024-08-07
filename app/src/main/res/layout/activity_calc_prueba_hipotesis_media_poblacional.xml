@@ -204,7 +204,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="104dp"
         android:backgroundTint="#000000"
-        android:entries="@array/probs_2"
+        android:entries="@array/x_probs_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_prueba_hipotesis_media_poblacional_et_prob"
         app:layout_constraintStart_toStartOf="parent"

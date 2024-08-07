@@ -67,7 +67,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="156dp"
         android:backgroundTint="#000000"
-        android:entries="@array/probs_3"
+        android:entries="@array/x_probs_3"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_dist_binomial_et_prob"
