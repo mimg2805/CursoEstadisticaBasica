@@ -2,9 +2,9 @@
 
 Una guía para el aprendizaje de la estadística.
 
-Cálculo de tamaño de muestra, generación de números aleatorios, fracción de muestreo para la selección y distribución de una muestra de tamaño n.\
-Cálculo de Probabilidades básico y de distribuciones de probabilidad más utilizadas en Estadística.\
-Cálculo de Intervalos de Confianza para una Proporción o Media Poblacional, para población conocida o desconocida.
+Muestreo: Tamaños de Muestras, Métodos de Muestreo, Selección Aleatoria de una Muestra, Fracción de muestreo para la distribución de una muestra.\
+Estadística Descriptiva para una y dos variables. Cálculo de Probabilidades Básico y Distribuciones de probabilidades.\
+Estadística Inferencial: Intervalos de Confianza y Pruebas de Hipótesis.
 
 ---
 
