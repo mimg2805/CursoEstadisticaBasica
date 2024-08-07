@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.math.BigDecimal
@@ -20,6 +23,7 @@ class CalcDistNormalEstandarizacion : AppCompatActivity() {
     private var sigma = BigDecimal.ZERO
     private var n = BigDecimal.ONE
     private var prob = BigDecimal.ZERO
+    private var calc = ""
 
     private lateinit var etX: EditText
     private lateinit var etMi: EditText
@@ -28,6 +32,9 @@ class CalcDistNormalEstandarizacion : AppCompatActivity() {
     private lateinit var etProb: EditText
     private lateinit var btnClear: Button
     private lateinit var tstInvalid: Toast
+
+    private lateinit var spnProb: Spinner
+    private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +47,14 @@ class CalcDistNormalEstandarizacion : AppCompatActivity() {
         etProb = findViewById(R.id.activity_calc_dist_normal_estandarizacion_et_prob)
         btnClear = findViewById(R.id.activity_calc_dist_normal_estandarizacion_btn_clear)
         tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
+
+        spnProb = findViewById(R.id.activity_calc_dist_normal_estandarizacion_spn_prob)
+        adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.x_probs_2_inv, R.layout.spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spnProb.adapter = adapter
 
         etN.setText(n.toPlainString())
 
@@ -99,14 +114,32 @@ class CalcDistNormalEstandarizacion : AppCompatActivity() {
             }
         })
 
-        btnClear.setOnClickListener { v -> clear(v) }
+        spnProb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                calc = parent?.getItemAtPosition(pos).toString()
+                calc()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                calc = ""
+            }
+        }
+
+        btnClear.setOnClickListener { _ -> clear() }
     }
 
     fun calc() {
         if (sigma == BigDecimal.ZERO || n == BigDecimal.ZERO) return
 
         try {
-            prob = distNormalEstandar(x, mi, sigma, n)
+            val lesser = distNormalEstandar(x, mi, sigma, n)
+            val greater = BigDecimal.ONE - prob
+
+            prob = if (calc.contains('>')) {
+                greater
+            } else {
+                lesser
+            }
             etProb.setText(prob.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
@@ -115,9 +148,7 @@ class CalcDistNormalEstandarizacion : AppCompatActivity() {
         }
     }
 
-    fun clear(v: View) {
-        if (!v.isClickable) return
-
+    fun clear() {
         x = BigDecimal.ZERO
         mi = BigDecimal.ZERO
         sigma = BigDecimal.ZERO
