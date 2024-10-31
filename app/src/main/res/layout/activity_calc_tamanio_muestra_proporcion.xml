@@ -6,19 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".CalcTamanioMuestraProporcion"
-    tools:layout_editor_absoluteY="80dp">
+    tools:context=".CalcTamanioMuestraProporcion">
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_proporcion_tv_N"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:text="@string/N_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -34,7 +32,7 @@
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
@@ -51,18 +49,17 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_proporcion_tv_P"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:text="@string/P_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_E"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_proporcion_spn_E"
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_tamanio_muestra_proporcion_et_P"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,25 +86,20 @@
         app:layout_constraintStart_toEndOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_P"
         app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_et_N" />
 
-    <TextView
-        android:id="@+id/activity_calc_tamanio_muestra_proporcion_tv_E"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/activity_calc_tamanio_muestra_proporcion_spn_E"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/E_equals"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#000000"
+        android:entries="@array/errors"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_Z"
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_tamanio_muestra_proporcion_et_E"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_P"
-        tools:text="@string/E_equals" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_P" />
 
     <EditText
         android:id="@+id/activity_calc_tamanio_muestra_proporcion_et_E"
@@ -115,7 +107,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="84dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_edit_text"
         android:cursorVisible="false"
@@ -129,25 +121,26 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_proporcion_et_Z"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_E"
+        app:layout_constraintStart_toEndOf="@+id/activity_calc_tamanio_muestra_proporcion_spn_E"
         app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_et_P" />
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_proporcion_tv_Z"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:text="@string/Z_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_minimal_sample_size"
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_tamanio_muestra_proporcion_et_Z"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_E"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_spn_E"
         tools:text="@string/Z_equals" />
 
     <EditText
@@ -170,20 +163,20 @@
         android:singleLine="true"
         android:text="@string/Z_val"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_minimal_sample_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_Z"
         app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_et_E"
         tools:text="1.96" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/activity_calc_tamanio_muestra_proporcion_tv_minimal_sample_size"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         android:gravity="center"
-        android:text="El tamaño mínimo de muestra con los parámetros anteriores es de:"
+        android:text="@string/minimal_sample_size"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/activity_calc_tamanio_muestra_proporcion_et_n_result"
         app:layout_constraintEnd_toEndOf="parent"
@@ -192,12 +185,13 @@
 
     <TextView
         android:id="@+id/activity_calc_tamanio_muestra_proporcion_tv_n_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="120dp"
+        android:gravity="center"
         android:text="@string/n_equals"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -205,7 +199,7 @@
         app:layout_constraintEnd_toStartOf="@+id/activity_calc_tamanio_muestra_proporcion_et_n_result"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_minimal_sample_size"
         tools:text="@string/n_equals" />
 
     <EditText
@@ -230,7 +224,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_n_result"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_calc_tamanio_muestra_proporcion_tv_minimal_sample_size" />
 
     <Button
         android:id="@+id/activity_calc_tamanio_muestra_proporcion_btn_clear"

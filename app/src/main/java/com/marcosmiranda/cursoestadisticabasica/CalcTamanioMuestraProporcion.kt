@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.math.BigDecimal
@@ -21,11 +24,13 @@ class CalcTamanioMuestraProporcion : AppCompatActivity() {
     private var p = BigDecimal.ZERO
     private var pComp = BigDecimal.ZERO
     private var e = BigDecimal.ZERO
+    private var eCalc = ""
     private val z = BigDecimal("1.96")
     private var result = BigInteger.ZERO
 
     private lateinit var etN: EditText
     private lateinit var etP: EditText
+    private lateinit var spnE: Spinner
     private lateinit var etE: EditText
     private lateinit var etZ: EditText
     private lateinit var etNResult: EditText
@@ -43,6 +48,14 @@ class CalcTamanioMuestraProporcion : AppCompatActivity() {
         etNResult = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_et_n_result)
         btnClear = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_btn_clear)
         tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
+
+        spnE = findViewById(R.id.activity_calc_tamanio_muestra_proporcion_spn_E)
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.errors, R.layout.spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spnE.adapter = adapter
 
         etZ.setText(z.toPlainString())
 
@@ -75,6 +88,17 @@ class CalcTamanioMuestraProporcion : AppCompatActivity() {
             }
         })
 
+        spnE.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                eCalc = parent?.getItemAtPosition(pos).toString()
+                calc()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                eCalc = ""
+            }
+        }
+
         btnClear.setOnClickListener { v -> clear(v) }
     }
 
@@ -82,7 +106,8 @@ class CalcTamanioMuestraProporcion : AppCompatActivity() {
         if (n == BigInteger.ZERO || p == BigDecimal.ZERO) return
 
         try {
-            e = p * BigDecimal("0.05")
+            e = BigDecimal("0.05")
+            if (eCalc.contains('R')) e *= p
             etE.setText(e.toPlainString())
 
             val pComp = BigDecimal.ONE - p

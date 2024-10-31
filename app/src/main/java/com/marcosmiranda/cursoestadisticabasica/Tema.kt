@@ -78,9 +78,9 @@ class Tema : AppCompatActivity() {
                 subtemaBtn.textSize = 14f
 
                 subtemaBtn.setOnClickListener {
-                    // intent = if (hasSubsubtemas) Intent(this, Subtema::class.java)
-                    // else Intent(this, Formula::class.java)
-                    intent = Intent(this, Formula::class.java)
+                    intent = if (hasSubsubtemas) Intent(this, Subtema::class.java)
+                    else Intent(this, Formula::class.java)
+                    // intent = Intent(this, Formula::class.java)
                     intent.putExtra("subtemaId", subtemaId)
                     intent.putExtra("subtemaNombre", subtemaNombre)
                     this.startActivity(intent)
@@ -113,7 +113,7 @@ class Tema : AppCompatActivity() {
         // Initialize the Google Mobile Ads SDK on a background thread.
         val backgroundScope = CoroutineScope(Dispatchers.IO)
         backgroundScope.launch {
-            val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf("BE89C404157C24CCDB17A860A9B5B878")).build()
+            val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf(getString(R.string.test_device_id))).build()
             MobileAds.setRequestConfiguration(conf)
             MobileAds.initialize(this@Tema)
         }

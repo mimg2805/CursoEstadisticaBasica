@@ -11,10 +11,16 @@ Estadística Inferencial: Intervalos de Confianza y Pruebas de Hipótesis.
 **Temario:**
 - Muestreo
     - Tema 1: Tamaño de la Muestra
-         - Tamaño de Muestra para estimar una Proporción Poblacional
-         - Tamaño de Muestra para estimar una Media Poblacional
-         - Tamaños de Muestras para la Diferencia de 2 Proporciones Poblacionales
-         - Tamaños de Muestras para la Diferencia de 2 Medias Poblacionales
+        - Tamaños de Muestra basados en Intervalos de Confianza 
+            - Tamaño de Muestra para estimar una Proporción Poblacional
+            - Tamaño de Muestra para estimar una Media Poblacional
+            - Tamaños de Muestras para la Diferencia de 2 Proporciones Poblacionales Independientes
+            - Tamaños de Muestras para la Diferencia de 2 Medias Poblacionales Independientes
+        - Tamaños de Muestra basados en Pruebas de Hipótesis
+            - Tamaño de Muestra para la Prueba de Hipótesis de una Proporción Poblacional
+            - Tamaño de Muestra para la Prueba de Hipótesis de una Media Poblacional
+            - Tamaños de Muestras para la Prueba de Hipótesis de la Diferencia de 2 Proporciones Poblacionales Independientes
+            - Tamaños de Muestras para la Prueba de Hipótesis de la Diferencia de 2 Medias Poblacionales Independientes
     - Tema 2: Métodos de Muestreo
          - Métodos de Muestreo Probabilísticos
             - Muestreo Aleatorio Simple

@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Basic Statistics</string>
     <string name="banner_ad_id" translatable="false">ca-app-pub-2838402743054690/2181824400</string>
+    <string name="test_device_id" translatable="false">3B317ED93FEC6B5C4E4469A5DA37932F</string>
 
     <!-- Más Apps -->
     <string name="more_apps">More Apps by this Developer</string>
@@ -41,6 +42,8 @@
     <string name="copy">Copy</string>
     <string name="copied">¡Copied!</string>
 
+    <string name="minimal_sample_size">El tamaño mínimo de muestra con los parámetros anteriores es de:</string>
+
     <string name="degrees_freedom">Degrees of freedom</string>
     <string name="degrees_freedom_numerator">Degrees of freedom of numerator</string>
     <string name="degrees_freedom_denominator">Degrees of freedom of denominator</string>
@@ -56,6 +59,8 @@
 
     <string name="e_val" translatable="false">2.71828</string>
     <string name="Z_val" translatable="false">1.96</string>
+    <string name="Zalpha_val" translatable="false">1.96</string>
+    <string name="Zbeta_val" translatable="false">0.84</string>
 
     <string name="a" translatable="false">a</string>
     <string name="b" translatable="false">b</string>
@@ -65,6 +70,7 @@
     <string name="e" translatable="false">e</string>
     <string name="Fn" translatable="false">Fₙ</string>
     <string name="M" translatable="false">M</string>
+    <string name="m" translatable="false">m</string>
     <string name="N" translatable="false">N</string>
     <string name="n" translatable="false">n</string>
     <string name="n1" translatable="false">n₁</string>
@@ -85,6 +91,8 @@
     <string name="s1" translatable="false">s₁</string>
     <string name="s2" translatable="false">s₂</string>
     <string name="u" translatable="false">u</string>
+    <string name="u1" translatable="false">u₁</string>
+    <string name="u2" translatable="false">u₂</string>
     <string name="v" translatable="false">v</string>
     <string name="x" translatable="false">x</string>
     <string name="xbar" translatable="false">x̄</string>
@@ -92,11 +100,17 @@
     <string name="xbar2" translatable="false">x̄₂</string>
     <string name="y_aps" translatable="false">y\'</string>
     <string name="Z" translatable="false">Z</string>
+    <string name="Zalpha" translatable="false">Zα</string>
+    <string name="Zbeta" translatable="false">Zβ</string>
     <string name="IC" translatable="false">IC</string>
 
     <string name="pi" translatable="false">π</string>
+    <string name="pi0" translatable="false">π₀</string>
+    <string name="pi1" translatable="false">π₁</string>
+    <string name="pi2" translatable="false">π₂</string>
     <string name="lambda" translatable="false">λ</string>
     <string name="mi" translatable="false">μ</string>
+    <string name="mu0" translatable="false">ϻ₀</string>
     <string name="sigma" translatable="false">σ</string>
 
     <string name="P_A" translatable="false">P(A)</string>
@@ -122,6 +136,7 @@
     <string name="e_equals" translatable="false">e =</string>
     <string name="Fn_equals" translatable="false">Fₙ =</string>
     <string name="M_equals" translatable="false">M =</string>
+    <string name="m_equals" translatable="false">m =</string>
     <string name="N_equals" translatable="false">N =</string>
     <string name="n_equals" translatable="false">n =</string>
     <string name="n1_equals" translatable="false">n₁ =</string>
@@ -142,6 +157,8 @@
     <string name="s1_equals" translatable="false">s₁ =</string>
     <string name="s2_equals" translatable="false">s₂ =</string>
     <string name="u_equals" translatable="false">u =</string>
+    <string name="u1_equals" translatable="false">u₁ =</string>
+    <string name="u2_equals" translatable="false">u₂ = </string>
     <string name="v_equals" translatable="false">v =</string>
     <string name="x_equals" translatable="false">x =</string>
     <string name="xbar_equals" translatable="false">x̄ =</string>
@@ -149,8 +166,15 @@
     <string name="xbar2_equals" translatable="false">x̄₂ =</string>
     <string name="y_aps_equals" translatable="false">y\' =</string>
     <string name="Z_equals" translatable="false">Z =</string>
+    <string name="Zalpha_equals" translatable="false">Zα =</string>
+    <string name="Zbeta_equals" translatable="false">Zβ =</string>
     <string name="IC_equals" translatable="false">IC =</string>
     <string name="mean_equals">Mean =</string>
+
+    <string name="pi0_equals" translatable="false">π₀ =</string>
+    <string name="pi1_equals" translatable="false">π₁ =</string>
+    <string name="pi2_equals" translatable="false">π₂ =</string>
+    <string name="mu0_equals" translatable="false">ϻ₀ =</string>
 
     <string name="random_nums">How many numbers do you want to generate?</string>
     <string name="random_generated">Generated numbers</string>
@@ -219,6 +243,11 @@
         <item>P(Z = z) =</item>
         <item>P(Z > z) =</item>
         <item>P(Z &lt; z) =</item>
+    </string-array>
+
+    <string-array name="errors">
+        <item>RE</item>
+        <item>AE</item>
     </string-array>
 
     <string-array name="addition_rule">

@@ -42,6 +42,8 @@
     <string name="copy">Copiar</string>
     <string name="copied">¡Copiado!</string>
 
+    <string name="minimal_sample_size">El tamaño mínimo de muestra con los parámetros anteriores es de:</string>
+
     <string name="degrees_freedom">Grados de libertad</string>
     <string name="degrees_freedom_numerator">Grados de libertad del numerador</string>
     <string name="degrees_freedom_denominator">Grados de libertad del denominador</string>
@@ -78,6 +80,11 @@
     <string name="stratum_num_saved">Estrato #%1$s guardado</string>
     <string name="conglomerates_total_num">Número total de conglomerados (M)</string>
     <string name="conglomerates_select_num">Número de conglomerados a seleccionar (m)</string>
+
+    <string-array name="errors">
+        <item>ER</item>
+        <item>EA</item>
+    </string-array>
 
     <string-array name="addition_rule">
         <item>Eventos Mutuamente Excluyentes</item>

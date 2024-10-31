@@ -89,14 +89,18 @@ class Formula : AppCompatActivity() {
                     2       -> Intent(this, MuestreoAleatorioSistematico::class.java)
                     3       -> Intent(this, MuestreoAleatorioEstratificado::class.java)
                     4       -> Intent(this, MuestreoAleatorioConglomerados::class.java)
+                    12      -> Intent(this, CalcTamanioMuestraProporcion::class.java)
+                    13      -> Intent(this, CalcTamanioMuestraMedia::class.java)
+                    14      -> Intent(this, CalcTamanioMuestra2ProporcionesPoblaciones::class.java)
+                    15      -> Intent(this, CalcTamanioMuestra2MediasPoblaciones::class.java)
+                    16      -> Intent(this, CalcTamanioMuestraPruebaHipotesisProporcion::class.java)
+                    17      -> Intent(this, CalcTamanioMuestraPruebaHipotesisMedia::class.java)
+                    18      -> Intent(this, CalcTamanioMuestraPruebaHipotesis2ProporcionesPoblaciones::class.java)
+                    19      -> Intent(this, CalcTamanioMuestraPruebaHipotesis2MediasPoblaciones::class.java)
                     else    -> null
                 }
             } else if (subtemaId > 0) {
                 when (subtemaId) {
-                    1       -> intent = Intent(this, CalcTamanioMuestraProporcion::class.java)
-                    2       -> intent = Intent(this, CalcTamanioMuestraMedia::class.java)
-                    3       -> intent = Intent(this, CalcTamanioMuestra2ProporcionesPoblaciones::class.java)
-                    4       -> intent = Intent(this, CalcTamanioMuestra2MediasPoblaciones::class.java)
                     5       -> intent = Intent(this, CalcProbTeorica::class.java)
                     6       -> intent = Intent(this, CalcProbEmpirica::class.java)
                     7       -> intent = Intent(this, CalcReglaComplemento::class.java)
@@ -171,7 +175,7 @@ class Formula : AppCompatActivity() {
         // Initialize the Google Mobile Ads SDK on a background thread.
         val backgroundScope = CoroutineScope(Dispatchers.IO)
         backgroundScope.launch {
-            val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf("BE89C404157C24CCDB17A860A9B5B878")).build()
+            val conf = RequestConfiguration.Builder().setTestDeviceIds(listOf(getString(R.string.test_device_id))).build()
             MobileAds.setRequestConfiguration(conf)
             MobileAds.initialize(this@Formula)
         }

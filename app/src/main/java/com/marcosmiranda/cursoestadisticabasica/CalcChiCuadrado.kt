@@ -28,12 +28,10 @@ class CalcChiCuadrado : AppCompatActivity() {
 
     private lateinit var etV: EditText
     private lateinit var etX: EditText
+    private lateinit var spnProb: Spinner
     private lateinit var etProb: EditText
     private lateinit var btnClear: Button
     private lateinit var tstInvalid: Toast
-    
-    private lateinit var spnProb: Spinner
-    private lateinit var adapter: ArrayAdapter<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +44,7 @@ class CalcChiCuadrado : AppCompatActivity() {
         tstInvalid = Toast.makeText(this, R.string.invalid_values, Toast.LENGTH_SHORT)
 
         spnProb = findViewById(R.id.activity_calc_chi_cuadrado_spn_prob)
-        adapter = ArrayAdapter.createFromResource(
+        val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.x_probs_2_inv, R.layout.spinner_item
         )
