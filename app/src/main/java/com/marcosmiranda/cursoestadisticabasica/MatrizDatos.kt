@@ -37,10 +37,10 @@ class MatrizDatos : AppCompatActivity() {
         subtemaNombre = intent.getStringExtra("subtemaNombre") ?: ""
 
         etAddToList = findViewById(R.id.activity_matriz_datos_et_add_to_list)
-        if (temaId == 9) {
+        if (temaId == 10) {
             etAddToList.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
             etAddToList.keyListener = DigitsKeyListener.getInstance("1234567890.")
-        } else if (temaId == 10) {
+        } else if (temaId == 11) {
             etAddToList.inputType = InputType.TYPE_CLASS_TEXT
         }
 
@@ -111,7 +111,7 @@ class MatrizDatos : AppCompatActivity() {
     private fun removeLastFromList(v: View) {
         if (!v.isClickable) return
 
-        if (valuesList.isNotEmpty()) valuesList.removeLast()
+        if (valuesList.isNotEmpty()) valuesList.removeAt(valuesList.count() - 1)
         updateValuesList(v)
     }
 

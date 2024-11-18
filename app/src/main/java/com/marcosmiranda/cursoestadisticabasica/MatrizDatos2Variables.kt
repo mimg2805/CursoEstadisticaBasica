@@ -120,9 +120,9 @@ class MatrizDatos2Variables : AppCompatActivity() {
             }
 
             intent = when (temaId) {
-                11 -> Intent(this, CalcDescriptiva2VariablesCuantitativas::class.java)
-                12 -> Intent(this, CalcDescriptiva2VariablesCualitativas::class.java)
-                13 -> Intent(this, CalcDescriptiva2VariablesMixtas::class.java)
+                12 -> Intent(this, CalcDescriptiva2VariablesCuantitativas::class.java)
+                13 -> Intent(this, CalcDescriptiva2VariablesCualitativas::class.java)
+                14 -> Intent(this, CalcDescriptiva2VariablesMixtas::class.java)
                 else -> Intent()
             }
 
@@ -180,14 +180,14 @@ class MatrizDatos2Variables : AppCompatActivity() {
     private fun removeLastFromListX(v: View) {
         if (!v.isClickable) return
 
-        if (valuesXList.isNotEmpty()) valuesXList.removeLast()
+        if (valuesXList.isNotEmpty()) valuesXList.removeAt(valuesXList.count() - 1)
         updateValuesListX(v)
     }
 
     private fun removeLastFromListY(v: View) {
         if (!v.isClickable) return
 
-        if (valuesYList.isNotEmpty()) valuesYList.removeLast()
+        if (valuesYList.isNotEmpty()) valuesYList.removeAt(valuesYList.count() - 1)
         updateValuesListY(v)
     }
 
