@@ -20,7 +20,7 @@ class CalcProbEmpirica : AppCompatActivity() {
     private var rfa = BigDecimal.ZERO
     private var tro = BigDecimal.ZERO
     private var pA = BigDecimal.ZERO
-    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
+    private val mc = MathContext(4, RoundingMode.HALF_UP)
 
     private lateinit var etRFA: EditText
     private lateinit var etTRO: EditText
@@ -66,15 +66,15 @@ class CalcProbEmpirica : AppCompatActivity() {
             }
         })
 
-        btnClear.setOnClickListener { v -> clear(v) }
+        btnClear.setOnClickListener { _ -> clear() }
     }
 
     fun calc() {
         if (tro == BigDecimal.ZERO) return
 
         try {
-            pA = (rfa / tro).round(mc)
-            etPA.setText(String.format(pA.toPlainString()))
+            pA = rfa.divide(tro, mc)
+            etPA.setText(pA.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()
@@ -82,9 +82,7 @@ class CalcProbEmpirica : AppCompatActivity() {
         }
     }
 
-    fun clear(v: View) {
-        if (!v.isClickable) return
-
+    fun clear() {
         rfa = BigDecimal.ZERO
         tro = BigDecimal.ZERO
         pA = BigDecimal.ZERO

@@ -119,6 +119,10 @@ class Formula : AppCompatActivity() {
                         intent.putExtra("subtemaId", subtemaId)
                         intent.putExtra("subtemaNombre", subtemaNombre)
                     }
+                    21      -> intent = Intent(this, CalcTamanioMuestraCorrelacionLinealSimple::class.java)
+                    22      -> intent = Intent(this, CalcTamanioMuestraRegresionLinealSimple::class.java)
+                    23      -> intent = Intent(this, CalcTamanioMuestraTablaContingencia::class.java)
+                    24      -> intent = Intent(this, CalcTamanioMuestraAnalisisVarianza::class.java)
                     else    -> intent = null
                 }
             } else {

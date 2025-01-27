@@ -232,6 +232,22 @@
             android:name=".CalcTamanioMuestraPruebaHipotesis2MediasPoblaciones"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalcTamanioMuestraCorrelacionLinealSimple"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalcTamanioMuestraRegresionLinealSimple"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalcTamanioMuestraTablaContingencia"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalcTamanioMuestraAnalisisVarianza"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

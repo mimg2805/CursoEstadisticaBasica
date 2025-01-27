@@ -19,7 +19,7 @@ class CalcProbTeorica : AppCompatActivity() {
     private var rfa = BigDecimal.ZERO
     private var tre = BigDecimal.ZERO
     private var pA = BigDecimal.ZERO
-    private val mc = MathContext(4, RoundingMode.HALF_EVEN)
+    private val mc = MathContext(4, RoundingMode.HALF_UP)
 
     private lateinit var etRFA: EditText
     private lateinit var etTRE: EditText
@@ -65,15 +65,15 @@ class CalcProbTeorica : AppCompatActivity() {
             }
         })
 
-        btnClear.setOnClickListener { v -> clear(v) }
+        btnClear.setOnClickListener { _ -> clear() }
     }
 
     fun calc() {
         if (tre == BigDecimal.ZERO) return
 
         try {
-            pA = (rfa / tre).round(mc)
-            etPA.setText(String.format(pA.toPlainString()))
+            pA = rfa.divide(tre, mc)
+            etPA.setText(pA.toPlainString())
         } catch (e: Exception) {
             e.printStackTrace()
             tstInvalid.cancel()
@@ -81,9 +81,7 @@ class CalcProbTeorica : AppCompatActivity() {
         }
     }
 
-    fun clear(v: View) {
-        if (!v.isClickable) return
-
+    fun clear() {
         rfa = BigDecimal.ZERO
         tre = BigDecimal.ZERO
         pA = BigDecimal.ZERO

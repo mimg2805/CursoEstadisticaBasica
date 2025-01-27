@@ -1,0 +1,28 @@
+<!-- Tamaño de Muestra para una Análisis de la Varianza -->
+<!-- Tamaño de Muestra por grupo (ni) en un ANOVA de un solo factor con grupos de igual tamaño -->
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!--<title>Tamaño de Muestra para una Análisis de la Varianza</title>-->
+    <title>Tamaño de Muestra por grupo (ni) en un ANOVA de un solo factor con grupos de igual tamaño</title>
+    <link rel="stylesheet" href="../css/formula.css">
+    <script src="../js/mathjax-config.js"></script>
+    <script src="../js/mathjax-3.2.0.js"></script>
+</head>
+<body>
+    <!--<h3 id="title">Tamaño de Muestra para una Análisis de la Varianza</h3>-->
+    <h3 id="title">Tamaño de Muestra por grupo (ni) en un ANOVA de un solo factor con grupos de igual tamaño</h3>
+
+    <p><strong>Fórmula</strong></p>
+    <div class="formula">
+        ni = \( {2 * S^2 * (Z_α + Z_β)^2} \over Δ^2 \)
+    </div>
+
+    <p>donde</p>
+    <p>S<sup>2</sup>: La varianza dentro de los grupos</p>
+    <p>Z<sub>α</sub>: 1.96 (confianza al 95%)</p>
+    <p>Z<sub>β</sub>: 0.84 (potencia al 80%)</p>
+    <p>Δ: Diferencia mínima importante entre las medias de los grupos que se desea detectar (efecto a detectar)</p>
+    <p>Nota: Esta fórmula supone que los grupos son de igual tamaño y que las comparaciones se realizan con base en una distribución normal de cada grupo en la variable dependiente Y.</p>
+</body>

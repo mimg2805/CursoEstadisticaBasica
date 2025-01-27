@@ -19,7 +19,6 @@ import com.google.android.gms.ads.RequestConfiguration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
 
 class MainMenu : AppCompatActivity() {
 
@@ -43,20 +42,6 @@ class MainMenu : AppCompatActivity() {
         dbPath = "data/data/$pkgName/databases/$dbName"
         val db = DBHelper(this, dbName, 1)
         val unidades = db.getUnidades()
-
-        val prefs = getSharedPreferences(pkgName, MODE_PRIVATE)
-        val firstTime = prefs.getBoolean("1stTime", true)
-        if (firstTime) {
-            prefs.edit().putBoolean("1stTime", false).apply()
-        } else {
-            val outputFile = File(dbPath)
-            if (outputFile.exists()) outputFile.delete()
-            /*try {
-                copyDB()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }*/
-        }
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)

@@ -64,15 +64,18 @@
 
     <string name="a" translatable="false">a</string>
     <string name="b" translatable="false">b</string>
+    <string name="C" translatable="false">C</string>
     <string name="d1" translatable="false">d₁</string>
     <string name="d2" translatable="false">d₂</string>
     <string name="E" translatable="false">E</string>
     <string name="e" translatable="false">e</string>
+    <string name="F" translatable="false">F</string>
     <string name="Fn" translatable="false">Fₙ</string>
     <string name="M" translatable="false">M</string>
     <string name="m" translatable="false">m</string>
     <string name="N" translatable="false">N</string>
     <string name="n" translatable="false">n</string>
+    <string name="ni" translatable="false">n</string>
     <string name="n1" translatable="false">n₁</string>
     <string name="n2" translatable="false">n₂</string>
     <string name="Nn" translatable="false">Nₙ</string>
@@ -83,6 +86,7 @@
     <string name="P2" translatable="false">P₂</string>
     <string name="p1" translatable="false">p₁</string>
     <string name="p2" translatable="false">p₂</string>
+    <string name="R" translatable="false">R</string>
     <string name="r" translatable="false">r</string>
     <string name="S" translatable="false">S</string>
     <string name="s" translatable="false">s</string>
@@ -104,6 +108,7 @@
     <string name="Zbeta" translatable="false">Zβ</string>
     <string name="IC" translatable="false">IC</string>
 
+    <string name="delta" translatable="false">Δ</string>
     <string name="pi" translatable="false">π</string>
     <string name="pi0" translatable="false">π₀</string>
     <string name="pi1" translatable="false">π₁</string>
@@ -128,17 +133,22 @@
     <string name="P_B_over_A" translatable="false">P(B / A)</string>
     <string name="P_X_equals_x" translatable="false">P(X = x)</string>
 
+    <string name="C_times_F" translatable="false">C * F</string>
+
     <string name="a_equals" translatable="false">a =</string>
     <string name="b_equals" translatable="false">b =</string>
+    <string name="C_equals" translatable="false">C =</string>
     <string name="d1_equals" translatable="false">d₁ =</string>
     <string name="d2_equals" translatable="false">d₂ =</string>
     <string name="E_equals" translatable="false">E =</string>
     <string name="e_equals" translatable="false">e =</string>
+    <string name="F_equals" translatable="false">F =</string>
     <string name="Fn_equals" translatable="false">Fₙ =</string>
     <string name="M_equals" translatable="false">M =</string>
     <string name="m_equals" translatable="false">m =</string>
     <string name="N_equals" translatable="false">N =</string>
     <string name="n_equals" translatable="false">n =</string>
+    <string name="ni_equals" translatable="false">ni =</string>
     <string name="n1_equals" translatable="false">n₁ =</string>
     <string name="n2_equals" translatable="false">n₂ =</string>
     <string name="Nn_equals" translatable="false">Nₙ =</string>
@@ -149,6 +159,7 @@
     <string name="P2_equals" translatable="false">P₂ =</string>
     <string name="p1_equals" translatable="false">p₁ =</string>
     <string name="p2_equals" translatable="false">p₂ =</string>
+    <string name="R_equals" translatable="false">R =</string>
     <string name="r_equals" translatable="false">r =</string>
     <string name="S_equals" translatable="false">S =</string>
     <string name="s_equals" translatable="false">s =</string>
@@ -171,10 +182,13 @@
     <string name="IC_equals" translatable="false">IC =</string>
     <string name="mean_equals">Mean =</string>
 
+    <string name="delta_equals" translatable="false">Δ =</string>
     <string name="pi0_equals" translatable="false">π₀ =</string>
     <string name="pi1_equals" translatable="false">π₁ =</string>
     <string name="pi2_equals" translatable="false">π₂ =</string>
     <string name="mu0_equals" translatable="false">ϻ₀ =</string>
+
+    <string name="C_times_F_equals" translatable="false">C * F =</string>
 
     <string name="random_nums">How many numbers do you want to generate?</string>
     <string name="random_generated">Generated numbers</string>
