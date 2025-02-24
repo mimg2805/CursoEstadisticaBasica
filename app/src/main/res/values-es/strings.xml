@@ -64,6 +64,12 @@
     <string name="P_A_and_B_equals">P(A y B) =</string>
     <string name="P_A_or_B_equals">P(A ó B) =</string>
 
+    <!-- Tabla 2x2 -->
+    <string name="add_data_2x2">Añadir datos</string>
+    <string name="row_total">Total de\nfila</string>
+    <string name="column_total">Total de\ncolumna</string>
+    <string name="table_values_empty">Por favor, rellene todos los datos</string>
+
     <string name="random_nums">¿Cuántos números desea generar?</string>
     <string name="random_generated">Números generados</string>
     <string name="min_num">Número mínimo</string>

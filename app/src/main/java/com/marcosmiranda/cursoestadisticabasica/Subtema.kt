@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -41,6 +42,16 @@ class Subtema : AppCompatActivity() {
         db = DBHelper(this, "CursoEstadisticaBasica.db", 1)
         val subtemaId = intent.getIntExtra("subtemaId", 0)
         val subtemaNombre = intent.getStringExtra("subtemaNombre")
+        val tabla2x2 = intent.getBooleanExtra("tabla2x2", false)
+        val a1b1 = intent.getStringExtra("a1b1")
+        val a1b2 = intent.getStringExtra("a1b2")
+        val a2b1 = intent.getStringExtra("a2b1")
+        val a2b2 = intent.getStringExtra("a2b2")
+        Log.e("tabla2x2", tabla2x2.toString())
+        Log.e("a1b1", a1b1.toString())
+        Log.e("a1b2", a1b2.toString())
+        Log.e("a2b1", a2b1.toString())
+        Log.e("a2b2", a2b2.toString())
         subsubtemas = db.getSubsubtemasBySubtema(subtemaId)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -75,9 +86,18 @@ class Subtema : AppCompatActivity() {
                 subsubtemasBtn.textSize = 14f
 
                 subsubtemasBtn.setOnClickListener {
-                    intent = Intent(this, Formula::class.java)
+                    intent = if (subsubtemaId == 20) Intent(this, ProbabilidadesMarginales::class.java)
+                    else if (subsubtemaId == 21) Intent(this, ProbabilidadesConjuntas::class.java)
+                    else if (subsubtemaId == 22) Intent(this, ProbabilidadesCondicionales::class.java)
+                    else Intent(this, Formula::class.java)
                     intent.putExtra("subsubtemaId", subsubtemaId)
                     intent.putExtra("subsubtemaNombre", subsubtemaNombre)
+                    if (tabla2x2) {
+                        intent.putExtra("a1b1", a1b1)
+                        intent.putExtra("a1b2", a1b2)
+                        intent.putExtra("a2b1", a2b1)
+                        intent.putExtra("a2b2", a2b2)
+                    }
                     this.startActivity(intent)
                 }
                 layout.addView(subsubtemasBtn)

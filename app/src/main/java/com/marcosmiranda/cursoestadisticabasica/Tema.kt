@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -41,6 +42,9 @@ class Tema : AppCompatActivity() {
         db = DBHelper(this, "CursoEstadisticaBasica.db", 1)
         val temaId = intent.getIntExtra("temaId", 0)
         val temaNombre = intent.getStringExtra("temaNombre")
+        val tabla2x2 = intent.getBooleanExtra("tabla2x2", false)
+        Log.e("temaId", temaId.toString())
+        Log.e("temaNombre", temaNombre.toString())
         subtemas = db.getSubtemasByTema(temaId)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -62,6 +66,7 @@ class Tema : AppCompatActivity() {
 
                 val subtemaNombre = if (lang == "en") subtemaNombreEn
                 else subtemaNombreEs
+                Log.e("subtemaNombre", subtemaNombre)
 
                 val subtemaBtn = Button(this)
                 subtemaBtn.text = subtemaNombre
@@ -78,7 +83,8 @@ class Tema : AppCompatActivity() {
                 subtemaBtn.textSize = 14f
 
                 subtemaBtn.setOnClickListener {
-                    intent = if (hasSubsubtemas) Intent(this, Subtema::class.java)
+                    intent = if (subtemaId == 25) Intent(this, Tabla2x2::class.java)
+                    else if (hasSubsubtemas) Intent(this, Subtema::class.java)
                     else Intent(this, Formula::class.java)
                     // intent = Intent(this, Formula::class.java)
                     intent.putExtra("subtemaId", subtemaId)

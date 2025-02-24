@@ -19,6 +19,7 @@ import com.google.android.gms.ads.RequestConfiguration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 class MainMenu : AppCompatActivity() {
 
@@ -42,6 +43,10 @@ class MainMenu : AppCompatActivity() {
         dbPath = "data/data/$pkgName/databases/$dbName"
         val db = DBHelper(this, dbName, 1)
         val unidades = db.getUnidades()
+
+        // Refresh database
+        val outputFile = File(dbPath)
+        if (outputFile.exists()) outputFile.delete()
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)

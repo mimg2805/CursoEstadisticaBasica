@@ -91,6 +91,7 @@ class Unidad : AppCompatActivity() {
                                 20          -> Intent(this, CalcTStudent::class.java)
                                 21          -> Intent(this, CalcFFisher::class.java)
                                 22          -> Intent(this, CalcChiCuadrado::class.java)
+                                25          -> Intent(this, MatrizDatos::class.java)
                                 else        -> Intent(this, Formula::class.java)
                             }
                         } else {

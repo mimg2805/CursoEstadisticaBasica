@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-feature android:name="android.hardware.screen.portrait"/>
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-feature android:name="android.hardware.screen.portrait" />
+
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -12,16 +13,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:replace="android:icon">
+        <activity
+            android:name=".ProbabilidadesCondicionales"
+            android:exported="false" />
+        <activity
+            android:name=".ProbabilidadesConjuntas"
+            android:exported="false" />
+        <activity
+            android:name=".ProbabilidadesMarginales"
+            android:exported="false" />
+        <activity
+            android:name=".Tabla2x2"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2838402743054690~6699653912"/>
+            android:value="ca-app-pub-2838402743054690~6699653912" />
 
         <activity
             android:name=".MainMenu"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -32,8 +45,8 @@
         <activity
             android:name=".Unidad"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainMenu">
+            android:parentActivityName=".MainMenu"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu" />
@@ -41,8 +54,8 @@
         <activity
             android:name=".Tema"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainMenu">
+            android:parentActivityName=".MainMenu"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu" />
@@ -50,8 +63,8 @@
         <activity
             android:name=".Subtema"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainMenu">
+            android:parentActivityName=".MainMenu"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.marcosmiranda.cursoestadisticabasica.MainMenu" />

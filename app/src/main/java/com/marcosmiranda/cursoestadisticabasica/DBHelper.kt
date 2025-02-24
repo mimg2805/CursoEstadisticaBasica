@@ -23,7 +23,7 @@ class DBHelper(
 
         qb.tables = sqlTable
         val c : Cursor = qb.query(db, sqlSelect, null, null, null, null, null)
-        c.moveToFirst()
+        if (c.count > 0) c.moveToFirst()
         return c
     }
 
@@ -35,8 +35,8 @@ class DBHelper(
         val sqlTable = "temas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "unidad = $unidad", null, null, null, null)
-        c.moveToFirst()
+        val c : Cursor = qb.query(db, sqlSelect, "unidad = ?", arrayOf("$unidad"), null, null, null)
+        if (c.count > 0) c.moveToFirst()
         return c
     }
 
@@ -48,8 +48,8 @@ class DBHelper(
         val sqlTable = "subtemas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "tema = $tema", null, null, null, null)
-        c.moveToFirst()
+        val c : Cursor = qb.query(db, sqlSelect, "tema = ?", arrayOf("$tema"), null, null, null)
+        if (c.count > 0) c.moveToFirst()
         return c
     }
 
@@ -61,8 +61,8 @@ class DBHelper(
         val sqlTable = "subsubtemas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "subtema = $subtema", null, null, null, null)
-        c.moveToFirst()
+        val c : Cursor = qb.query(db, sqlSelect, "subtema = ?", arrayOf("$subtema"), null, null, null)
+        if (c.count > 0) c.moveToFirst()
         return c
     }
 
@@ -74,8 +74,8 @@ class DBHelper(
         val sqlTable = "temas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "id = $tema", null, null, null, null)
-        c.moveToFirst()
+        val c : Cursor = qb.query(db, sqlSelect, "id = ?", arrayOf("$tema"), null, null, null)
+        if (c.count > 0) c.moveToFirst()
         return c
     }
 
@@ -87,8 +87,8 @@ class DBHelper(
         val sqlTable = "subtemas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "id = $subtema", null, null, null, null)
-        c.moveToFirst()
+        val c : Cursor = qb.query(db, sqlSelect, "id = ?", arrayOf("$subtema"), null, null, null)
+        if (c.count > 0) c.moveToFirst()
         return c
     }
 
@@ -100,8 +100,8 @@ class DBHelper(
         val sqlTable = "subsubtemas"
 
         qb.tables = sqlTable
-        val c : Cursor = qb.query(db, sqlSelect, "id = $subsubtema", null, null, null, null)
-        c.moveToFirst()
+        val c : Cursor = qb.query(db, sqlSelect, "id = ?", arrayOf("$subsubtema"), null, null, null)
+        if (c.count > 0) c.moveToFirst()
         return c
     }
 }
